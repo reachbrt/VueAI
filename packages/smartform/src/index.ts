@@ -18,9 +18,31 @@ export interface SmartFormSchema {
     required?: boolean;
     label?: string;
     placeholder?: string;
+    description?: string;
     options?: Array<{ value: string; label: string }>;
+
+    // Validation constraints
     min?: number;
     max?: number;
+    minLength?: number;
+    maxLength?: number;
+    pattern?: string | RegExp;
+
+    // Custom validation
+    validate?: (value: any, formData: any) => boolean | string | Promise<boolean | string>;
+    validationRules?: string[];
+
+    // Custom error messages
+    requiredMessage?: string;
+    minMessage?: string;
+    maxMessage?: string;
+    minLengthMessage?: string;
+    maxLengthMessage?: string;
+    patternMessage?: string;
+    typeMessage?: string;
+
+    // Default value
+    defaultValue?: any;
   };
 }
 

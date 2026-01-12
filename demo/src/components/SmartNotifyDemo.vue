@@ -3,9 +3,17 @@
     <div class="demo-header">
       <h2>🔔 Smart Notification Manager</h2>
       <p>AI-powered notification system with intelligent timing, grouping, and attention detection</p>
+      <div class="notification-info">
+        <p><strong>👆 Look for the notification bell (🔔) in the top-right corner of the page!</strong></p>
+        <p>Click it to open the notification center and see your notifications.</p>
+        <p v-if="notifications.length > 0" class="notification-count">
+          📊 Current notifications: <strong>{{ notifications.length }}</strong> |
+          Unread: <strong>{{ unreadCount }}</strong>
+        </p>
+      </div>
     </div>
 
-    <!-- Notification Center -->
+    <!-- Notification Center - Fixed position component -->
     <NotificationCenter :show-stats="true" />
 
     <!-- Demo Controls -->
@@ -152,9 +160,11 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue';
 import { NotificationCenter, useSmartNotify } from '@aivue/smart-notify';
-import '../assets/smart-notify.css';
+import '../../../packages/smart-notify/dist/smart-notify.css';
 
 const {
+  notifications,
+  unreadCount,
   userAttention,
   setDoNotDisturb,
   notify,
@@ -163,6 +173,8 @@ const {
   exportData,
   importData: importDataFn
 } = useSmartNotify();
+
+console.log('🔔 [SmartNotifyDemo] Component mounted, notifications:', notifications.value.length);
 
 const newNotif = ref({
   title: 'New Notification',
@@ -313,6 +325,27 @@ const formatDuration = (ms: number): string => {
 .demo-header p {
   font-size: 16px;
   color: #666;
+}
+
+.notification-info {
+  margin-top: 20px;
+  padding: 20px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 12px;
+  color: white;
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.notification-info p {
+  margin: 8px 0;
+  color: white;
+  font-size: 16px;
+}
+
+.notification-info strong {
+  font-size: 18px;
+  display: block;
+  margin-bottom: 8px;
 }
 
 .demo-grid {

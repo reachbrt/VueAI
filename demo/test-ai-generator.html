@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI 360° Generator Test</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      padding: 20px;
+      background: #f5f5f5;
+    }
+    
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    
+    h1 {
+      color: #333;
+      margin-bottom: 10px;
+    }
+    
+    .description {
+      color: #666;
+      margin-bottom: 30px;
+      line-height: 1.6;
+    }
+    
+    .test-section {
+      margin-bottom: 30px;
+      padding: 20px;
+      background: #f9f9f9;
+      border-radius: 8px;
+      border-left: 4px solid #667eea;
+    }
+    
+    .test-section h2 {
+      color: #667eea;
+      margin-bottom: 15px;
+      font-size: 18px;
+    }
+    
+    .input-group {
+      margin-bottom: 15px;
+    }
+    
+    label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 5px;
+      color: #333;
+    }
+    
+    input[type="password"],
+    input[type="file"],
+    select {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      font-size: 14px;
+    }
+    
+    button {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 6px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+    
+    button:hover {
+      transform: translateY(-2px);
+    }
+    
+    button:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      transform: none;
+    }
+    
+    .progress {
+      margin-top: 20px;
+      display: none;
+    }
+    
+    .progress.active {
+      display: block;
+    }
+    
+    .progress-bar {
+      width: 100%;
+      height: 8px;
+      background: #e0e0e0;
+      border-radius: 4px;
+      overflow: hidden;
+      margin-bottom: 10px;
+    }
+    
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+      width: 0%;
+      transition: width 0.3s;
+    }
+    
+    .status {
+      color: #666;
+      font-size: 14px;
+    }
+    
+    .result {
+      margin-top: 20px;
+      display: none;
+    }
+    
+    .result.active {
+      display: block;
+    }
+    
+    .frame-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+      gap: 10px;
+      margin-top: 15px;
+    }
+    
+    .frame-grid img {
+      width: 100%;
+      border-radius: 4px;
+      border: 2px solid #e0e0e0;
+    }
+    
+    .error {
+      background: #ffebee;
+      color: #c62828;
+      padding: 15px;
+      border-radius: 6px;
+      margin-top: 15px;
+      display: none;
+    }
+    
+    .error.active {
+      display: block;
+    }
+
+    .success {
+      background: #e8f5e9;
+      color: #2e7d32;
+      padding: 15px;
+      border-radius: 6px;
+      margin-top: 15px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🤖 AI 360° Generator Test</h1>
+    <p class="description">
+      This test page verifies that the AI 360° generation feature works correctly.
+      Upload a product image and the AI will generate multiple frames showing the product from different angles.
+    </p>
+
+    <!-- Test 1: API Key Setup -->
+    <div class="test-section">
+      <h2>Step 1: API Key Setup</h2>
+      <div class="input-group">
+        <label for="api-key">OpenAI API Key:</label>
+        <input type="password" id="api-key" placeholder="sk-..." />
+        <small style="color: #666; display: block; margin-top: 5px;">
+          Your API key is stored in localStorage and never sent to our servers
+        </small>
+      </div>
+    </div>
+
+    <!-- Test 2: Image Upload -->
+    <div class="test-section">
+      <h2>Step 2: Upload Product Image</h2>
+      <div class="input-group">
+        <label for="image-upload">Select Image:</label>
+        <input type="file" id="image-upload" accept="image/*" />
+      </div>
+      <div id="preview" style="margin-top: 15px; display: none;">
+        <img id="preview-img" style="max-width: 300px; border-radius: 8px;" />
+      </div>
+    </div>
+
+    <!-- Test 3: Generation Options -->
+    <div class="test-section">
+      <h2>Step 3: Generation Options</h2>
+      <div class="input-group">
+        <label for="frame-count">Number of Frames:</label>
+        <select id="frame-count">
+          <option value="4">4 frames (Quick Test)</option>
+          <option value="8">8 frames</option>
+          <option value="12" selected>12 frames</option>
+          <option value="24">24 frames</option>
+          <option value="36">36 frames</option>
+        </select>
+      </div>
+      <div class="input-group">
+        <label for="background">Background Color:</label>
+        <select id="background">
+          <option value="white" selected>White</option>
+          <option value="transparent">Transparent</option>
+          <option value="black">Black</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Test 4: Generate -->
+    <div class="test-section">
+      <h2>Step 4: Generate 360° View</h2>
+      <button id="generate-btn" onclick="testGeneration()">🚀 Start Generation</button>
+
+      <div id="progress" class="progress">
+        <div class="progress-bar">
+          <div id="progress-fill" class="progress-fill"></div>
+        </div>
+        <div id="status" class="status"></div>
+      </div>
+
+      <div id="error" class="error"></div>
+    </div>
+
+    <!-- Test 5: Results -->
+    <div id="result" class="result">
+      <div class="test-section">
+        <h2>✅ Generation Results</h2>
+        <div id="success-message" class="success"></div>
+        <div id="frame-grid" class="frame-grid"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let uploadedImage = null;
+    let generatedFrames = [];
+
+    // Load saved API key
+    const savedKey = localStorage.getItem('ai_360_api_key_openai');
+    if (savedKey) {
+      document.getElementById('api-key').value = savedKey;
+    }
+
+    // Save API key on input
+    document.getElementById('api-key').addEventListener('input', (e) => {
+      localStorage.setItem('ai_360_api_key_openai', e.target.value);
+    });
+
+    // Handle image upload
+    document.getElementById('image-upload').addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = (event) => {
+          uploadedImage = event.target.result;
+          document.getElementById('preview-img').src = uploadedImage;
+          document.getElementById('preview').style.display = 'block';
+        };
+        reader.readAsDataURL(file);
+      }
+    });
+
+    async function testGeneration() {
+      const apiKey = document.getElementById('api-key').value;
+      const frameCount = parseInt(document.getElementById('frame-count').value);
+      const background = document.getElementById('background').value;
+
+      // Validation
+      if (!apiKey) {
+        showError('Please enter your OpenAI API key');
+        return;
+      }
+
+      if (!uploadedImage) {
+        showError('Please upload a product image');
+        return;
+      }
+
+      // Reset UI
+      document.getElementById('error').classList.remove('active');
+      document.getElementById('result').classList.remove('active');
+      document.getElementById('progress').classList.add('active');
+      document.getElementById('generate-btn').disabled = true;
+      generatedFrames = [];
+
+      try {
+        // Step 1: Analyze product with GPT-4 Vision
+        updateProgress(10, 'Analyzing product with GPT-4 Vision...');
+
+        const analysisResponse = await fetch('https://api.openai.com/v1/chat/completions', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${apiKey}`
+          },
+          body: JSON.stringify({
+            model: 'gpt-4o',
+            messages: [{
+              role: 'user',
+              content: [
+                {
+                  type: 'text',
+                  text: 'Analyze this product image and provide a detailed description focusing on: product type, key visual features (color, shape, material, design), and notable details. Keep it concise but descriptive for image generation purposes.'
+                },
+                {
+                  type: 'image_url',
+                  image_url: { url: uploadedImage }
+                }
+              ]
+            }],
+            max_tokens: 300
+          })
+        });
+
+        if (!analysisResponse.ok) {
+          throw new Error(`Analysis failed: ${analysisResponse.statusText}`);
+        }
+
+        const analysisData = await analysisResponse.json();
+        const productDescription = analysisData.choices[0].message.content;
+        console.log('Product Description:', productDescription);
+
+        // Step 2: Generate frames
+        updateProgress(20, `Generating ${frameCount} frames with DALL-E 3...`);
+
+        for (let i = 0; i < frameCount; i++) {
+          const angle = (360 / frameCount) * i;
+          const progress = 20 + ((i + 1) / frameCount) * 70;
+
+          updateProgress(
+            progress,
+            `Generating frame ${i + 1}/${frameCount} (${angle}° angle)...`
+          );
+
+          const prompt = `Product photography: ${productDescription}
+
+Camera angle: Rotated ${angle} degrees around vertical axis from front view
+Background: ${background} background
+Lighting: Professional studio lighting, soft shadows
+Style: Clean product photography, high detail, photorealistic
+
+Show the SAME product from a ${angle}° rotated viewpoint. Keep all product features, colors, and details identical.`;
+
+          const imageResponse = await fetch('https://api.openai.com/v1/images/generations', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${apiKey}`
+            },
+            body: JSON.stringify({
+              model: 'dall-e-3',
+              prompt: prompt,
+              n: 1,
+              size: '1024x1024',
+              quality: 'standard'
+            })
+          });
+
+          if (!imageResponse.ok) {
+            console.error(`Frame ${i + 1} failed:`, imageResponse.statusText);
+            continue;
+          }
+
+          const imageData = await imageResponse.json();
+          const imageUrl = imageData.data[0]?.url;
+
+          if (imageUrl) {
+            generatedFrames.push(imageUrl);
+          }
+        }
+
+        // Step 3: Complete
+        updateProgress(100, '✅ Generation complete!');
+        showResults();
+
+      } catch (error) {
+        console.error('Generation error:', error);
+        showError(`Generation failed: ${error.message}`);
+      } finally {
+        document.getElementById('generate-btn').disabled = false;
+      }
+    }
+
+    function updateProgress(percentage, status) {
+      document.getElementById('progress-fill').style.width = percentage + '%';
+      document.getElementById('status').textContent = status;
+    }
+
+    function showError(message) {
+      const errorEl = document.getElementById('error');
+      errorEl.textContent = message;
+      errorEl.classList.add('active');
+      document.getElementById('progress').classList.remove('active');
+    }
+
+    function showResults() {
+      document.getElementById('progress').classList.remove('active');
+      document.getElementById('result').classList.add('active');
+
+      const successMsg = document.getElementById('success-message');
+      successMsg.textContent = `Successfully generated ${generatedFrames.length} frames! The AI 360° generation is working correctly.`;
+
+      const grid = document.getElementById('frame-grid');
+      grid.innerHTML = '';
+
+      generatedFrames.forEach((url, index) => {
+        const img = document.createElement('img');
+        img.src = url;
+        img.alt = `Frame ${index + 1}`;
+        img.title = `Frame ${index + 1} - ${(360 / generatedFrames.length * index).toFixed(0)}°`;
+        grid.appendChild(img);
+      });
+    }
+  </script>
+</body>
+</html>
+

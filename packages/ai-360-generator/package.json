@@ -1,0 +1,75 @@
+{
+  "name": "@aivue/ai-360-generator",
+  "version": "1.0.0",
+  "description": "AI-powered 360° product view generator from single images using OpenAI DALL-E and Stability AI",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    },
+    "./ai-360-generator.css": "./dist/ai-360-generator.css",
+    "./dist/ai-360-generator.css": "./dist/ai-360-generator.css"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "CHANGELOG.md"
+  ],
+  "scripts": {
+    "build": "npm run clean && vite build",
+    "dev": "vite build --watch",
+    "clean": "rm -rf dist",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "vue",
+    "ai",
+    "360",
+    "product",
+    "image",
+    "generation",
+    "dall-e",
+    "openai",
+    "stability-ai",
+    "3d",
+    "ecommerce",
+    "computer-vision",
+    "machine-learning",
+    "typescript"
+  ],
+  "author": "reachbrt",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/reachbrt/vueai.git",
+    "directory": "packages/ai-360-generator"
+  },
+  "homepage": "https://github.com/reachbrt/vueai#readme",
+  "bugs": {
+    "url": "https://github.com/reachbrt/vueai/issues"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "peerDependencies": {
+    "vue": "^2.6.0 || ^3.0.0"
+  },
+  "dependencies": {
+    "@aivue/core": "^1.3.12"
+  },
+  "devDependencies": {
+    "@types/node": "^20.16.0",
+    "@vitejs/plugin-vue": "^5.0.0",
+    "@vue/compiler-sfc": "^3.5.13",
+    "typescript": "^5.3.0",
+    "vite": "^6.3.5",
+    "vite-plugin-dts": "^4.5.3",
+    "vue": "^3.5.0",
+    "vue-tsc": "^2.2.10"
+  }
+}
+

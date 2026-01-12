@@ -86,7 +86,7 @@
         <div class="demo-section">
           <h3>🛍️ Product Grid Example</h3>
           <p class="section-description">Typical e-commerce product listing layout</p>
-          
+
           <div class="product-grid">
             <div v-for="(product, index) in products" :key="index" class="grid-item">
               <Ai360Spin
@@ -104,6 +104,136 @@
                 <h5>{{ product.name }}</h5>
                 <p class="price">{{ product.price }}</p>
                 <button class="add-to-cart">Add to Cart</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="demo-section ai-generator-section">
+          <h3>🤖 AI 360° Generator (Upload & Generate)</h3>
+          <p class="section-description">Upload a single product image and AI will generate a 360° view with multiple angles</p>
+
+          <div class="ai-generator-container">
+            <!-- API Key Input -->
+            <div v-if="!hasApiKey" class="api-key-input">
+              <label for="openai-key">OpenAI API Key:</label>
+              <input
+                id="openai-key"
+                v-model="openaiApiKey"
+                type="password"
+                placeholder="sk-..."
+                @input="saveApiKey"
+              />
+              <p class="api-hint">Enter your OpenAI API key to use AI 360° generation</p>
+            </div>
+
+            <!-- Upload Section -->
+            <div v-if="hasApiKey" class="upload-section">
+              <div
+                class="upload-area"
+                :class="{ 'drag-over': isDragging }"
+                @drop.prevent="handleDrop"
+                @dragover.prevent="isDragging = true"
+                @dragleave.prevent="isDragging = false"
+              >
+                <div v-if="!uploadedImage" class="upload-placeholder">
+                  <div class="upload-icon">📤</div>
+                  <p class="upload-text">Drag & drop a product image here</p>
+                  <p class="upload-subtext">or</p>
+                  <label class="upload-button">
+                    <input
+                      type="file"
+                      accept="image/*"
+                      @change="handleFileSelect"
+                      style="display: none"
+                    />
+                    Choose File
+                  </label>
+                </div>
+
+                <div v-else class="uploaded-preview">
+                  <img :src="uploadedImage" alt="Uploaded product" />
+                  <button class="clear-button" @click="clearUpload">✕ Clear</button>
+                </div>
+              </div>
+
+              <!-- Generation Controls -->
+              <div v-if="uploadedImage && !isGenerating" class="generation-controls">
+                <div class="control-group">
+                  <label>Frame Count:</label>
+                  <select v-model.number="frameCount">
+                    <option :value="12">12 frames (Fast)</option>
+                    <option :value="24">24 frames (Balanced)</option>
+                    <option :value="36">36 frames (Smooth)</option>
+                  </select>
+                </div>
+
+                <div class="control-group">
+                  <label>Background:</label>
+                  <select v-model="backgroundColor">
+                    <option value="white">White</option>
+                    <option value="transparent">Transparent</option>
+                    <option value="black">Black</option>
+                  </select>
+                </div>
+
+                <button class="generate-button" @click="generateAI360">
+                  🤖 Generate 360° View
+                </button>
+              </div>
+
+              <!-- Progress Section -->
+              <div v-if="isGenerating" class="progress-section">
+                <div class="progress-header">
+                  <h4>{{ generationStatus }}</h4>
+                  <p class="progress-text">{{ generationProgress }}%</p>
+                </div>
+                <div class="progress-bar">
+                  <div class="progress-fill" :style="{ width: generationProgress + '%' }"></div>
+                </div>
+                <p class="progress-detail">{{ generationDetail }}</p>
+              </div>
+
+              <!-- Generated Result -->
+              <div v-if="generatedFrames.length > 0 && !isGenerating" class="generated-result">
+                <h4>✨ Generated 360° View</h4>
+                <p style="color: #666; margin-bottom: 15px;">
+                  Hover over the image to see it spin, or drag to manually control the rotation.
+                </p>
+                <div class="result-viewer">
+                  <Ai360Spin
+                    :static-image="generatedFrames[0]"
+                    :animated-image="generatedFrames"
+                    mode="frames"
+                    trigger="hover"
+                    :frame-rate="24"
+                    enable-drag-spin
+                    :drag-sensitivity="8"
+                    alt="AI Generated 360 view"
+                    width="400px"
+                    height="400px"
+                  />
+                </div>
+                <div class="result-actions">
+                  <button class="action-button" @click="downloadFrames">
+                    💾 Download Frames
+                  </button>
+                  <button class="action-button secondary" @click="resetGenerator">
+                    🔄 Generate Another
+                  </button>
+                </div>
+                <div class="frame-preview">
+                  <p class="preview-label">Generated Frames ({{ generatedFrames.length }} total):</p>
+                  <div class="frame-grid">
+                    <img
+                      v-for="(frame, index) in generatedFrames.slice(0, 12)"
+                      :key="index"
+                      :src="frame"
+                      :alt="`Frame ${index + 1}`"
+                      class="frame-thumbnail"
+                    />
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -169,14 +299,37 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, computed, onMounted } from 'vue';
 import { Ai360Spin } from '@aivue/360-spin';
 import '@aivue/360-spin/360-spin.css';
+import { AIClient } from '@aivue/core';
 
 // Animation status
 const animationStatus = ref('Idle');
 const showAnimationStatus = ref(true);
 const currentFrame = ref<number | null>(null);
+
+// AI Generator state
+const openaiApiKey = ref('');
+const hasApiKey = computed(() => openaiApiKey.value.trim().length > 0);
+const uploadedImage = ref<string | null>(null);
+const uploadedFile = ref<File | null>(null);
+const isDragging = ref(false);
+const isGenerating = ref(false);
+const generationStatus = ref('');
+const generationProgress = ref(0);
+const generationDetail = ref('');
+const generatedFrames = ref<string[]>([]);
+const frameCount = ref(36);
+const backgroundColor = ref('white');
+
+// Load API key from localStorage
+onMounted(() => {
+  const savedKey = localStorage.getItem('openai_api_key');
+  if (savedKey) {
+    openaiApiKey.value = savedKey;
+  }
+});
 
 // Demo data - Using REAL 360° product spin image sequences from Scaleflex CDN
 // These are actual 360-degree product photography sequences, not just two static images!
@@ -246,6 +399,188 @@ function onAnimationEnd() {
 
 function onFrameChange(frame: number) {
   currentFrame.value = frame;
+}
+
+// AI Generator functions
+function saveApiKey() {
+  localStorage.setItem('openai_api_key', openaiApiKey.value);
+}
+
+function handleFileSelect(event: Event) {
+  const target = event.target as HTMLInputElement;
+  const file = target.files?.[0];
+  if (file) {
+    processFile(file);
+  }
+}
+
+function handleDrop(event: DragEvent) {
+  isDragging.value = false;
+  const file = event.dataTransfer?.files[0];
+  if (file && file.type.startsWith('image/')) {
+    processFile(file);
+  }
+}
+
+function processFile(file: File) {
+  uploadedFile.value = file;
+  const reader = new FileReader();
+  reader.onload = (e) => {
+    uploadedImage.value = e.target?.result as string;
+  };
+  reader.readAsDataURL(file);
+}
+
+function clearUpload() {
+  uploadedImage.value = null;
+  uploadedFile.value = null;
+  generatedFrames.value = [];
+}
+
+function resetGenerator() {
+  uploadedImage.value = null;
+  uploadedFile.value = null;
+  generatedFrames.value = [];
+  generationProgress.value = 0;
+  generationStatus.value = '';
+  generationDetail.value = '';
+}
+
+async function generateAI360() {
+  if (!uploadedImage.value || !openaiApiKey.value) return;
+
+  isGenerating.value = true;
+  generatedFrames.value = [];
+  generationProgress.value = 0;
+  generationStatus.value = 'Analyzing product...';
+  generationDetail.value = 'Using GPT-4 Vision to understand your product';
+
+  try {
+    const aiClient = new AIClient({
+      provider: 'openai',
+      apiKey: openaiApiKey.value,
+      model: 'gpt-4o'
+    });
+
+    // Step 1: Analyze the product
+    generationProgress.value = 10;
+    const analysisPrompt = `Analyze this product image and provide a detailed description focusing on:
+- Product type and category
+- Key visual features (color, shape, material, design)
+- Notable details and characteristics
+Keep it concise but descriptive for image generation purposes.`;
+
+    const analysisResponse = await aiClient.chat([
+      {
+        role: 'user',
+        content: [
+          { type: 'text', text: analysisPrompt },
+          { type: 'image_url', image_url: { url: uploadedImage.value } }
+        ]
+      }
+    ]);
+
+    const productDescription = typeof analysisResponse === 'string'
+      ? analysisResponse
+      : analysisResponse.content || '';
+
+    generationProgress.value = 20;
+    generationStatus.value = 'Generating 360° frames...';
+    generationDetail.value = `Creating ${frameCount.value} frames from different angles`;
+
+    // Step 2: Generate frames at different angles
+    const frames: string[] = [];
+    const angleStep = 360 / frameCount.value;
+
+    for (let i = 0; i < frameCount.value; i++) {
+      const angle = Math.round(i * angleStep);
+      generationProgress.value = 20 + Math.round((i / frameCount.value) * 75);
+      generationDetail.value = `Generating frame ${i + 1}/${frameCount.value} (${angle}° angle)`;
+
+      const prompt = `Create a high-quality product photograph of: ${productDescription}
+
+View angle: ${angle} degrees rotation (0° is front view, rotating clockwise when viewed from above)
+Background: ${backgroundColor.value}
+Style: Professional product photography, studio lighting, high detail, sharp focus
+Maintain consistent: lighting, scale, and product appearance across all angles
+
+Important: Show the SAME product from a ${angle}° rotated viewpoint. Keep all product features, colors, and details identical.`;
+
+      try {
+        // Use DALL-E 3 for image generation
+        const response = await fetch('https://api.openai.com/v1/images/generations', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${openaiApiKey.value}`
+          },
+          body: JSON.stringify({
+            model: 'dall-e-3',
+            prompt: prompt,
+            n: 1,
+            size: '1024x1024',
+            quality: 'hd',
+            style: 'natural'
+          })
+        });
+
+        if (!response.ok) {
+          throw new Error(`API error: ${response.statusText}`);
+        }
+
+        const data = await response.json();
+        const imageUrl = data.data[0]?.url;
+
+        if (imageUrl) {
+          // Convert to base64 for local storage
+          const base64 = await urlToBase64(imageUrl);
+          frames.push(base64);
+          generatedFrames.value = [...frames]; // Update preview
+        }
+      } catch (error) {
+        console.error(`Error generating frame ${i + 1}:`, error);
+        // Continue with next frame even if one fails
+      }
+    }
+
+    generationProgress.value = 100;
+    generationStatus.value = '✅ Generation Complete!';
+    generationDetail.value = `Successfully generated ${frames.length} frames`;
+
+    console.log('[AI360] Generation complete!', {
+      framesGenerated: frames.length,
+      isGenerating: isGenerating.value,
+      generatedFramesLength: generatedFrames.value.length
+    });
+
+  } catch (error) {
+    console.error('AI Generation error:', error);
+    generationStatus.value = '❌ Generation Failed';
+    generationDetail.value = error instanceof Error ? error.message : 'Unknown error occurred';
+  } finally {
+    isGenerating.value = false;
+    console.log('[AI360] isGenerating set to false, generatedFrames:', generatedFrames.value.length);
+  }
+}
+
+async function urlToBase64(url: string): Promise<string> {
+  const response = await fetch(url);
+  const blob = await response.blob();
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onloadend = () => resolve(reader.result as string);
+    reader.onerror = reject;
+    reader.readAsDataURL(blob);
+  });
+}
+
+function downloadFrames() {
+  generatedFrames.value.forEach((frame, index) => {
+    const link = document.createElement('a');
+    link.href = frame;
+    link.download = `360-frame-${String(index + 1).padStart(3, '0')}.png`;
+    link.click();
+  });
 }
 </script>
 
@@ -539,6 +874,327 @@ function onFrameChange(frame: number) {
   .product-grid {
     grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
   }
+}
+
+/* AI Generator Styles */
+.ai-generator-section {
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  border: 2px solid #667eea;
+}
+
+.ai-generator-container {
+  margin-top: 1rem;
+}
+
+.api-key-input {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.api-key-input label {
+  display: block;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+.api-key-input input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 2px solid #e0e0e0;
+  border-radius: 6px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+.api-key-input input:focus {
+  outline: none;
+  border-color: #667eea;
+}
+
+.api-hint {
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.upload-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.upload-area {
+  background: white;
+  border: 3px dashed #ccc;
+  border-radius: 12px;
+  padding: 2rem;
+  text-align: center;
+  transition: all 0.3s ease;
+  min-height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.upload-area.drag-over {
+  border-color: #667eea;
+  background: #f0f4ff;
+}
+
+.upload-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.upload-icon {
+  font-size: 4rem;
+}
+
+.upload-text {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #333;
+  margin: 0;
+}
+
+.upload-subtext {
+  color: #666;
+  margin: 0;
+}
+
+.upload-button {
+  padding: 0.75rem 2rem;
+  background: #667eea;
+  color: white;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.upload-button:hover {
+  background: #5568d3;
+}
+
+.uploaded-preview {
+  position: relative;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.uploaded-preview img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.clear-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: rgba(255, 0, 0, 0.8);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background 0.3s ease;
+}
+
+.clear-button:hover {
+  background: rgba(255, 0, 0, 1);
+}
+
+.generation-controls {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: flex-end;
+}
+
+.control-group {
+  flex: 1;
+  min-width: 150px;
+}
+
+.control-group label {
+  display: block;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+.control-group select {
+  width: 100%;
+  padding: 0.75rem;
+  border: 2px solid #e0e0e0;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: border-color 0.3s ease;
+}
+
+.control-group select:focus {
+  outline: none;
+  border-color: #667eea;
+}
+
+.generate-button {
+  padding: 0.75rem 2rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  white-space: nowrap;
+}
+
+.generate-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+}
+
+.progress-section {
+  background: white;
+  padding: 2rem;
+  border-radius: 8px;
+}
+
+.progress-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.progress-header h4 {
+  margin: 0;
+  color: #333;
+  font-size: 1.1rem;
+}
+
+.progress-text {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #667eea;
+  margin: 0;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 12px;
+  background: #e0e0e0;
+  border-radius: 6px;
+  overflow: hidden;
+  margin-bottom: 1rem;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+  transition: width 0.3s ease;
+}
+
+.progress-detail {
+  color: #666;
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+.generated-result {
+  background: white;
+  padding: 2rem;
+  border-radius: 8px;
+}
+
+.generated-result h4 {
+  margin: 0 0 1.5rem 0;
+  color: #333;
+  font-size: 1.3rem;
+}
+
+.result-viewer {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.result-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.action-button {
+  padding: 0.75rem 1.5rem;
+  background: #667eea;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.action-button:hover {
+  background: #5568d3;
+  transform: translateY(-2px);
+}
+
+.action-button.secondary {
+  background: #6c757d;
+}
+
+.action-button.secondary:hover {
+  background: #5a6268;
+}
+
+.frame-preview {
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 2px solid #e0e0e0;
+}
+
+.preview-label {
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+.frame-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+  gap: 0.5rem;
+}
+
+.frame-thumbnail {
+  width: 100%;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 4px;
+  border: 2px solid #e0e0e0;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.frame-thumbnail:hover {
+  border-color: #667eea;
+  transform: scale(1.05);
 }
 </style>
 

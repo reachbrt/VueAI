@@ -11,7 +11,7 @@
 
         <!-- Package Cards -->
         <div class="package-cards" ref="packageCards">
-          <div class="package-card chatbot">
+          <div class="package-card chatbot" @click="setActiveTab('chatbot')">
             <div class="package-icon">💬</div>
             <div class="package-details">
               <h3>@aivue/chatbot</h3>
@@ -20,7 +20,7 @@
             </div>
           </div>
 
-          <div class="package-card autosuggest">
+          <div class="package-card autosuggest" @click="setActiveTab('autosuggest')">
             <div class="package-icon">✨</div>
             <div class="package-details">
               <h3>@aivue/autosuggest</h3>
@@ -29,7 +29,7 @@
             </div>
           </div>
 
-          <div class="package-card smartform">
+          <div class="package-card smartform" @click="setActiveTab('smartform')">
             <div class="package-icon">📝</div>
             <div class="package-details">
               <h3>@aivue/smartform</h3>
@@ -38,7 +38,7 @@
             </div>
           </div>
 
-          <div class="package-card emotion-ui">
+          <div class="package-card emotion-ui" @click="setActiveTab('emotion-ui')">
             <div class="package-icon">🎭</div>
             <div class="package-details">
               <h3>@aivue/emotion-ui</h3>
@@ -47,7 +47,7 @@
             </div>
           </div>
 
-          <div class="package-card doc-intelligence">
+          <div class="package-card doc-intelligence" @click="setActiveTab('doc-intelligence')">
             <div class="package-icon">📄</div>
             <div class="package-details">
               <h3>@aivue/doc-intelligence</h3>
@@ -56,7 +56,7 @@
             </div>
           </div>
 
-          <div class="package-card predictive-input">
+          <div class="package-card predictive-input" @click="setActiveTab('predictive-input')">
             <div class="package-icon">🧠</div>
             <div class="package-details">
               <h3>@aivue/predictive-input</h3>
@@ -65,7 +65,7 @@
             </div>
           </div>
 
-          <div class="package-card smart-notify">
+          <div class="package-card smart-notify" @click="setActiveTab('smart-notify')">
             <div class="package-icon">🔔</div>
             <div class="package-details">
               <h3>@aivue/smart-notify</h3>
@@ -74,7 +74,7 @@
             </div>
           </div>
 
-          <div class="package-card voice-actions">
+          <div class="package-card voice-actions" @click="setActiveTab('voice-actions')">
             <div class="package-icon">🎤</div>
             <div class="package-details">
               <h3>@aivue/voice-actions</h3>
@@ -83,7 +83,7 @@
             </div>
           </div>
 
-          <div class="package-card smart-datatable">
+          <div class="package-card smart-datatable" @click="setActiveTab('smart-datatable')">
             <div class="package-icon">📋</div>
             <div class="package-details">
               <h3>@aivue/smart-datatable</h3>
@@ -92,7 +92,7 @@
             </div>
           </div>
 
-          <div class="package-card image-caption">
+          <div class="package-card image-caption" @click="setActiveTab('image-caption')">
             <div class="package-icon">🖼️</div>
             <div class="package-details">
               <h3>@aivue/image-caption</h3>
@@ -101,7 +101,7 @@
             </div>
           </div>
 
-          <div class="package-card spin360">
+          <div class="package-card spin360" @click="setActiveTab('360-spin')">
             <div class="package-icon">🔄</div>
             <div class="package-details">
               <h3>@aivue/360-spin</h3>
@@ -110,7 +110,7 @@
             </div>
           </div>
 
-          <div class="package-card analytics">
+          <div class="package-card analytics" @click="setActiveTab('analytics')">
             <div class="package-icon">📊</div>
             <div class="package-details">
               <h3>@aivue/analytics</h3>

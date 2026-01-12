@@ -24,6 +24,7 @@ PACKAGES=(
   "doc-intelligence"
   "analytics"
   "360-spin"
+  "ai-360-generator"
   "predictive-input"
   "smart-datatable"
   "smart-notify"
