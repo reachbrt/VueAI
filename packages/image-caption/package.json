@@ -1,6 +1,6 @@
 {
   "name": "@aivue/image-caption",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "AI-powered image captioning for Vue.js applications using Hugging Face BLIP models",
   "author": "reachbrt",
   "license": "MIT",
@@ -47,7 +47,7 @@
     "url": "https://github.com/reachbrt/vueai/issues"
   },
   "peerDependencies": {
-    "vue": "^3.0.0"
+    "vue": "^2.6.0 || ^3.0.0"
   },
   "dependencies": {
     "@aivue/core": "^1.2.7"

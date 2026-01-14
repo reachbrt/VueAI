@@ -268,10 +268,13 @@ The RAG (Retrieval-Augmented Generation) feature allows you to:
   `;
 
   try {
-    await addText(sampleText, 'AI Components Documentation');
-    alert('Sample document added! Try asking questions about it.');
+    console.log('📄 Adding sample document to knowledge base...');
+    const doc = await addText(sampleText, 'AI Components Documentation');
+    console.log('✅ Document added successfully:', doc);
+    console.log('📊 Document chunks:', doc.chunks.length);
+    alert(`Sample document added successfully!\n\n✅ Document: ${doc.name}\n📄 Chunks: ${doc.chunks.length}\n\nTry asking questions like:\n- "What is the @aivue ecosystem?"\n- "What are the key features?"\n- "How do I get started?"\n- "What are RAG best practices?"`);
   } catch (error) {
-    console.error('Failed to add sample document:', error);
+    console.error('❌ Failed to add sample document:', error);
     alert('Failed to add sample document. Please try again.');
   }
 }
@@ -346,11 +349,16 @@ RAG is a powerful feature that makes your chatbot smarter by giving it access to
 
 async function addSampleUrl() {
   try {
-    await addUrl('https://aivue.netlify.app/', 'AIVue Demo Site');
-    alert('Sample URL added! Try asking questions about the AIVue project.');
+    console.log('🔗 Adding sample URL to knowledge base...');
+    const doc = await addUrl('https://aivue.netlify.app/', 'AIVue Demo Site');
+    console.log('✅ URL added successfully:', doc);
+    console.log('📊 Document chunks:', doc.chunks.length);
+    console.log('📝 Sample content:', doc.chunks[0]?.content.substring(0, 200));
+    alert(`Sample URL added successfully!\n\n✅ Document: ${doc.name}\n📄 Chunks: ${doc.chunks.length}\n📊 Total words: ~${doc.metadata.wordCount}\n\nTry asking questions like:\n- "What is AIVue?"\n- "What features does AIVue have?"\n- "Tell me about the chatbot component"`);
   } catch (error) {
-    console.error('Failed to add sample URL:', error);
-    alert('Failed to add sample URL. This may be due to CORS restrictions.');
+    console.error('❌ Failed to add sample URL:', error);
+    const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+    alert(`Failed to add URL: ${errorMessage}\n\nThis may be due to:\n- CORS restrictions\n- Network issues\n- Invalid URL\n\nTry adding a different URL or upload a file instead.`);
   }
 }
 </script>

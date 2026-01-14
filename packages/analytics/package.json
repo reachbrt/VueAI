@@ -1,6 +1,6 @@
 {
   "name": "@aivue/analytics",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "AI-powered analytics and insights for Vue.js applications",
   "author": "reachbrt",
   "license": "MIT",
@@ -46,7 +46,7 @@
     "url": "https://github.com/reachbrt/vueai/issues"
   },
   "peerDependencies": {
-    "vue": "^3.0.0"
+    "vue": "^2.6.0 || ^3.0.0"
   },
   "dependencies": {
     "@aivue/core": "^1.2.7",

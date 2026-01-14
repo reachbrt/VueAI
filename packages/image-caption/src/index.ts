@@ -3,6 +3,13 @@
 // Import CSS
 import './styles/image-caption.css';
 
+// Import Vue compatibility utilities from core
+import {
+  createCompatComponent,
+  registerCompatComponent,
+  createCompatPlugin
+} from '@aivue/core';
+
 // Import types first
 import type {
   ImageCaptionConfig,
@@ -32,8 +39,11 @@ import {
 import { useImageCaption } from './composables/useImageCaption';
 import type { UseImageCaptionOptions, UseImageCaptionReturn } from './composables/useImageCaption';
 
-// Export components
-export { default as AiImageCaption } from './components/AiImageCaption.vue';
+// Import component
+import AiImageCaptionComponent from './components/AiImageCaption.vue';
+
+// Create compatible component
+export const AiImageCaption = createCompatComponent(AiImageCaptionComponent);
 
 // Export composables
 export { useImageCaption };
@@ -72,7 +82,6 @@ export { validateImageFile, resizeImageFile, convertToBase64 } from './utils/ima
 
 // Vue plugin
 import type { App } from 'vue';
-import AiImageCaption from './components/AiImageCaption.vue';
 
 export interface ImageCaptionPluginOptions {
   apiKey?: string;
@@ -80,10 +89,10 @@ export interface ImageCaptionPluginOptions {
   globalConfig?: Partial<ImageCaptionConfig>;
 }
 
-export const ImageCaptionPlugin = {
+export const ImageCaptionPlugin = createCompatPlugin({
   install(app: App, options: ImageCaptionPluginOptions = {}) {
-    // Register component globally
-    app.component('AiImageCaption', AiImageCaption);
+    // Register component globally using the compatibility helper
+    registerCompatComponent(app, 'AiImageCaption', AiImageCaption);
 
     // Provide global configuration
     if (options.globalConfig || options.apiKey || options.defaultModel) {
@@ -96,7 +105,7 @@ export const ImageCaptionPlugin = {
       app.provide('imageCaption:config', globalConfig);
     }
   }
-};
+});
 
 // Default export for convenience
 export default {

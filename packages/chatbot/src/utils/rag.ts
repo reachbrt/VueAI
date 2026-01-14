@@ -205,11 +205,14 @@ export function buildRAGContext(retrievalResult: RetrievalResult): string {
  */
 export async function fetchUrlContent(url: string): Promise<string> {
   try {
+    console.log(`🔗 Fetching URL: ${url}`);
+
     // Try direct fetch first (works for CORS-enabled sites)
     let html: string;
     let fetchError: Error | null = null;
 
     try {
+      console.log('📡 Attempting direct fetch...');
       const response = await fetch(url, {
         mode: 'cors',
         headers: {
@@ -222,11 +225,14 @@ export async function fetchUrlContent(url: string): Promise<string> {
       }
 
       html = await response.text();
+      console.log(`✅ Direct fetch successful! Content length: ${html.length} characters`);
     } catch (directFetchError) {
       fetchError = directFetchError as Error;
+      console.log(`⚠️ Direct fetch failed: ${fetchError.message}`);
 
       // If direct fetch fails (likely CORS), try using a CORS proxy
       try {
+        console.log('🔄 Trying CORS proxy...');
         // Use allorigins.win as a CORS proxy - it's free and reliable
         const proxyUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`;
         const proxyResponse = await fetch(proxyUrl);
@@ -236,7 +242,9 @@ export async function fetchUrlContent(url: string): Promise<string> {
         }
 
         html = await proxyResponse.text();
+        console.log(`✅ Proxy fetch successful! Content length: ${html.length} characters`);
       } catch (proxyError) {
+        console.error(`❌ Proxy fetch also failed: ${(proxyError as Error).message}`);
         // If both methods fail, throw a comprehensive error
         throw new Error(
           `Failed to fetch URL. Direct fetch error: ${fetchError.message}. ` +
@@ -247,14 +255,17 @@ export async function fetchUrlContent(url: string): Promise<string> {
     }
 
     // Convert HTML to text
+    console.log('📝 Converting HTML to text...');
     const text = htmlToText(html);
 
     if (!text || text.trim().length === 0) {
       throw new Error('No text content could be extracted from the URL');
     }
 
+    console.log(`✅ Text extracted successfully! Length: ${text.length} characters, Words: ~${text.split(/\s+/).length}`);
     return text;
   } catch (error) {
+    console.error('❌ fetchUrlContent failed:', error);
     throw new Error(`Failed to fetch URL content: ${error instanceof Error ? error.message : 'Unknown error'}`);
   }
 }

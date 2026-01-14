@@ -179,13 +179,19 @@ export function useRAG(options: UseRAGOptions = {}): UseRAGReturn {
     error.value = null;
 
     try {
+      console.log(`📚 useRAG: Adding URL to knowledge base: ${url}`);
       const content = await fetchUrlContent(url);
+      console.log(`📄 useRAG: Content fetched, length: ${content.length} characters`);
+
       const documentName = name || new URL(url).hostname;
+      console.log(`📝 useRAG: Processing document as: ${documentName}`);
 
       const document = await processDocument(content, documentName, 'url', url);
+      console.log(`✅ useRAG: Document added successfully! ID: ${document.id}, Chunks: ${document.chunks.length}`);
 
       return document;
     } catch (err) {
+      console.error('❌ useRAG: Failed to add URL:', err);
       error.value = err instanceof Error ? err : new Error('Failed to fetch URL');
       throw error.value;
     } finally {
@@ -237,7 +243,20 @@ export function useRAG(options: UseRAGOptions = {}): UseRAGReturn {
    */
   function retrieveContext(query: string, customTopK?: number): RetrievalResult {
     const k = customTopK || topK;
-    return retrieveRelevantChunks(query, knowledgeBase.value, k);
+    console.log(`🔍 useRAG: Retrieving context for query: "${query}"`);
+    console.log(`📚 useRAG: Knowledge base has ${knowledgeBase.value.length} documents`);
+
+    const result = retrieveRelevantChunks(query, knowledgeBase.value, k);
+
+    console.log(`📊 useRAG: Retrieved ${result.chunks.length} relevant chunks`);
+    if (result.chunks.length > 0) {
+      console.log(`📝 useRAG: Top chunk score: ${result.scores[0]?.toFixed(4)}`);
+      console.log(`📄 useRAG: Context preview:`, result.context.substring(0, 200) + '...');
+    } else {
+      console.log(`⚠️ useRAG: No relevant chunks found for query`);
+    }
+
+    return result;
   }
 
   /**

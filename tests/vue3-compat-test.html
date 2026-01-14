@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vue 3 Compatibility Test</title>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+<body>
+  <div id="app">
+    <h1>Vue 3 Compatibility Test</h1>
+    <p>Vue Version: {{ vueVersion }}</p>
+    
+    <div class="test-section">
+      <h2>Test Results:</h2>
+      <ul>
+        <li v-for="(result, index) in testResults" :key="index" :class="result.status">
+          {{ result.name }}: <strong>{{ result.status }}</strong>
+          <span v-if="result.error"> - {{ result.error }}</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <script type="module">
+    const { createApp, ref, reactive, computed, watch, onMounted } = Vue;
+
+    const app = createApp({
+      setup() {
+        const vueVersion = ref(Vue.version);
+        const testResults = ref([]);
+
+        const addResult = (name, status, error = null) => {
+          testResults.value.push({ name, status, error });
+        };
+
+        onMounted(async () => {
+          console.log('Running Vue 3 compatibility tests...');
+          
+          // Test 1: Check Vue version
+          addResult('Vue Version Check', Vue.version.startsWith('3.') ? 'PASS' : 'FAIL');
+          
+          // Test 2: Composition API availability
+          try {
+            const testRef = ref(0);
+            addResult('Composition API (ref)', testRef.value === 0 ? 'PASS' : 'FAIL');
+          } catch (e) {
+            addResult('Composition API (ref)', 'FAIL', e.message);
+          }
+
+          // Test 3: Reactive
+          try {
+            const state = reactive({ count: 0 });
+            addResult('Composition API (reactive)', state.count === 0 ? 'PASS' : 'FAIL');
+          } catch (e) {
+            addResult('Composition API (reactive)', 'FAIL', e.message);
+          }
+
+          // Test 4: Computed
+          try {
+            const count = ref(5);
+            const doubled = computed(() => count.value * 2);
+            addResult('Composition API (computed)', doubled.value === 10 ? 'PASS' : 'FAIL');
+          } catch (e) {
+            addResult('Composition API (computed)', 'FAIL', e.message);
+          }
+
+          // Test 5: Watch
+          try {
+            const count = ref(0);
+            let watchCalled = false;
+            watch(count, () => { watchCalled = true; });
+            count.value = 1;
+            setTimeout(() => {
+              addResult('Composition API (watch)', watchCalled ? 'PASS' : 'FAIL');
+            }, 100);
+          } catch (e) {
+            addResult('Composition API (watch)', 'FAIL', e.message);
+          }
+
+          // Test 6: Teleport (Vue 3 specific)
+          try {
+            addResult('Teleport Support', 'Teleport' in Vue ? 'PASS' : 'FAIL');
+          } catch (e) {
+            addResult('Teleport Support', 'FAIL', e.message);
+          }
+
+          // Test 7: Suspense (Vue 3 specific)
+          try {
+            addResult('Suspense Support', 'Suspense' in Vue ? 'PASS' : 'FAIL');
+          } catch (e) {
+            addResult('Suspense Support', 'FAIL', e.message);
+          }
+
+          console.log('Tests completed');
+        });
+
+        return {
+          vueVersion,
+          testResults
+        };
+      }
+    });
+
+    app.mount('#app');
+  </script>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 800px;
+      margin: 50px auto;
+      padding: 20px;
+    }
+    .test-section {
+      margin-top: 30px;
+      padding: 20px;
+      background: #f5f5f5;
+      border-radius: 8px;
+    }
+    li {
+      padding: 8px;
+      margin: 5px 0;
+      border-radius: 4px;
+    }
+    li.PASS {
+      background: #d4edda;
+      color: #155724;
+    }
+    li.FAIL {
+      background: #f8d7da;
+      color: #721c24;
+    }
+    strong {
+      font-weight: bold;
+    }
+  </style>
+</body>
+</html>
+

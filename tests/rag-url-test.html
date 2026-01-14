@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RAG URL Fetch Test</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 800px;
+      margin: 50px auto;
+      padding: 20px;
+    }
+    .test-section {
+      margin: 20px 0;
+      padding: 20px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+    }
+    button {
+      padding: 10px 20px;
+      margin: 5px;
+      cursor: pointer;
+      background: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 4px;
+    }
+    button:hover {
+      background: #45a049;
+    }
+    .log {
+      background: #f5f5f5;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 4px;
+      font-family: monospace;
+      font-size: 12px;
+      max-height: 400px;
+      overflow-y: auto;
+    }
+    .success { color: green; }
+    .error { color: red; }
+    .info { color: blue; }
+  </style>
+</head>
+<body>
+  <h1>🧪 RAG URL Fetch Test</h1>
+  <p>This page tests the URL fetching functionality for RAG knowledge base.</p>
+
+  <div class="test-section">
+    <h2>Test URL Fetching</h2>
+    <input type="text" id="urlInput" placeholder="Enter URL to test" style="width: 500px; padding: 8px;" value="https://aivue.netlify.app/">
+    <button onclick="testUrlFetch()">Test Fetch</button>
+    <button onclick="clearLog()">Clear Log</button>
+  </div>
+
+  <div class="test-section">
+    <h2>Console Log</h2>
+    <div id="log" class="log"></div>
+  </div>
+
+  <script type="module">
+    // Import the RAG utilities
+    import { fetchUrlContent, chunkText, generateDocumentId } from '../packages/chatbot/dist/utils/rag.js';
+
+    // Make functions available globally
+    window.fetchUrlContent = fetchUrlContent;
+    window.chunkText = chunkText;
+    window.generateDocumentId = generateDocumentId;
+
+    // Override console.log to display in the page
+    const originalLog = console.log;
+    const originalError = console.error;
+    const originalWarn = console.warn;
+
+    function addToLog(message, type = 'info') {
+      const logDiv = document.getElementById('log');
+      const entry = document.createElement('div');
+      entry.className = type;
+      entry.textContent = `[${new Date().toLocaleTimeString()}] ${message}`;
+      logDiv.appendChild(entry);
+      logDiv.scrollTop = logDiv.scrollHeight;
+    }
+
+    console.log = function(...args) {
+      originalLog.apply(console, args);
+      addToLog(args.join(' '), 'info');
+    };
+
+    console.error = function(...args) {
+      originalError.apply(console, args);
+      addToLog(args.join(' '), 'error');
+    };
+
+    console.warn = function(...args) {
+      originalWarn.apply(console, args);
+      addToLog(args.join(' '), 'info');
+    };
+
+    window.testUrlFetch = async function() {
+      const url = document.getElementById('urlInput').value;
+      
+      if (!url) {
+        alert('Please enter a URL');
+        return;
+      }
+
+      try {
+        console.log('🔗 Starting URL fetch test...');
+        console.log(`📍 URL: ${url}`);
+        
+        const content = await window.fetchUrlContent(url);
+        
+        console.log('✅ Fetch successful!');
+        console.log(`📊 Content length: ${content.length} characters`);
+        console.log(`📝 Word count: ~${content.split(/\s+/).length} words`);
+        console.log(`📄 Preview (first 500 chars):\n${content.substring(0, 500)}...`);
+        
+        // Test chunking
+        const docId = window.generateDocumentId();
+        const chunks = window.chunkText(content, docId, 'Test Document');
+        
+        console.log(`\n📚 Chunking test:`);
+        console.log(`✅ Created ${chunks.length} chunks`);
+        console.log(`📄 First chunk preview:\n${chunks[0]?.content.substring(0, 200)}...`);
+        
+        alert(`✅ Success!\n\nFetched ${content.length} characters\nCreated ${chunks.length} chunks\n\nCheck the log for details.`);
+        
+      } catch (error) {
+        console.error('❌ Test failed:', error.message);
+        alert(`❌ Test failed:\n\n${error.message}`);
+      }
+    };
+
+    window.clearLog = function() {
+      document.getElementById('log').innerHTML = '';
+    };
+
+    // Initial log
+    console.log('🚀 RAG URL Fetch Test initialized');
+    console.log('📝 Enter a URL and click "Test Fetch" to begin');
+  </script>
+</body>
+</html>
+

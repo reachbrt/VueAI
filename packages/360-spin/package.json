@@ -1,6 +1,6 @@
 {
   "name": "@aivue/360-spin",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Interactive 360-degree product image spin component for Vue.js with AI-powered generation",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
