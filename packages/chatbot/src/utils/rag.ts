@@ -197,7 +197,7 @@ export function buildRAGContext(retrievalResult: RetrievalResult): string {
     return '';
   }
 
-  return `Context from knowledge base:\n\n${retrievalResult.context}\n\nPlease use the above context to answer the following question. If the context doesn't contain relevant information, you can use your general knowledge but mention that the information is not from the provided documents.`;
+  return `Context from knowledge base:\n\n${retrievalResult.context}\n\nIMPORTANT: You must ONLY answer questions based on the context provided above. If the context does not contain information to answer the question, respond with: "I can only answer from the context of knowledge base data."`;
 }
 
 /**
@@ -205,31 +205,117 @@ export function buildRAGContext(retrievalResult: RetrievalResult): string {
  */
 export async function fetchUrlContent(url: string): Promise<string> {
   try {
-    const response = await fetch(url);
-    const html = await response.text();
+    // Try direct fetch first (works for CORS-enabled sites)
+    let html: string;
+    let fetchError: Error | null = null;
 
-    // Simple HTML to text conversion
-    // Remove script and style tags
-    let text = html.replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '');
-    text = text.replace(/<style\b[^<]*(?:(?!<\/style>)<[^<]*)*<\/style>/gi, '');
+    try {
+      const response = await fetch(url, {
+        mode: 'cors',
+        headers: {
+          'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+        }
+      });
 
-    // Remove HTML tags
-    text = text.replace(/<[^>]+>/g, ' ');
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
 
-    // Decode HTML entities
-    text = text.replace(/&nbsp;/g, ' ');
-    text = text.replace(/&amp;/g, '&');
-    text = text.replace(/&lt;/g, '<');
-    text = text.replace(/&gt;/g, '>');
-    text = text.replace(/&quot;/g, '"');
+      html = await response.text();
+    } catch (directFetchError) {
+      fetchError = directFetchError as Error;
 
-    // Clean up whitespace
-    text = text.replace(/\s+/g, ' ').trim();
+      // If direct fetch fails (likely CORS), try using a CORS proxy
+      try {
+        // Use allorigins.win as a CORS proxy - it's free and reliable
+        const proxyUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`;
+        const proxyResponse = await fetch(proxyUrl);
+
+        if (!proxyResponse.ok) {
+          throw new Error(`Proxy fetch failed with status: ${proxyResponse.status}`);
+        }
+
+        html = await proxyResponse.text();
+      } catch (proxyError) {
+        // If both methods fail, throw a comprehensive error
+        throw new Error(
+          `Failed to fetch URL. Direct fetch error: ${fetchError.message}. ` +
+          `Proxy fetch error: ${(proxyError as Error).message}. ` +
+          `This may be due to CORS restrictions or network issues.`
+        );
+      }
+    }
+
+    // Convert HTML to text
+    const text = htmlToText(html);
+
+    if (!text || text.trim().length === 0) {
+      throw new Error('No text content could be extracted from the URL');
+    }
 
     return text;
   } catch (error) {
     throw new Error(`Failed to fetch URL content: ${error instanceof Error ? error.message : 'Unknown error'}`);
   }
+}
+
+/**
+ * Convert HTML to plain text
+ */
+function htmlToText(html: string): string {
+  // Remove script and style tags with their content
+  let text = html.replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '');
+  text = text.replace(/<style\b[^<]*(?:(?!<\/style>)<[^<]*)*<\/style>/gi, '');
+
+  // Remove comments
+  text = text.replace(/<!--[\s\S]*?-->/g, '');
+
+  // Remove head tag and its content
+  text = text.replace(/<head\b[^<]*(?:(?!<\/head>)<[^<]*)*<\/head>/gi, '');
+
+  // Convert common block elements to newlines
+  text = text.replace(/<\/?(div|p|br|h[1-6]|li|tr|section|article|header|footer|nav|aside)[^>]*>/gi, '\n');
+
+  // Remove all other HTML tags
+  text = text.replace(/<[^>]+>/g, ' ');
+
+  // Decode common HTML entities
+  const entities: Record<string, string> = {
+    '&nbsp;': ' ',
+    '&amp;': '&',
+    '&lt;': '<',
+    '&gt;': '>',
+    '&quot;': '"',
+    '&#39;': "'",
+    '&apos;': "'",
+    '&cent;': '¢',
+    '&pound;': '£',
+    '&yen;': '¥',
+    '&euro;': '€',
+    '&copy;': '©',
+    '&reg;': '®',
+    '&trade;': '™',
+    '&mdash;': '—',
+    '&ndash;': '–',
+    '&hellip;': '…',
+    '&bull;': '•'
+  };
+
+  for (const [entity, char] of Object.entries(entities)) {
+    text = text.replace(new RegExp(entity, 'g'), char);
+  }
+
+  // Decode numeric entities
+  text = text.replace(/&#(\d+);/g, (match, dec) => String.fromCharCode(dec));
+  text = text.replace(/&#x([0-9a-f]+);/gi, (match, hex) => String.fromCharCode(parseInt(hex, 16)));
+
+  // Clean up whitespace
+  text = text.replace(/\n\s*\n\s*\n/g, '\n\n'); // Multiple newlines to double newline
+  text = text.replace(/[ \t]+/g, ' '); // Multiple spaces to single space
+  text = text.replace(/^\s+|\s+$/gm, ''); // Trim lines
+  text = text.trim();
+
+  return text;
 }
 
 /**

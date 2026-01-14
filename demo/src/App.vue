@@ -510,7 +510,12 @@
 
       <section v-if="activeTab === 'rag'" class="component-section">
         <div class="demo-container">
-          <RAGDemo />
+          <div v-if="!hasValidApiKey" class="api-key-warning">
+            Please enter a valid OpenAI API key above to use the RAG component.
+          </div>
+          <div v-else>
+            <RAGDemo :api-key="apiKey" />
+          </div>
         </div>
       </section>
 

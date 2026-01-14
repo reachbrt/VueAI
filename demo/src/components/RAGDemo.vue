@@ -16,12 +16,8 @@
           :model="selectedModel"
           title="AI Assistant with Knowledge Base"
           placeholder="Ask a question about your documents..."
-          :rag-config="{
-            chunkSize: 500,
-            overlap: 50,
-            topK: 3,
-            storageKey: 'aivue-demo-rag-kb'
-          }"
+          system-prompt="You are a knowledge base assistant. Your ONLY source of information is the knowledge base documents provided to you. You are STRICTLY FORBIDDEN from using any external knowledge, general knowledge, or information not explicitly present in the knowledge base context. You must NEVER make assumptions or provide information beyond what is stated in the provided documents."
+          :rag-config="ragConfig"
           :show-knowledge-base="true"
           theme="light"
           height="600px"
@@ -168,6 +164,15 @@ import { ref, computed } from 'vue';
 import { AiChatRAG, useRAG } from '@aivue/chatbot';
 import '@aivue/chatbot/chatbot.css';
 
+// Define props
+const props = defineProps({
+  apiKey: {
+    type: String,
+    required: false,
+    default: ''
+  }
+});
+
 const selectedProvider = ref('openai');
 const selectedModel = ref('gpt-4o');
 
@@ -183,6 +188,24 @@ const modelsByProvider: Record<string, string[]> = {
 
 const availableModels = computed(() => modelsByProvider[selectedProvider.value] || []);
 
+// RAG configuration with strict context template
+const ragConfig = computed(() => ({
+  chunkSize: 500,
+  overlap: 50,
+  topK: 3,
+  storageKey: 'aivue-demo-rag-kb',
+  contextTemplate: `KNOWLEDGE BASE CONTEXT:
+{context}
+
+STRICT INSTRUCTIONS:
+1. You must ONLY use the information provided in the KNOWLEDGE BASE CONTEXT above to answer questions.
+2. The knowledge base context is your ONLY and PRIMARY source of information.
+3. You are ABSOLUTELY FORBIDDEN from using any external knowledge, general knowledge, or making assumptions.
+4. If the answer to the user's question is not explicitly found in the KNOWLEDGE BASE CONTEXT above, you MUST respond EXACTLY with: "I can only answer from the context of knowledge base data."
+5. Do NOT try to be helpful by providing general information - stick strictly to the knowledge base.
+6. Do NOT say things like "based on my knowledge" or "generally speaking" - you have NO knowledge outside the context provided.`
+}));
+
 function updateModel() {
   const models = modelsByProvider[selectedProvider.value];
   if (models && models.length > 0) {
@@ -191,6 +214,11 @@ function updateModel() {
 }
 
 function getApiKey(provider: string): string {
+  // First try to use the prop, then fall back to environment variables
+  if (props.apiKey) {
+    return props.apiKey;
+  }
+
   switch (provider) {
     case 'openai':
       return import.meta.env.VITE_OPENAI_API_KEY || '';

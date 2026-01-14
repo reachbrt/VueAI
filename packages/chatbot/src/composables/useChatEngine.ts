@@ -441,12 +441,29 @@ export function useChatEngine(options: ChatOptions): ChatEngineReturn {
           if (retrievalResult.chunks && retrievalResult.chunks.length > 0) {
             // Build RAG context
             const contextTemplate = options.rag.contextTemplate ||
-              `Context from knowledge base:\n\n{context}\n\nPlease use the above context to answer the following question. If the context doesn't contain relevant information, you can use your general knowledge but mention that the information is not from the provided documents.`;
+              `KNOWLEDGE BASE CONTEXT:
+{context}
+
+STRICT INSTRUCTIONS:
+1. You must ONLY use the information provided in the KNOWLEDGE BASE CONTEXT above to answer questions.
+2. The knowledge base context is your ONLY and PRIMARY source of information.
+3. You are ABSOLUTELY FORBIDDEN from using any external knowledge, general knowledge, or making assumptions.
+4. If the answer to the user's question is not explicitly found in the KNOWLEDGE BASE CONTEXT above, you MUST respond EXACTLY with: "I can only answer from the context of knowledge base data."
+5. Do NOT try to be helpful by providing general information - stick strictly to the knowledge base.
+6. Do NOT say things like "based on my knowledge" or "generally speaking" - you have NO knowledge outside the context provided.`;
 
             const ragContext = contextTemplate.replace('{context}', retrievalResult.context);
 
-            // Inject context into system prompt
-            enhancedSystemPrompt = `${systemPrompt}\n\n${ragContext}`;
+            // Inject context into system prompt - RAG context takes priority
+            enhancedSystemPrompt = `${ragContext}\n\nAdditional instructions: ${systemPrompt}`;
+          } else {
+            // No relevant context found - enforce strict response
+            enhancedSystemPrompt = `IMPORTANT: No relevant information was found in the knowledge base for this query.
+
+You are a knowledge base assistant with NO access to external information.
+You MUST respond EXACTLY with: "I can only answer from the context of knowledge base data."
+
+Do NOT provide any other information or try to be helpful with general knowledge.`;
           }
         } catch (ragError) {
           console.warn('RAG context retrieval failed:', ragError);

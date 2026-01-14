@@ -176,7 +176,7 @@ const props = defineProps({
   },
   systemPrompt: {
     type: String,
-    default: 'You are a helpful assistant with access to a knowledge base. Use the provided context to answer questions accurately.'
+    default: 'You are a knowledge base assistant. Your ONLY source of information is the knowledge base documents. You are STRICTLY FORBIDDEN from using any external knowledge or information not explicitly present in the knowledge base. You must NEVER make assumptions or provide information beyond what is stated in the provided documents. If you cannot find the answer in the knowledge base, respond with: "I can only answer from the context of knowledge base data."'
   },
   streaming: {
     type: Boolean,
