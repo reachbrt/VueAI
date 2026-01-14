@@ -48,7 +48,6 @@ const COMMON_PHRASES = [
 export class NGramModel {
   private data: NGramData;
   private language: Language;
-  private hasTrainingData: boolean = false;
 
   constructor(language: Language = 'en') {
     this.language = language;

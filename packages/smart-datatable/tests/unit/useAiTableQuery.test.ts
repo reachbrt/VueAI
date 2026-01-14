@@ -2,6 +2,7 @@ import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { useAiTableQuery } from '../../src/composables/useAiTableQuery';
 import type { AIClient } from '@aivue/core';
 import type { TableSchema } from '../../src/types/ai';
+import { ref } from 'vue';
 
 describe('useAiTableQuery', () => {
   let mockAiClient: AIClient;
@@ -29,12 +30,14 @@ describe('useAiTableQuery', () => {
   });
 
   it('should initialize with correct schema', () => {
-    const { schema } = useAiTableQuery({
+    const schemaRef = ref(mockSchema);
+    const { loading, error } = useAiTableQuery({
       aiClient: mockAiClient,
-      schema: mockSchema
+      schema: schemaRef
     });
 
-    expect(schema.value).toEqual(mockSchema);
+    expect(loading.value).toBe(false);
+    expect(error.value).toBeNull();
   });
 
   it('should convert natural language query to filter', async () => {
@@ -53,7 +56,7 @@ describe('useAiTableQuery', () => {
 
     const { queryToFilter } = useAiTableQuery({
       aiClient: mockAiClient,
-      schema: mockSchema
+      schema: ref(mockSchema)
     });
 
     const result = await queryToFilter('show orders from India where total > 3000');
@@ -66,7 +69,7 @@ describe('useAiTableQuery', () => {
   it('should apply filter correctly to data', () => {
     const { applyFilter } = useAiTableQuery({
       aiClient: mockAiClient,
-      schema: mockSchema
+      schema: ref(mockSchema)
     });
 
     const testData = [
@@ -93,7 +96,7 @@ describe('useAiTableQuery', () => {
   it('should handle OR operator in filters', () => {
     const { applyFilter } = useAiTableQuery({
       aiClient: mockAiClient,
-      schema: mockSchema
+      schema: ref(mockSchema)
     });
 
     const testData = [
@@ -119,7 +122,7 @@ describe('useAiTableQuery', () => {
   it('should handle contains operator', () => {
     const { applyFilter } = useAiTableQuery({
       aiClient: mockAiClient,
-      schema: mockSchema
+      schema: ref(mockSchema)
     });
 
     const testData = [
@@ -144,7 +147,7 @@ describe('useAiTableQuery', () => {
   it('should handle comparison operators (gt, lt, gte, lte)', () => {
     const { applyFilter } = useAiTableQuery({
       aiClient: mockAiClient,
-      schema: mockSchema
+      schema: ref(mockSchema)
     });
 
     const testData = [

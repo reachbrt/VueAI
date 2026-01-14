@@ -140,7 +140,7 @@ const {
 const stats = computed(() => getStats());
 
 const regularNotifications = computed(() =>
-  notifications.value.filter(n =>
+  notifications.value.filter((n: any) =>
     n.priority !== 'critical' &&
     n.status === 'delivered' &&
     !n.groupId
@@ -149,7 +149,7 @@ const regularNotifications = computed(() =>
 
 const highestPriority = computed(() => {
   if (criticalNotifications.value.length > 0) return 'critical';
-  const priorities = notifications.value.map(n => n.priority || 'low');
+  const priorities = notifications.value.map((n: any) => n.priority || 'low');
   if (priorities.includes('high')) return 'high';
   if (priorities.includes('medium')) return 'medium';
   return 'low';

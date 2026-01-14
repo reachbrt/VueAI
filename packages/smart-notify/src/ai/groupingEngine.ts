@@ -1,4 +1,4 @@
-import nlp from 'compromise';
+// import nlp from 'compromise'; // Not used in current implementation
 import type { Notification, NotificationGroup, GroupingEngine as IGroupingEngine } from '../types';
 
 // Simple browser-compatible TF-IDF implementation

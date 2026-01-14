@@ -5,8 +5,7 @@ import type {
   NotificationBatch,
   SmartNotifyConfig,
   NotificationStats,
-  NotificationEvent,
-  UserAttention
+  NotificationEvent
 } from '../types';
 import { UrgencyDetector } from '../ai/urgencyDetector';
 import { TimingPredictor } from '../ai/timingPredictor';
@@ -88,11 +87,11 @@ export function useSmartNotify(userConfig?: Partial<SmartNotifyConfig>) {
 
   // Computed
   const unreadCount = computed(() =>
-    notifications.value.filter(n => n.status !== 'read' && n.status !== 'dismissed').length
+    notifications.value.filter((n: Notification) => n.status !== 'read' && n.status !== 'dismissed').length
   );
 
   const criticalNotifications = computed(() =>
-    notifications.value.filter(n => n.priority === 'critical' && n.status === 'delivered')
+    notifications.value.filter((n: Notification) => n.priority === 'critical' && n.status === 'delivered')
   );
 
   const userAttention = computed(() => attentionMonitor.getCurrentState());
@@ -233,8 +232,8 @@ export function useSmartNotify(userConfig?: Partial<SmartNotifyConfig>) {
 
     if (related.length > 0) {
       // Find existing group or create new one
-      const existingGroup = groups.value.find(g =>
-        g.notifications.some(n => related.includes(n))
+      const existingGroup = groups.value.find((g: NotificationGroup) =>
+        g.notifications.some((n: Notification) => related.includes(n))
       );
 
       if (existingGroup) {
@@ -244,14 +243,14 @@ export function useSmartNotify(userConfig?: Partial<SmartNotifyConfig>) {
       } else if (related.length >= 2) {
         const group = groupingEngine.createGroup([notification, ...related]);
         groups.value.push(group);
-        [notification, ...related].forEach(n => n.groupId = group.id);
+        [notification, ...related].forEach((n: Notification) => n.groupId = group.id);
         emitEvent('grouped', notification);
       }
     }
   };
 
   const markAsRead = (notificationId: string): void => {
-    const notification = notifications.value.find(n => n.id === notificationId);
+    const notification = notifications.value.find((n: Notification) => n.id === notificationId);
     if (!notification) return;
 
     notification.status = 'read';
@@ -268,7 +267,7 @@ export function useSmartNotify(userConfig?: Partial<SmartNotifyConfig>) {
   };
 
   const dismiss = (notificationId: string): void => {
-    const notification = notifications.value.find(n => n.id === notificationId);
+    const notification = notifications.value.find((n: Notification) => n.id === notificationId);
     if (!notification) return;
 
     notification.status = 'dismissed';
@@ -285,7 +284,7 @@ export function useSmartNotify(userConfig?: Partial<SmartNotifyConfig>) {
   };
 
   const dismissAll = (): void => {
-    notifications.value.forEach(n => {
+    notifications.value.forEach((n: Notification) => {
       if (n.status === 'delivered') {
         n.status = 'dismissed';
       }
@@ -297,7 +296,7 @@ export function useSmartNotify(userConfig?: Partial<SmartNotifyConfig>) {
   };
 
   const remove = (notificationId: string): void => {
-    const index = notifications.value.findIndex(n => n.id === notificationId);
+    const index = notifications.value.findIndex((n: Notification) => n.id === notificationId);
     if (index !== -1) {
       notifications.value.splice(index, 1);
 
@@ -337,14 +336,14 @@ export function useSmartNotify(userConfig?: Partial<SmartNotifyConfig>) {
 
   const getStats = (): NotificationStats => {
     const total = notifications.value.length;
-    const delivered = notifications.value.filter(n => n.status === 'delivered').length;
-    const read = notifications.value.filter(n => n.status === 'read').length;
-    const dismissed = notifications.value.filter(n => n.status === 'dismissed').length;
-    const batched = notifications.value.filter(n => n.status === 'batched').length;
+    const delivered = notifications.value.filter((n: Notification) => n.status === 'delivered').length;
+    const read = notifications.value.filter((n: Notification) => n.status === 'read').length;
+    const dismissed = notifications.value.filter((n: Notification) => n.status === 'dismissed').length;
+    const batched = notifications.value.filter((n: Notification) => n.status === 'batched').length;
 
-    const readNotifications = notifications.value.filter(n => n.status === 'read');
+    const readNotifications = notifications.value.filter((n: Notification) => n.status === 'read');
     const averageReadTime = readNotifications.length > 0
-      ? readNotifications.reduce((sum, n) => sum + (n.timestamp || 0), 0) / readNotifications.length
+      ? readNotifications.reduce((sum: number, n: Notification) => sum + (n.timestamp || 0), 0) / readNotifications.length
       : 0;
 
     const interactionRate = total > 0 ? read / total : 0;
@@ -354,7 +353,7 @@ export function useSmartNotify(userConfig?: Partial<SmartNotifyConfig>) {
     const optimalHours = timingStats.bestHours;
 
     const categoryCount = new Map<string, number>();
-    notifications.value.forEach(n => {
+    notifications.value.forEach((n: Notification) => {
       categoryCount.set(n.category, (categoryCount.get(n.category) || 0) + 1);
     });
     const topCategories = Array.from(categoryCount.entries())
@@ -410,7 +409,7 @@ export function useSmartNotify(userConfig?: Partial<SmartNotifyConfig>) {
     if (!config.value.autoExpire) return;
 
     const now = Date.now();
-    notifications.value = notifications.value.filter(n => {
+    notifications.value = notifications.value.filter((n: Notification) => {
       if (n.expiresAt && n.expiresAt < now) return false;
       if (n.status === 'dismissed' && (now - n.timestamp) > config.value.expirationTime) return false;
       return true;

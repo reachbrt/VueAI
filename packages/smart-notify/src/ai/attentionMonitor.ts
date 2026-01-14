@@ -5,8 +5,6 @@ export class AttentionMonitor implements IAttentionMonitor {
   private checkInterval: number = 1000; // 1 second
   private idleThreshold: number = 60000; // 1 minute
   private intervalId?: number;
-  private lastMouseMove: number = Date.now();
-  private lastKeyPress: number = Date.now();
   private isTyping: boolean = false;
   private typingTimeout?: number;
 
@@ -128,13 +126,11 @@ export class AttentionMonitor implements IAttentionMonitor {
   }
 
   private handleMouseMove = (): void => {
-    this.lastMouseMove = Date.now();
     this.state.lastActivity = Date.now();
     this.state.mouseActivity = true;
   };
 
   private handleKeyPress = (): void => {
-    this.lastKeyPress = Date.now();
     this.state.lastActivity = Date.now();
     this.isTyping = true;
     this.state.isUserTyping = true;

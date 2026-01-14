@@ -32,14 +32,14 @@ describe('useAiInsights', () => {
   });
 
   it('should initialize correctly', () => {
-    const { insights, isGenerating } = useAiInsights({
+    const { insights, loading } = useAiInsights({
       aiClient: mockAiClient,
-      schema: mockSchema,
+      schema: ref(mockSchema),
       data: ref(mockData)
     });
 
     expect(insights.value).toEqual([]);
-    expect(isGenerating.value).toBe(false);
+    expect(loading.value).toBe(false);
   });
 
   it('should generate insights from AI', async () => {
@@ -64,20 +64,20 @@ describe('useAiInsights', () => {
 
     (mockAiClient.chat as any).mockResolvedValue(mockResponse);
 
-    const { generateInsights, insights, isGenerating } = useAiInsights({
+    const { generateInsights, insights, loading } = useAiInsights({
       aiClient: mockAiClient,
-      schema: mockSchema,
+      schema: ref(mockSchema),
       data: ref(mockData)
     });
 
-    expect(isGenerating.value).toBe(false);
-    
+    expect(loading.value).toBe(false);
+
     const promise = generateInsights();
-    expect(isGenerating.value).toBe(true);
-    
+    expect(loading.value).toBe(true);
+
     await promise;
 
-    expect(isGenerating.value).toBe(false);
+    expect(loading.value).toBe(false);
     expect(insights.value).toHaveLength(2);
     expect(insights.value[0].category).toBe('trend');
     expect(insights.value[1].category).toBe('outlier');
@@ -100,7 +100,7 @@ describe('useAiInsights', () => {
 
     const { generateInsights, insights } = useAiInsights({
       aiClient: mockAiClient,
-      schema: mockSchema,
+      schema: ref(mockSchema),
       data: ref(mockData)
     });
 
@@ -112,31 +112,28 @@ describe('useAiInsights', () => {
   });
 
   it('should generate contextual insights for selected rows', async () => {
-    const mockResponse = JSON.stringify({
-      insights: [
-        {
-          category: 'pattern',
-          title: 'Selected Orders Pattern',
-          description: 'Selected orders show similar characteristics',
-          confidence: 0.75,
-          impact: 'medium'
-        }
-      ]
-    });
+    const mockResponse = JSON.stringify([
+      {
+        category: 'pattern',
+        title: 'Selected Orders Pattern',
+        description: 'Selected orders show similar characteristics',
+        confidence: 0.75
+      }
+    ]);
 
     (mockAiClient.chat as any).mockResolvedValue(mockResponse);
 
-    const { generateContextualInsights, insights } = useAiInsights({
+    const { generateContextualInsights } = useAiInsights({
       aiClient: mockAiClient,
-      schema: mockSchema,
+      schema: ref(mockSchema),
       data: ref(mockData)
     });
 
     const selectedRows = [mockData[0], mockData[1]];
-    await generateContextualInsights(selectedRows);
+    const contextualInsights = await generateContextualInsights(selectedRows);
 
-    expect(insights.value).toHaveLength(1);
-    expect(insights.value[0].category).toBe('pattern');
+    expect(contextualInsights).toHaveLength(1);
+    expect(contextualInsights[0].category).toBe('pattern');
   });
 
   it('should generate summary', async () => {
@@ -146,7 +143,7 @@ describe('useAiInsights', () => {
 
     const { getSummary } = useAiInsights({
       aiClient: mockAiClient,
-      schema: mockSchema,
+      schema: ref(mockSchema),
       data: ref(mockData)
     });
 
@@ -157,18 +154,23 @@ describe('useAiInsights', () => {
   });
 
   it('should handle AI errors gracefully', async () => {
-    (mockAiClient.chat as any).mockRejectedValue(new Error('AI API Error'));
-
     const { generateInsights, insights, error } = useAiInsights({
       aiClient: mockAiClient,
-      schema: mockSchema,
+      schema: ref(mockSchema),
       data: ref(mockData)
     });
 
-    await generateInsights();
+    (mockAiClient.chat as any).mockImplementationOnce(() => Promise.reject(new Error('AI API Error')));
+
+    try {
+      await generateInsights();
+    } catch (e) {
+      // Error is expected
+    }
 
     expect(insights.value).toEqual([]);
     expect(error.value).toBeTruthy();
+    expect(error.value).toContain('AI API Error');
   });
 
   it('should clear insights', async () => {
@@ -182,7 +184,7 @@ describe('useAiInsights', () => {
 
     const { generateInsights, insights, clearInsights } = useAiInsights({
       aiClient: mockAiClient,
-      schema: mockSchema,
+      schema: ref(mockSchema),
       data: ref(mockData)
     });
 

@@ -106,7 +106,7 @@ export class BatchingSystem {
     return `${notification.category}-${notification.priority || 'medium'}`;
   }
 
-  private scheduleBatchDelivery(batchKey: string, batch: NotificationBatch): void {
+  private scheduleBatchDelivery(batchKey: string, _batch: NotificationBatch): void {
     if (typeof window === 'undefined') return;
 
     const timerId = window.setTimeout(() => {

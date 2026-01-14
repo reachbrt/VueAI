@@ -2,12 +2,12 @@
 import { App } from 'vue';
 import { Message } from '@aivue/chatbot';
 
-// Storage providers
-export * from './providers/supabase';
-export * from './providers/firebase';
-export * from './providers/mongodb';
-export * from './providers/postgresql';
-export * from './providers/localStorage';
+// Storage providers will be implemented in future versions
+// export * from './providers/supabase';
+// export * from './providers/firebase';
+// export * from './providers/mongodb';
+// export * from './providers/postgresql';
+// export * from './providers/localStorage';
 
 // Storage interfaces
 export interface StorageProvider {
@@ -86,25 +86,28 @@ export class StorageManager {
   }
 
   private createProvider(config: StorageConfig): StorageProvider {
-    switch (config.provider) {
-      case 'supabase':
-        const { SupabaseProvider } = require('./providers/supabase');
-        return new SupabaseProvider(config);
-      case 'firebase':
-        const { FirebaseProvider } = require('./providers/firebase');
-        return new FirebaseProvider(config);
-      case 'mongodb':
-        const { MongoDBProvider } = require('./providers/mongodb');
-        return new MongoDBProvider(config);
-      case 'postgresql':
-        const { PostgreSQLProvider } = require('./providers/postgresql');
-        return new PostgreSQLProvider(config);
-      case 'localStorage':
-        const { LocalStorageProvider } = require('./providers/localStorage');
-        return new LocalStorageProvider(config);
-      default:
-        throw new Error(`Unsupported storage provider: ${config.provider}`);
-    }
+    // Providers will be implemented in future versions
+    throw new Error(`Storage providers are not yet implemented. Provider requested: ${config.provider}`);
+
+    // switch (config.provider) {
+    //   case 'supabase':
+    //     const { SupabaseProvider } = require('./providers/supabase');
+    //     return new SupabaseProvider(config);
+    //   case 'firebase':
+    //     const { FirebaseProvider } = require('./providers/firebase');
+    //     return new FirebaseProvider(config);
+    //   case 'mongodb':
+    //     const { MongoDBProvider } = require('./providers/mongodb');
+    //     return new MongoDBProvider(config);
+    //   case 'postgresql':
+    //     const { PostgreSQLProvider } = require('./providers/postgresql');
+    //     return new PostgreSQLProvider(config);
+    //   case 'localStorage':
+    //     const { LocalStorageProvider } = require('./providers/localStorage');
+    //     return new LocalStorageProvider(config);
+    //   default:
+    //     throw new Error(`Unsupported storage provider: ${config.provider}`);
+    // }
   }
 
   // Delegate all methods to the provider

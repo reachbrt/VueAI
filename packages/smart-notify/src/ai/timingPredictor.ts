@@ -114,7 +114,7 @@ export class TimingPredictor implements ITimingPredictor {
       .sort((a, b) => b.interactionRate - a.interactionRate);
   }
 
-  private findOptimalTime(currentHour: number, currentDay: number, category: string): TimingPrediction | null {
+  private findOptimalTime(currentHour: number, currentDay: number, _category: string): TimingPrediction | null {
     // Look for similar time slots with high interaction rates
     const similarSlots = Array.from(this.timingData.values())
       .filter(data => {
@@ -198,7 +198,7 @@ export class TimingPredictor implements ITimingPredictor {
     }
   }
 
-  private getAlternativeTimes(currentHour: number, currentDay: number): number[] {
+  private getAlternativeTimes(currentHour: number, _currentDay: number): number[] {
     // Suggest times based on general patterns
     const alternatives: number[] = [];
     const now = new Date();

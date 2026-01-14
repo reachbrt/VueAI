@@ -201,7 +201,7 @@ export class UrgencyDetector implements IUrgencyDetector {
     return 'low';
   }
 
-  private calculateConfidence(text: string, score: number): number {
+  private calculateConfidence(text: string, _score: number): number {
     // Base confidence on keyword matches
     const allKeywords = [
       ...this.keywords.critical,

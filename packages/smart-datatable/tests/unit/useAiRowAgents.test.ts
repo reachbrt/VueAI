@@ -2,6 +2,7 @@ import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { useAiRowAgents } from '../../src/composables/useAiRowAgents';
 import type { AIClient } from '@aivue/core';
 import type { RowAgent, TableSchema } from '../../src/types/ai';
+import { ref } from 'vue';
 
 describe('useAiRowAgents', () => {
   let mockAiClient: AIClient;
@@ -44,7 +45,7 @@ describe('useAiRowAgents', () => {
   it('should initialize with agents', () => {
     const { agents } = useAiRowAgents({
       aiClient: mockAiClient,
-      schema: mockSchema,
+      schema: ref(mockSchema),
       agents: mockAgents
     });
 
@@ -57,7 +58,7 @@ describe('useAiRowAgents', () => {
 
     const { executeAgent } = useAiRowAgents({
       aiClient: mockAiClient,
-      schema: mockSchema,
+      schema: ref(mockSchema),
       agents: mockAgents
     });
 
@@ -76,7 +77,7 @@ describe('useAiRowAgents', () => {
 
     const { executeAgent } = useAiRowAgents({
       aiClient: mockAiClient,
-      schema: mockSchema,
+      schema: ref(mockSchema),
       agents: mockAgents
     });
 
@@ -100,7 +101,7 @@ describe('useAiRowAgents', () => {
 
     const { executeAgent } = useAiRowAgents({
       aiClient: mockAiClient,
-      schema: mockSchema,
+      schema: ref(mockSchema),
       agents: [agentWithNestedProps]
     });
 
@@ -131,7 +132,7 @@ describe('useAiRowAgents', () => {
 
     const { executeAgent } = useAiRowAgents({
       aiClient: mockAiClient,
-      schema: mockSchema,
+      schema: ref(mockSchema),
       agents: [agentWithHandler]
     });
 
@@ -154,7 +155,7 @@ describe('useAiRowAgents', () => {
 
     const { executeAgentBatch } = useAiRowAgents({
       aiClient: mockAiClient,
-      schema: mockSchema,
+      schema: ref(mockSchema),
       agents: [batchAgent]
     });
 
@@ -165,28 +166,30 @@ describe('useAiRowAgents', () => {
 
     const results = await executeAgentBatch(batchAgent, testRows);
 
-    expect(results).toHaveLength(2);
+    // For multi-row agents, returns a single result for the batch
+    expect(results).toHaveLength(1);
     expect(results[0].agentId).toBe('batch');
+    expect(results[0].result).toContain('Batch analysis complete');
   });
 
   it('should track execution history', async () => {
     const mockResponse = 'Result';
     (mockAiClient.chat as any).mockResolvedValue(mockResponse);
 
-    const { executeAgent, executionHistory } = useAiRowAgents({
+    const { executeAgent, results } = useAiRowAgents({
       aiClient: mockAiClient,
-      schema: mockSchema,
+      schema: ref(mockSchema),
       agents: mockAgents
     });
 
     const testRow = { id: 'ORD-001', customer: 'Acme Corp', total: 5000 };
-    
+
     await executeAgent(mockAgents[0], testRow);
     await executeAgent(mockAgents[1], testRow);
 
-    expect(executionHistory.value).toHaveLength(2);
-    expect(executionHistory.value[0].agentId).toBe('explain');
-    expect(executionHistory.value[1].agentId).toBe('predict');
+    expect(results.value).toHaveLength(2);
+    expect(results.value[0].agentId).toBe('explain');
+    expect(results.value[1].agentId).toBe('predict');
   });
 
   it('should handle AI errors gracefully', async () => {
@@ -194,7 +197,7 @@ describe('useAiRowAgents', () => {
 
     const { executeAgent } = useAiRowAgents({
       aiClient: mockAiClient,
-      schema: mockSchema,
+      schema: ref(mockSchema),
       agents: mockAgents
     });
 

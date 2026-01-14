@@ -48,7 +48,7 @@
     </div>
 
     <!-- Command Suggestions -->
-    <div v-if="showSuggestions && suggestions.length > 0" class="suggestions-container">
+    <div v-if="showSuggestions && suggestions && suggestions.length > 0" class="suggestions-container">
       <div class="suggestions-label">Try saying:</div>
       <div class="suggestions-list">
         <button
@@ -459,7 +459,7 @@ async function processWithAI(command: string): Promise<string> {
       }
     ]);
 
-    return typeof response === 'string' ? response : response.content || '';
+    return response;
   } catch (error) {
     console.error('AI processing error:', error);
     return '';

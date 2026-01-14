@@ -1,5 +1,6 @@
 // AI-powered form validation for Vue.js
 import { App } from 'vue';
+import type { DefineComponent } from 'vue';
 import { AIClient } from '@aivue/core';
 
 // Import Vue compatibility utilities from core
@@ -73,7 +74,10 @@ export function useSmartForm(options: SmartFormOptions): SmartFormReturn {
 }
 
 // Import the SmartForm component
-import SmartFormComponent from './components/SmartForm.vue';
+import SmartFormVue from './components/SmartForm.vue';
+
+// Cast to DefineComponent
+const SmartFormComponent = SmartFormVue as DefineComponent;
 
 // Create a compatible component
 export const SmartForm = createCompatComponent(SmartFormComponent);

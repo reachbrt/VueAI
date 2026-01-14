@@ -12,7 +12,7 @@ describe('SmartDataTable Integration Tests', () => {
     } as any;
   });
 
-  it('should render table with data', () => {
+  it('should render table with data', async () => {
     const wrapper = mount(SmartDataTable, {
       props: {
         data: [
@@ -25,6 +25,8 @@ describe('SmartDataTable Integration Tests', () => {
         ]
       }
     });
+
+    await wrapper.vm.$nextTick();
 
     expect(wrapper.find('table').exists()).toBe(true);
     expect(wrapper.text()).toContain('Test 1');
@@ -96,8 +98,8 @@ describe('SmartDataTable Integration Tests', () => {
 
     await wrapper.vm.$nextTick();
 
-    // Should have insights button or panel
-    expect(wrapper.html()).toContain('insight');
+    // Should have insights button (💡 emoji)
+    expect(wrapper.html()).toContain('💡');
   });
 
   it('should render row agents column when agents are provided', async () => {
@@ -121,8 +123,9 @@ describe('SmartDataTable Integration Tests', () => {
 
     await wrapper.vm.$nextTick();
 
-    // Should render agents column
-    expect(wrapper.html()).toContain('AI Actions');
+    // Should render agents column with AI emoji
+    expect(wrapper.html()).toContain('🤖');
+    expect(wrapper.html()).toContain('ai-agents-column');
   });
 
   it('should handle pagination correctly', async () => {
@@ -202,12 +205,14 @@ describe('SmartDataTable Integration Tests', () => {
       }
     });
 
+    await wrapper.vm.$nextTick();
+
     // Simulate row click
     const row = wrapper.find('tbody tr');
     await row.trigger('click');
 
-    // Should emit row-click event
-    expect(wrapper.emitted('row-click')).toBeTruthy();
+    // Should emit rowClick event (camelCase)
+    expect(wrapper.emitted('rowClick')).toBeTruthy();
   });
 
   it('should auto-generate columns when not provided', async () => {
