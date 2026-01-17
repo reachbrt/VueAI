@@ -11,7 +11,7 @@
     "start": "vite --host localhost --port 8080"
   },
   "dependencies": {
-    "@aivue/360-spin": "^1.0.0",
+    "@aivue/360-spin": "^2.0.1",
     "@aivue/analytics": "^1.0.0",
     "@aivue/autosuggest": "^1.2.9",
     "@aivue/browser-llm": "^1.0.0",
@@ -21,7 +21,7 @@
     "@aivue/emotion-ui": "^1.0.1",
     "@aivue/image-caption": "^1.0.0",
     "@aivue/predictive-input": "^1.0.2",
-    "@aivue/smart-datatable": "^1.0.0",
+    "@aivue/smart-datatable": "^2.0.3",
     "@aivue/smartform": "^1.2.9",
     "@mlc-ai/web-llm": "^0.2.80",
     "compromise": "^14.14.4",
