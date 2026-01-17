@@ -4,10 +4,7 @@ import App from './App.vue'
 // Import CSS
 import './assets/main.css'
 
-// Import the chatbot CSS (local copy)
-import './assets/chatbot.css'
-
-// Import npm package styles
+// Import npm package styles (only packages that have CSS)
 import '@aivue/emotion-ui/style.css'
 import '@aivue/doc-intelligence/style.css'
 import '@aivue/predictive-input/style.css'

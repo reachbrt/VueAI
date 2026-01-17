@@ -205,10 +205,8 @@
 
 <script setup lang="ts">
 import { ref, computed, watch, shallowRef } from 'vue';
-import { useBrowserLLM } from '../../../packages/browser-llm/src/composables/useBrowserLLM';
-import { getWebGPUErrorMessage } from '../../../packages/browser-llm/src/utils/webgpu-check';
-import ModelSelector from '../../../packages/browser-llm/src/components/ModelSelector.vue';
-import BrowserLLMChat from '../../../packages/browser-llm/src/components/BrowserLLMChat.vue';
+import { useBrowserLLM, getWebGPUErrorMessage, ModelSelector, BrowserLLMChat } from '@aivue/browser-llm';
+import '@aivue/browser-llm/dist/browser-llm.css';
 
 // Component state
 const isComponentReady = ref(true); // Set to true since we're importing directly

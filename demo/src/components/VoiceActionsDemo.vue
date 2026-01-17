@@ -161,7 +161,7 @@
 
 <script setup>
 import { ref, computed } from 'vue';
-import { VoiceActions } from '../../../packages/voice-actions/src';
+import { VoiceActions } from '@aivue/voice-actions';
 
 const props = defineProps({
   aiClient: {

@@ -80,7 +80,7 @@
 
 <script setup>
 import { ref, computed } from 'vue';
-import { SmartDataTable } from '../../../packages/smart-datatable/src';
+import { SmartDataTable } from '@aivue/smart-datatable';
 
 const props = defineProps({
   aiClient: {
