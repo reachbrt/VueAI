@@ -14,6 +14,7 @@
     "@aivue/360-spin": "file:../packages/360-spin",
     "@aivue/analytics": "^1.0.0",
     "@aivue/autosuggest": "^1.2.9",
+    "@aivue/browser-llm": "file:../packages/browser-llm",
     "@aivue/chatbot": "^2.5.1",
     "@aivue/core": "^1.3.5",
     "@aivue/doc-intelligence": "^1.0.1",
@@ -22,6 +23,7 @@
     "@aivue/predictive-input": "^1.0.2",
     "@aivue/smart-datatable": "file:../packages/smart-datatable",
     "@aivue/smartform": "^1.2.9",
+    "@mlc-ai/web-llm": "^0.2.80",
     "compromise": "^14.14.4",
     "gsap": "^3.13.0",
     "vue": "^3.5.13"

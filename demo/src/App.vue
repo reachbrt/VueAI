@@ -118,6 +118,15 @@
               <span class="package-version">v1.0.0</span>
             </div>
           </div>
+
+          <div class="package-card browser-llm" @click="setActiveTab('browser-llm')">
+            <div class="package-icon">🚀</div>
+            <div class="package-details">
+              <h3>@aivue/browser-llm</h3>
+              <p>Local AI in browser</p>
+              <span class="package-version">v1.0.0</span>
+            </div>
+          </div>
         </div>
 
         <div class="hero-cta" ref="heroCta">
@@ -702,6 +711,12 @@
         </div>
       </section>
 
+      <section v-if="activeTab === 'browser-llm'" class="component-section">
+        <div class="demo-container">
+          <BrowserLLMDemo />
+        </div>
+      </section>
+
       <section v-if="activeTab === 'image-caption'" class="component-section">
         <div class="demo-container">
           <div v-if="!hasValidApiKey" class="api-key-warning">
@@ -881,6 +896,7 @@ import AnalyticsDemo from './components/AnalyticsDemo.vue';
 import ImageCaptionDemo from './components/ImageCaptionDemo.vue';
 import RAGDemo from './components/RAGDemo.vue';
 import Spin360Demo from './components/Spin360Demo.vue';
+import BrowserLLMDemo from './components/BrowserLLMDemo.vue';
 
 import TypeScriptExample from './components/TypeScriptExample.vue';
 import OllamaDemo from './components/OllamaDemo.vue';
@@ -902,6 +918,7 @@ export default {
     PredictiveInputDemo,
     SmartNotifyDemo,
     AnalyticsDemo,
+    BrowserLLMDemo,
     ImageCaptionDemo,
     RAGDemo,
     Spin360Demo,
@@ -1004,6 +1021,11 @@ export default {
           id: 'analytics',
           name: 'Analytics',
           icon: '📊'
+        },
+        {
+          id: 'browser-llm',
+          name: 'Browser LLM',
+          icon: '🚀'
         },
         {
           id: 'image-caption',
@@ -1197,6 +1219,21 @@ export default {
             { icon: '📈', text: 'Performance Monitoring' },
             { icon: '📱', text: 'Beautiful Dashboards' },
             { icon: '🔒', text: 'Privacy-first Storage' }
+          ]
+        },
+        'browser-llm': {
+          name: '@aivue/browser-llm',
+          npmName: '@aivue/browser-llm',
+          version: '1.0.0',
+          description: 'Run powerful AI models completely locally in your browser with WebGPU acceleration. Zero API costs, 100% privacy, and offline capable.',
+          github: 'https://github.com/reachbrt/vueai/tree/main/packages/browser-llm',
+          features: [
+            { icon: '🚀', text: 'Local AI in Browser' },
+            { icon: '🔒', text: '100% Privacy' },
+            { icon: '💰', text: 'Zero API Costs' },
+            { icon: '⚡', text: 'WebGPU Accelerated' },
+            { icon: '📦', text: 'Offline Capable' },
+            { icon: '🤖', text: 'Multiple AI Models' }
           ]
         },
         'image-caption': {
@@ -1695,7 +1732,9 @@ export default {
         'predictive-input': 'AI-powered text input that learns your writing style and suggests complete sentences with privacy-focused local processing.',
         'smart-notify': 'Intelligent notification system with AI-powered prioritization, timing optimization, and attention-aware delivery for reduced interruptions.',
         'analytics': 'Track user interactions, monitor AI usage, and gain valuable insights with AI-powered analytics dashboards.',
+        'browser-llm': 'Run powerful AI models completely locally in your browser with WebGPU acceleration. Zero API costs, 100% privacy, and offline capable.',
         'image-caption': 'Generate intelligent, contextual captions for images using OpenAI Vision models with drag & drop support.',
+        '360-spin': 'Interactive 360-degree product image spin component perfect for e-commerce product listings and detail pages.',
         'typescript': 'Full TypeScript support with comprehensive type definitions for all components and APIs.',
         'ollama': 'Connect to local Ollama models for privacy-focused AI without requiring API keys.'
       };
