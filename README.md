@@ -4,7 +4,7 @@
   <h1>🚀 VueAI - Modern AI Components for Vue.js</h1>
 
   <p>
-    <strong>16 Production-Ready AI Components | Multi-Provider Support | Vue 2 & 3 Compatible</strong>
+    <strong>17 Production-Ready AI Components | Multi-Provider Support | Vue 2 & 3 Compatible</strong>
   </p>
 
   <!-- Primary Badges -->
@@ -140,6 +140,9 @@ A modular AI-powered Vue.js component suite that enhances your applications with
       <small>360° product viewer</small>
     </td>
     <td align="center" width="16.66%">
+      <img src="demo/src/assets/images/hero-illustration.svg" width="80" height="80"><br>
+      <a href="https://www.npmjs.com/package/@aivue/browser-llm"><b>@aivue/browser-llm</b></a><br>
+      <small>🚀 Local AI in browser with WebGPU</small>
     </td>
     <td align="center" width="16.66%">
     </td>
@@ -207,8 +210,8 @@ Regular updates, bug fixes, and new features. Community-driven with responsive m
 
 | Metric | Value |
 |--------|-------|
-| 📦 **Total Packages** | 16 packages |
-| 🚀 **Published on npm** | 14 packages |
+| 📦 **Total Packages** | 17 packages |
+| 🚀 **Published on npm** | 15 packages |
 | ⭐ **GitHub Stars** | ![GitHub Stars](https://img.shields.io/github/stars/reachbrt/vueai?style=social) |
 | 🍴 **Forks** | ![GitHub Forks](https://img.shields.io/github/forks/reachbrt/vueai?style=social) |
 | 📥 **npm Downloads** | ![npm](https://img.shields.io/npm/dt/@aivue/core) |
@@ -230,7 +233,7 @@ Regular updates, bug fixes, and new features. Community-driven with responsive m
 
 <br>
 
-**Try all 16 components with live examples, code snippets, and interactive demos!**
+**Try all 17 components with live examples, code snippets, and interactive demos!**
 
 [![Demo Screenshot](https://img.shields.io/badge/🎥_Watch_Demo-Click_Here-FF6B6B?style=for-the-badge)](https://aivue.netlify.app/)
 
@@ -263,9 +266,10 @@ npm install @aivue/voice-actions
 npm install @aivue/analytics
 npm install @aivue/smart-datatable
 npm install @aivue/360-spin
+npm install @aivue/browser-llm
 
 # Or install all packages at once
-npm install @aivue/core @aivue/chatbot @aivue/autosuggest @aivue/smartform @aivue/image-caption @aivue/emotion-ui @aivue/doc-intelligence @aivue/predictive-input @aivue/smart-notify @aivue/voice-actions @aivue/analytics @aivue/smart-datatable @aivue/360-spin
+npm install @aivue/core @aivue/chatbot @aivue/autosuggest @aivue/smartform @aivue/image-caption @aivue/emotion-ui @aivue/doc-intelligence @aivue/predictive-input @aivue/smart-notify @aivue/voice-actions @aivue/analytics @aivue/smart-datatable @aivue/360-spin @aivue/browser-llm
 ```
 
 </td>
@@ -343,7 +347,8 @@ vueai/
 │   ├── voice-actions/     # @aivue/voice-actions
 │   ├── analytics/         # @aivue/analytics
 │   ├── smart-datatable/   # @aivue/smart-datatable
-│   └── 360-spin/          # @aivue/360-spin
+│   ├── 360-spin/          # @aivue/360-spin
+│   └── browser-llm/       # @aivue/browser-llm
 ├── demo/                  # Live demo application
 └── package.json           # Root package.json with workspace configuration
 ```
@@ -867,6 +872,74 @@ const productImages = ref([
   '/images/product-003.jpg',
   // ... 36 frames total
 ]);
+</script>
+```
+
+  </div>
+  </div>
+
+  <div class="component-card">
+    <div class="card-header">
+      <img src="demo/src/assets/images/hero-illustration.svg" width="60" height="80" alt="Browser LLM">
+      <h3>@aivue/browser-llm <a href="https://www.npmjs.com/package/@aivue/browser-llm"><img src="https://img.shields.io/npm/v/@aivue/browser-llm.svg?style=flat-square" alt="npm version"></a> <a href="https://www.npmjs.com/package/@aivue/browser-llm"><img src="https://img.shields.io/npm/d18m/%40aivue%2Fbrowser-llm" alt="NPM Downloads"></a></h3>
+    </div>
+    <div class="card-features">
+      <ul>
+        <li>✅ Run AI models locally in the browser with WebGPU</li>
+        <li>✅ No API keys required - 100% private and offline</li>
+        <li>✅ Multiple models (Llama, Qwen, Phi, Gemma, etc.)</li>
+        <li>✅ Streaming chat responses with real-time generation</li>
+        <li>✅ Model download progress tracking</li>
+        <li>✅ WebGPU acceleration for fast inference</li>
+      </ul>
+    </div>
+    <div class="card-code">
+
+```vue
+<template>
+  <div>
+    <ModelSelector
+      :available-models="availableModels"
+      :current-model="currentModel"
+      :is-loading="isLoading"
+      :download-progress="downloadProgress"
+      @load-model="loadModel"
+    />
+
+    <BrowserLLMChat
+      v-if="isModelLoaded"
+      :messages="messages"
+      :is-model-loaded="isModelLoaded"
+      :is-loading="isLoading"
+      :current-model="currentModel"
+      @stream-message="handleStreamMessage"
+    />
+  </div>
+</template>
+
+<script setup>
+import { useBrowserLLM, ModelSelector, BrowserLLMChat } from '@aivue/browser-llm';
+import '@aivue/browser-llm/dist/browser-llm.css';
+
+const {
+  availableModels,
+  loadModel,
+  messages,
+  streamMessage,
+  isModelLoaded,
+  isLoading,
+  downloadProgress,
+  currentModel,
+} = useBrowserLLM({
+  defaultModel: 'Llama-3.2-1B-Instruct-q4f16_1-MLC',
+  temperature: 0.7,
+});
+
+async function handleStreamMessage(content) {
+  for await (const chunk of streamMessage(content)) {
+    // Streaming handled automatically
+  }
+}
 </script>
 ```
 
