@@ -6,6 +6,13 @@
 
 AI content moderation for Vue 2 and Vue 3. Score UGC before publish; falls back to a lightweight heuristic if no client is provided.
 
+## Features
+
+- Scores hate, harassment, sexual content, violence, self-harm, and spam
+- A threshold you set before anything is published
+- A lightweight heuristic when no API client is configured
+- `AiModeration` for the panel, `useModeration` for a check in code
+
 ## Install
 
 ```bash

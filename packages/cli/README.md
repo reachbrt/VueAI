@@ -6,6 +6,13 @@
 
 Copy a VueAI agent panel or a Nuxt plugin into your app.
 
+## Features
+
+- `aivue add agent` writes `src/components/aivue/AgentPanel.vue`
+- `aivue add nuxt` writes `plugins/aivue-agent.ts`
+- `--force` replaces a file that is already there
+- The generated panel uses `@aivue/agent`
+
 ```bash
 npx @aivue/cli add agent
 npx @aivue/cli add nuxt

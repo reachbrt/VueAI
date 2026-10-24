@@ -6,6 +6,13 @@
 
 AI translation widget for Vue 2 and Vue 3.
 
+## Features
+
+- Detect the source language, or set it yourself
+- Translate into a target language
+- Switch formality when the language supports it
+- `AiTranslate` for the widget, and the same `@aivue/core` client as the other packages
+
 ## Install
 
 ```bash

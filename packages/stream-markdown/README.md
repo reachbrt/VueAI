@@ -30,6 +30,14 @@ const source = ref('');
 
 Append tokens to `source` as they arrive. The component parses on each change.
 
+## Features
+
+- Renders Markdown while tokens are still arriving
+- Unfinished code fences stay inside a code block
+- Unfinished emphasis stays as text instead of flickering
+- HTML from the model is escaped
+- Links are limited to `http`, `https`, `mailto`, and same-page paths
+
 ## What it understands
 
 Headings, paragraphs, lists, quotes, fenced code, `code`, **bold**, *italic*, and links. Links are limited to `http`, `https`, `mailto`, and same-page paths.

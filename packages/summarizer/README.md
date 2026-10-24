@@ -6,6 +6,13 @@
 
 AI text summarization for Vue 2 and Vue 3.
 
+## Features
+
+- Short, medium, or long summaries
+- Paragraph, bullets, or a plain explanation
+- `AiSummarizer` for the panel, `useSummarizer` for your own UI
+- Same provider client as the rest of the suite
+
 ## Install
 
 ```bash

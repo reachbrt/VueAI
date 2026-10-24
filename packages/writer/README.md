@@ -6,6 +6,14 @@
 
 In-place writing actions for Vue apps. The same edits people expect from Notion AI, Grammarly, and Google Docs: rewrite, shorten, expand, fix grammar, change tone, and continue.
 
+## Features
+
+- Rewrite, shorten, expand, fix grammar, change tone, and continue
+- Edits the text the user is already writing
+- Uses the same `@aivue/core` client as the rest of the suite
+- `useWriter` when you want the actions without the built-in editor
+- Vue 2 and Vue 3
+
 ```bash
 npm install @aivue/writer @aivue/core
 ```
