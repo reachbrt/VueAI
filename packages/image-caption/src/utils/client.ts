@@ -20,7 +20,7 @@ export class ImageCaptionClient {
       throw new Error('Hugging Face API key is required');
     }
 
-    const model = options.model || this.config.model || 'gpt-4o';
+    const model = options.model || this.config.model || 'gpt-6.1-sol';
 
     // Try multiple models as fallback
     const modelsToTry = [
@@ -99,8 +99,9 @@ export class ImageCaptionClient {
             ]
           }
         ],
-        max_tokens: options.maxTokens || 300,
-        temperature: options.temperature || 0.7
+        ...(/^(gpt-5|gpt-6|o\d)/.test(model)
+          ? { max_completion_tokens: options.maxTokens || 300 }
+          : { max_tokens: options.maxTokens || 300, temperature: options.temperature || 0.7 })
       })
     };
 
@@ -108,7 +109,6 @@ export class ImageCaptionClient {
 
     try {
       console.log('Making request to:', apiUrl);
-      console.log('Request headers:', requestOptions.headers);
       console.log('Image data type:', typeof imageData);
 
       const response = await fetch(apiUrl, requestOptions);

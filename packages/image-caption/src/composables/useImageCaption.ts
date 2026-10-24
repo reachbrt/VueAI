@@ -13,28 +13,28 @@ import type {
 // Available OpenAI Vision models
 export const AVAILABLE_MODELS = [
   {
+    id: 'gpt-6.1-sol',
+    name: 'GPT-6.1 Sol',
+    description: 'Current flagship vision model for captions and detailed image reading',
+    provider: 'OpenAI',
+    maxTokens: 128000,
+    costPer1000Tokens: 0.01
+  },
+  {
+    id: 'gpt-5.6-sol',
+    name: 'GPT-5.6 Sol',
+    description: 'Previous flagship vision model, still available for chat completions',
+    provider: 'OpenAI',
+    maxTokens: 128000,
+    costPer1000Tokens: 0.02
+  },
+  {
     id: 'gpt-4o',
     name: 'GPT-4o',
-    description: 'Latest and most capable vision model with multimodal understanding',
+    description: 'Earlier vision model. Scheduled to leave the API in January 2027.',
     provider: 'OpenAI',
     maxTokens: 4096,
     costPer1000Tokens: 0.005
-  },
-  {
-    id: 'gpt-4o-mini',
-    name: 'GPT-4o Mini',
-    description: 'Faster and more cost-effective vision model',
-    provider: 'OpenAI',
-    maxTokens: 16384,
-    costPer1000Tokens: 0.00015
-  },
-  {
-    id: 'gpt-4-turbo',
-    name: 'GPT-4 Turbo',
-    description: 'High-intelligence vision model with detailed analysis',
-    provider: 'OpenAI',
-    maxTokens: 4096,
-    costPer1000Tokens: 0.01
   }
 ];
 
@@ -88,7 +88,7 @@ export function useImageCaption(options: UseImageCaptionOptions = {}): UseImageC
   // Configuration with environment variable fallback
   const config = ref<ImageCaptionConfig>({
     apiKey: initialConfig.apiKey || (typeof window !== 'undefined' && (window as any).import?.meta?.env?.VITE_OPENAI_API_KEY) || '',
-    model: 'gpt-4o',
+    model: 'gpt-6.1-sol',
     ...initialConfig
   });
 
@@ -193,7 +193,7 @@ export function useImageCaption(options: UseImageCaptionOptions = {}): UseImageC
       console.log('📸 Image data length:', imageData.length);
       console.log('📸 Image data starts with:', imageData.substring(0, 50) + '...');
 
-      const model = options.model || config.value.model || 'gpt-4o';
+      const model = options.model || config.value.model || 'gpt-6.1-sol';
 
       const response = await fetch('https://api.openai.com/v1/chat/completions', {
         method: 'POST',
@@ -221,8 +221,9 @@ export function useImageCaption(options: UseImageCaptionOptions = {}): UseImageC
               ]
             }
           ],
-          max_tokens: options.maxTokens || 300,
-          temperature: options.temperature || 0.7
+          ...(/^(gpt-5|gpt-6|o\d)/.test(model)
+            ? { max_completion_tokens: options.maxTokens || 300 }
+            : { max_tokens: options.maxTokens || 300, temperature: options.temperature || 0.7 })
         })
       });
 

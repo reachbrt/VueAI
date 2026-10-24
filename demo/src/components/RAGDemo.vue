@@ -180,9 +180,9 @@ const selectedModel = ref('gpt-4o');
 const { addText, addUrl } = useRAG({ storageKey: 'aivue-demo-rag-kb' });
 
 const modelsByProvider: Record<string, string[]> = {
-  openai: ['gpt-4o', 'gpt-4o-mini', 'gpt-3.5-turbo'],
-  claude: ['claude-3-7-sonnet-20250219', 'claude-3-5-sonnet-20241022', 'claude-3-haiku-20240307'],
-  gemini: ['gemini-1.5-pro', 'gemini-1.5-flash', 'gemini-pro'],
+  openai: ['gpt-6.1-sol', 'gpt-5.6-sol'],
+  claude: ['claude-sonnet-5-5', 'claude-opus-5-5', 'claude-haiku-5-5'],
+  gemini: ['gemini-3.8-flash', 'gemini-4-argon', 'gemini-3.5-flash-lite'],
   ollama: ['llama3', 'mistral', 'codellama']
 };
 

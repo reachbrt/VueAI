@@ -23,7 +23,7 @@ export default defineComponent({
     // Create an AI client with fallback provider (no API key needed)
     const aiClient = new AIClient({
       provider: 'fallback',
-      model: 'gpt-3.5-turbo'
+      model: 'gpt-6.1-sol'
     });
     
     return {

@@ -428,7 +428,7 @@ const handleOpenAIChat = async (userQuery: string) => {
       'Authorization': `Bearer ${aiApiKey.value}`,
     },
     body: JSON.stringify({
-      model: 'gpt-4-turbo-preview',
+      model: 'gpt-6.1-sol',
       messages,
       tools: openaiTools,
       tool_choice: 'auto',
@@ -477,7 +477,7 @@ const handleOpenAIChat = async (userQuery: string) => {
         'Authorization': `Bearer ${aiApiKey.value}`,
       },
       body: JSON.stringify({
-        model: 'gpt-4-turbo-preview',
+        model: 'gpt-6.1-sol',
         messages,
       }),
     });
@@ -514,7 +514,7 @@ const handleAnthropicChat = async (userQuery: string) => {
       'anthropic-version': '2023-06-01',
     },
     body: JSON.stringify({
-      model: 'claude-3-5-sonnet-20241022',
+      model: 'claude-sonnet-5-5',
       max_tokens: 1024,
       tools: anthropicTools,
       messages: [
@@ -559,7 +559,7 @@ const handleAnthropicChat = async (userQuery: string) => {
           'anthropic-version': '2023-06-01',
         },
         body: JSON.stringify({
-          model: 'claude-3-5-sonnet-20241022',
+          model: 'claude-sonnet-5-5',
           max_tokens: 1024,
           tools: anthropicTools,
           messages: [

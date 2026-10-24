@@ -247,9 +247,9 @@ export class QAEngine {
     }
 
     if (provider === 'openai') {
-      return this.callOpenAI(prompt, apiKey!, model || 'gpt-4-turbo-preview', maxTokens!, temperature!);
+      return this.callOpenAI(prompt, apiKey!, model || 'gpt-6.1-sol', maxTokens!, temperature!);
     } else if (provider === 'anthropic') {
-      return this.callAnthropic(prompt, apiKey!, model || 'claude-3-5-sonnet-20241022', maxTokens!, temperature!);
+      return this.callAnthropic(prompt, apiKey!, model || 'claude-sonnet-5-5', maxTokens!, temperature!);
     } else if (provider === 'custom' && baseUrl) {
       return this.callCustomAPI(prompt, baseUrl, apiKey);
     }
@@ -413,8 +413,9 @@ export class QAEngine {
       body: JSON.stringify({
         model,
         messages: [{ role: 'user', content: prompt }],
-        max_tokens: maxTokens,
-        temperature,
+        ...(/^(gpt-5|gpt-6|o\d)/.test(model)
+          ? { max_completion_tokens: maxTokens }
+          : { max_tokens: maxTokens, temperature }),
         response_format: { type: 'json_object' },
       }),
     });

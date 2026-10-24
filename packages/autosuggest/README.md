@@ -67,7 +67,7 @@ import { AIClient } from '@aivue/core';
 export const aiClient = new AIClient({
   provider: 'openai', // or 'anthropic', 'gemini', 'huggingface', 'ollama', 'deepseek'
   apiKey: import.meta.env.VITE_OPENAI_API_KEY, // Use environment variables for API keys
-  model: 'gpt-4o' // Specify the model to use
+  model: 'gpt-6.1-sol' // Specify the model to use
 });
 ```
 

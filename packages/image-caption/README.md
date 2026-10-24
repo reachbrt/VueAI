@@ -75,7 +75,7 @@ VITE_OPENAI_API_KEY=your-openai-api-key
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `apiKey` | `string` | `''` | OpenAI API key |
-| `model` | `string` | `'gpt-4o'` | AI model to use |
+| `model` | `string` | `'gpt-6.1-sol'` | AI model to use |
 | `autoCaption` | `boolean` | `false` | Auto-generate caption on image upload |
 | `maxHistorySize` | `number` | `20` | Maximum number of captions to keep in history |
 
@@ -104,7 +104,7 @@ const {
 } = useImageCaption({
   config: {
     apiKey: import.meta.env.VITE_OPENAI_API_KEY,
-    model: 'gpt-4o'
+    model: 'gpt-6.1-sol'
   }
 });
 
@@ -125,16 +125,16 @@ const handleFileUpload = async (file) => {
 
 | Model | ID | Description | Best For |
 |-------|----|-----------| ---------|
-| **GPT-4o** | `gpt-4o` | Latest and most capable vision model | General use, highest quality |
-| **GPT-4o Mini** | `gpt-4o-mini` | Faster and more cost-effective | High volume, cost-sensitive apps |
-| **GPT-4 Turbo** | `gpt-4-turbo` | High-intelligence vision model | Detailed analysis, complex scenes |
+| **GPT-6.1 Sol** | `gpt-6.1-sol` | Current flagship vision model | General use, highest quality |
+| **GPT-5.6 Sol** | `gpt-5.6-sol` | Previous flagship, still on chat completions | Longer analysis |
+| **GPT-4o** | `gpt-4o` | Earlier vision model, leaving the API in January 2027 | Existing apps |
 
 ## 🔧 Configuration Options
 
 ```typescript
 interface ImageCaptionConfig {
   apiKey?: string;                    // OpenAI API key
-  model?: string;                     // Model ID to use ('gpt-4o', 'gpt-4o-mini', 'gpt-4-turbo')
+  model?: string;                     // Model ID to use ('gpt-6.1-sol', 'gpt-5.6-sol', 'gpt-4o')
 }
 
 interface ImageCaptionOptions {
@@ -184,7 +184,7 @@ const processBatch = async (imageFiles) => {
   const result = await generateBatchCaptions({
     images: imageFiles,
     options: {
-      model: 'gpt-4o',
+      model: 'gpt-6.1-sol',
       prompt: 'Describe this image in detail for accessibility purposes.',
       detail: 'high'
     }

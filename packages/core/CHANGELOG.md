@@ -2,6 +2,13 @@
 
 All notable changes to the @aivue/core package will be documented in this file.
 
+## [1.3.14] - 2026-10-24
+
+### Added
+- Current model defaults: GPT-6.1 Sol, Claude Sonnet 5.5, Gemini 3.8 Flash, DeepSeek Flash, and Llama 3.2
+- Live Claude, Gemini, DeepSeek, and Hugging Face calls. Claude and Gemini no longer return the offline fallback when a key is set.
+- `defaultModel`, `listModels`, and `MODEL_CATALOG` for the rest of the suite
+
 ## [1.3.5] - 2025-01-14
 
 ### Added

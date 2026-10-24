@@ -21,7 +21,8 @@
 
 ## ✨ Features
 
-- **🔌 Multi-provider support**: Works with OpenAI, Claude, Gemini, HuggingFace, Ollama, and more
+- **🔌 Multi-provider support**: OpenAI, Claude, Gemini, DeepSeek, Hugging Face, and Ollama
+- **🆕 Current models**: GPT-6.1 Sol, Claude Sonnet 5.5, Gemini 3.8 Flash, and DeepSeek Flash are the defaults
 - **🌐 Fallback mechanism**: Continues to work even without API keys during development
 - **🔄 Streaming support**: Real-time streaming of AI responses
 - **🛡️ Type safety**: Full TypeScript support
@@ -57,7 +58,7 @@ import { AIClient } from '@aivue/core';
 const client = new AIClient({
   provider: 'openai',
   apiKey: import.meta.env.VITE_OPENAI_API_KEY, // Use environment variables for API keys
-  model: 'gpt-4o' // Optional - uses provider's default if missing
+  model: 'gpt-6.1-sol' // Optional. The default is GPT-6.1 Sol.
 });
 
 // Chat functionality
@@ -78,7 +79,7 @@ import { AIClient } from '@aivue/core';
 const client = new AIClient({
   provider: 'claude',
   apiKey: import.meta.env.VITE_ANTHROPIC_API_KEY,
-  model: 'claude-3-7-sonnet-20250219'
+  model: 'claude-sonnet-5-5'
 });
 
 // Streaming chat functionality
@@ -139,11 +140,11 @@ import { registerProviders } from '@aivue/core';
 registerProviders({
   openai: {
     apiKey: import.meta.env.VITE_OPENAI_API_KEY,
-    defaultModel: 'gpt-4o'
+    defaultModel: 'gpt-6.1-sol'
   },
   claude: {
     apiKey: import.meta.env.VITE_ANTHROPIC_API_KEY,
-    defaultModel: 'claude-3-7-sonnet-20250219'
+    defaultModel: 'claude-sonnet-5-5'
   },
   gemini: {
     apiKey: import.meta.env.VITE_GEMINI_API_KEY
@@ -165,7 +166,7 @@ new AIClient(options: AIClientOptions)
 |----------|------|-------------|----------|
 | provider | string | AI provider to use ('openai', 'claude', 'gemini', etc.) | Yes |
 | apiKey | string | API key for the provider | No |
-| model | string | Model to use (e.g., 'gpt-4o', 'claude-3-7-sonnet') | No |
+| model | string | Model to use (e.g., 'gpt-6.1-sol', 'claude-sonnet-5-5', 'gemini-3.8-flash', 'deepseek-flash') | No |
 | baseUrl | string | Custom base URL for the API | No |
 | organizationId | string | Organization ID (for OpenAI) | No |
 

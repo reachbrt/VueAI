@@ -238,14 +238,14 @@
 
         <div class="config-item" v-if="qaConfig.provider === 'openai'">
           <label>Model (Optional)</label>
-          <input v-model="qaConfig.model" type="text" class="input" placeholder="gpt-4-turbo-preview" />
-          <small class="help-text">Default: gpt-4-turbo-preview</small>
+          <input v-model="qaConfig.model" type="text" class="input" placeholder="gpt-6.1-sol" />
+          <small class="help-text">Default: gpt-6.1-sol</small>
         </div>
 
         <div class="config-item" v-if="qaConfig.provider === 'anthropic'">
           <label>Model (Optional)</label>
-          <input v-model="qaConfig.model" type="text" class="input" placeholder="claude-3-5-sonnet-20241022" />
-          <small class="help-text">Default: claude-3-5-sonnet-20241022</small>
+          <input v-model="qaConfig.model" type="text" class="input" placeholder="claude-sonnet-5-5" />
+          <small class="help-text">Default: claude-sonnet-5-5</small>
         </div>
       </div>
 
@@ -618,7 +618,7 @@ const customApiFieldValues = ref(loadCustomApiConfig());
 const qaConfig = ref({
   provider: 'openai' as 'openai' | 'anthropic' | 'custom',
   apiKey: import.meta.env.VITE_OPENAI_API_KEY || '',
-  model: 'gpt-4-turbo-preview',
+  model: 'gpt-6.1-sol',
 });
 
 const qaEnabled = ref(false);

@@ -162,7 +162,7 @@ Is this answer appropriate and complete? If not, provide helpful feedback on how
         'Authorization': `Bearer ${this.config.apiKey}`,
       },
       body: JSON.stringify({
-        model: this.config.model || 'gpt-3.5-turbo',
+        model: this.config.model || 'gpt-6.1-sol',
         messages: [
           {
             role: 'system',
@@ -173,8 +173,7 @@ Is this answer appropriate and complete? If not, provide helpful feedback on how
             content: prompt,
           },
         ],
-        max_tokens: 200,
-        temperature: 0.7,
+        max_completion_tokens: 200,
       }),
     });
 
@@ -199,7 +198,7 @@ Is this answer appropriate and complete? If not, provide helpful feedback on how
         'anthropic-version': '2023-06-01',
       },
       body: JSON.stringify({
-        model: this.config.model || 'claude-3-haiku-20240307',
+        model: this.config.model || 'claude-haiku-5-5',
         max_tokens: 200,
         messages: [
           {

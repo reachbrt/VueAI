@@ -27,7 +27,7 @@ export const packages: PackageCard[] = [
   {
     name: '@aivue/core',
     group: 'Runtime',
-    text: 'One client for OpenAI, Claude, Gemini, Hugging Face, Ollama, and DeepSeek.',
+    text: 'One client for GPT-6.1 Sol, Claude Sonnet 5.5, Gemini 3.8 Flash, DeepSeek Flash, Hugging Face, and Ollama.',
     controls: 'AIClient, useAIClient'
   },
   {

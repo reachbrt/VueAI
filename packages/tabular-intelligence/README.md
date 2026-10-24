@@ -219,7 +219,7 @@ const {
   qaConfig: {
     provider: 'openai',
     apiKey: 'sk-...',
-    model: 'gpt-4-turbo-preview',
+    model: 'gpt-6.1-sol',
   },
 });
 

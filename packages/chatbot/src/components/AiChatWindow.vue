@@ -643,7 +643,7 @@ const analyzeImage = async (imageFile: File): Promise<string> => {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        model: 'gpt-4o',
+        model: 'gpt-6.1-sol',
         messages: [
           {
             role: 'user',
@@ -662,7 +662,7 @@ const analyzeImage = async (imageFile: File): Promise<string> => {
             ]
           }
         ],
-        max_tokens: 300
+        max_completion_tokens: 300
       })
     });
 

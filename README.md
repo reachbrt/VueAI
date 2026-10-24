@@ -415,7 +415,7 @@ import '@aivue/chatbot/style.css';
 const aiClient = new AIClient({
   provider: 'openai',
   apiKey: import.meta.env.VITE_OPENAI_API_KEY,
-  model: 'gpt-4o'
+  model: 'gpt-6.1-sol'
 });
 </script>
 ```
@@ -459,7 +459,7 @@ const query = ref('');
 const aiClient = new AIClient({
   provider: 'openai',
   apiKey: import.meta.env.VITE_OPENAI_API_KEY,
-  model: 'gpt-4o'
+  model: 'gpt-6.1-sol'
 });
 
 function handleSelect(suggestion) {
@@ -553,7 +553,7 @@ function handleSubmit(data) {
 <template>
   <AiImageCaption
     :api-key="apiKey"
-    :model="'gpt-4o'"
+    :model="'gpt-6.1-sol'"
     @caption-generated="handleCaption"
     @caption-error="handleError"
   />
@@ -830,7 +830,7 @@ import '@aivue/smart-datatable/style.css';
 const aiClient = new AIClient({
   provider: 'openai',
   apiKey: import.meta.env.VITE_OPENAI_API_KEY,
-  model: 'gpt-4o'
+  model: 'gpt-6.1-sol'
 });
 
 const products = ref([
@@ -1364,7 +1364,7 @@ import { AIClient } from '@aivue/core';
 const client = new AIClient({
   provider: 'openai', // or 'claude', 'gemini', 'huggingface', 'ollama', 'deepseek'
   apiKey: import.meta.env.VITE_OPENAI_API_KEY, // Optional - falls back to simulation if missing
-  model: 'gpt-4o' // Optional - uses provider's default if missing
+  model: 'gpt-6.1-sol' // Optional - uses provider's default if missing
 });
 
 // Chat functionality

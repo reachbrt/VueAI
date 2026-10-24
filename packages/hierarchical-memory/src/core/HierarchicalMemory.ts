@@ -34,7 +34,7 @@ export class HierarchicalMemory {
       autoSummarize: config.autoSummarize ?? true,
       summarization: config.summarization ?? {
         provider: 'openai',
-        model: 'gpt-4-turbo-preview',
+        model: 'gpt-6.1-sol',
         maxTokens: 500,
         temperature: 0.3,
       },
@@ -305,7 +305,7 @@ export class HierarchicalMemory {
         Authorization: `Bearer ${summarization.apiKey}`,
       },
       body: JSON.stringify({
-        model: summarization.model || 'gpt-4-turbo-preview',
+        model: summarization.model || 'gpt-6.1-sol',
         messages: [
           {
             role: 'system',
@@ -313,8 +313,7 @@ export class HierarchicalMemory {
           },
           { role: 'user', content },
         ],
-        max_tokens: summarization.maxTokens || 500,
-        temperature: summarization.temperature || 0.3,
+        max_completion_tokens: summarization.maxTokens || 500,
       }),
     });
 
@@ -339,7 +338,7 @@ export class HierarchicalMemory {
         'anthropic-version': '2023-06-01',
       },
       body: JSON.stringify({
-        model: summarization.model || 'claude-3-5-sonnet-20241022',
+        model: summarization.model || 'claude-sonnet-5-5',
         max_tokens: summarization.maxTokens || 500,
         messages: [
           {

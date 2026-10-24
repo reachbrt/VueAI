@@ -1,6 +1,6 @@
 import { ref, reactive, toRefs, watch, onMounted, Ref } from 'vue';
 import { v4 as uuidv4 } from 'uuid';
-import { AIClient, Message as CoreMessage, StreamCallbacks, AIProvider } from '@aivue/core';
+import { AIClient, Message as CoreMessage, StreamCallbacks, AIProvider, defaultModel } from '@aivue/core';
 
 // Import optional utilities (only used if features are enabled)
 import { StorageProvider, createStorageProvider, storageUtils } from '../utils/storage';
@@ -894,22 +894,7 @@ Do NOT provide any other information or try to be helpful with general knowledge
  * Helper function to get default model for a provider
  */
 function getDefaultModelForProvider(provider: AIProvider): string {
-  switch (provider) {
-    case 'openai':
-      return 'gpt-3.5-turbo';
-    case 'claude':
-      return 'claude-3-sonnet-20240229';
-    case 'gemini':
-      return 'gemini-pro';
-    case 'huggingface':
-      return 'mistralai/Mistral-7B-Instruct-v0.2';
-    case 'ollama':
-      return 'llama2';
-    case 'deepseek':
-      return 'deepseek-chat';
-    default:
-      return 'gpt-3.5-turbo';
-  }
+  return defaultModel(provider);
 }
 
 export default useChatEngine;

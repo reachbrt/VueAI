@@ -103,7 +103,7 @@ export class AI360Generator {
         'Authorization': `Bearer ${this.config.apiKey}`
       },
       body: JSON.stringify({
-        model: 'gpt-4o',
+        model: 'gpt-6.1-sol',
         messages: [
           {
             role: 'user',
@@ -121,7 +121,7 @@ export class AI360Generator {
             ]
           }
         ],
-        max_tokens: 100
+        max_completion_tokens: 100
       }),
       signal: this.abortController?.signal
     });

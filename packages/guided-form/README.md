@@ -113,7 +113,7 @@ const schema = {
       enabled: true,
       provider: 'openai',
       apiKey: 'your-api-key',
-      model: 'gpt-3.5-turbo',
+      model: 'gpt-6.1-sol',
     },
     keyboard: {
       enterToNext: true,
@@ -281,7 +281,7 @@ settings: {
     enabled: true,
     provider: 'openai', // or 'anthropic' or 'custom'
     apiKey: process.env.VITE_OPENAI_API_KEY,
-    model: 'gpt-3.5-turbo',
+    model: 'gpt-6.1-sol',
     // For custom providers:
     customEndpoint: 'https://your-api.com/chat',
   },

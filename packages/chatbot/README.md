@@ -87,7 +87,7 @@ Revolutionary knowledge base integration that allows your chatbot to answer ques
   <AiChatRAG
     provider="openai"
     :api-key="apiKey"
-    model="gpt-4o"
+    model="gpt-6.1-sol"
     :rag-config="{
       enabled: true,
       topK: 3,
@@ -212,7 +212,7 @@ import { AIClient } from '@aivue/core';
 export const aiClient = new AIClient({
   provider: 'openai', // or 'claude', 'gemini', 'huggingface', 'ollama', 'deepseek'
   apiKey: import.meta.env.VITE_OPENAI_API_KEY, // Use environment variables for API keys
-  model: 'gpt-4o' // Specify the model to use
+  model: 'gpt-6.1-sol' // Specify the model to use
 });
 ```
 
@@ -345,7 +345,7 @@ const {
   // Provider configuration
   provider: 'openai',
   apiKey: import.meta.env.VITE_OPENAI_API_KEY,
-  model: 'gpt-3.5-turbo',
+  model: 'gpt-6.1-sol',
 
   // API security
   useProxy: true,
@@ -367,7 +367,7 @@ const {
 
 // You can dynamically update the configuration
 function switchToGpt4() {
-  updateConfig({ model: 'gpt-4o' });
+  updateConfig({ model: 'gpt-6.1-sol' });
 }
 
 const userInput = ref('');
@@ -465,7 +465,7 @@ You can now configure the provider directly without creating an AIClient instanc
   <AiChatWindow
     provider="openai"
     :api-key="apiKey"
-    model="gpt-3.5-turbo"
+    model="gpt-6.1-sol"
     :use-proxy="true"
     proxy-url="/api/chat"
     title="AI Assistant"
@@ -543,7 +543,7 @@ The AiChatWindow component now supports proxy configuration for secure API reque
   <AiChatWindow
     provider="openai"
     :api-key="apiKey"
-    model="gpt-3.5-turbo"
+    model="gpt-6.1-sol"
     :use-proxy="true"
     proxy-url="/api/chat"
     title="Secure AI Assistant"
@@ -1159,14 +1159,14 @@ Intelligently switch between different AI providers for optimal performance and 
         {
           name: 'GPT-4',
           provider: 'openai',
-          model: 'gpt-4o',
+          model: 'gpt-6.1-sol',
           specialty: 'general',
           apiKey: openaiKey
         },
         {
           name: 'Claude',
           provider: 'anthropic',
-          model: 'claude-3-sonnet-20240229',
+          model: 'claude-sonnet-5-5',
           specialty: 'analysis',
           apiKey: claudeKey
         },
@@ -1269,7 +1269,7 @@ The `AiChatToggle` component provides an Intercom-like floating chat button that
   <AiChatToggle
     provider="openai"
     :api-key="apiKey"
-    model="gpt-3.5-turbo"
+    model="gpt-6.1-sol"
     position="bottom"  <!-- 'bottom' or 'top' -->
     :default-open="false"
     title="Chat with AI"
@@ -1333,7 +1333,7 @@ The easiest way to use RAG is with the `AiChatRAG` component:
   <AiChatRAG
     provider="openai"
     :api-key="apiKey"
-    model="gpt-4o"
+    model="gpt-6.1-sol"
     title="AI Assistant with Knowledge Base"
     :rag-config="{
       chunkSize: 500,
@@ -1390,7 +1390,7 @@ For more control, use the `useRAG` composable:
     <AiChatWindow
       provider="openai"
       :api-key="apiKey"
-      model="gpt-4o"
+      model="gpt-6.1-sol"
       :system-prompt="ragSystemPrompt"
       @message-sent="handleMessageWithRAG"
     />
@@ -1529,7 +1529,7 @@ const { knowledgeBase, retrieveContext } = useRAG({
 const { messages, sendMessage } = useChatEngine({
   provider: 'openai',
   apiKey: import.meta.env.VITE_OPENAI_API_KEY,
-  model: 'gpt-4o',
+  model: 'gpt-6.1-sol',
   systemPrompt: 'You are a helpful assistant.',
 
   // RAG configuration
@@ -1573,7 +1573,7 @@ const { messages, sendMessage } = useChatEngine({
   <AiChatRAG
     provider="openai"
     :api-key="apiKey"
-    model="gpt-4o"
+    model="gpt-6.1-sol"
     title="Customer Support"
     placeholder="Ask about our products..."
     system-prompt="You are a customer support assistant. Use the product documentation to answer questions accurately."
@@ -1648,7 +1648,7 @@ You can customize the appearance of the chat window using CSS variables:
 | `client` | `AIClient` | `null` | The AIClient instance to use for generating responses |
 | `provider` | `String` | `null` | AI provider (e.g., 'openai', 'claude', 'gemini') |
 | `apiKey` | `String` | `null` | API key for the provider |
-| `model` | `String` | `null` | Model to use (e.g., 'gpt-3.5-turbo') |
+| `model` | `String` | `null` | Model to use (e.g., 'gpt-6.1-sol') |
 | `baseUrl` | `String` | `null` | Custom base URL for API requests |
 | `organizationId` | `String` | `null` | Organization ID (for OpenAI) |
 | **API Security** | | | |
@@ -1709,7 +1709,7 @@ You can customize the appearance of the chat window using CSS variables:
 | `client` | `AIClient` | `null` | The AIClient instance to use for generating responses |
 | `provider` | `String` | `null` | AI provider (e.g., 'openai', 'claude', 'gemini') |
 | `apiKey` | `String` | `null` | API key for the provider |
-| `model` | `String` | `null` | Model to use (e.g., 'gpt-3.5-turbo') |
+| `model` | `String` | `null` | Model to use (e.g., 'gpt-6.1-sol') |
 | **Chat Configuration** | | | |
 | `placeholder` | `String` | `'Type a message...'` | Placeholder text for the input field |
 | `initialMessages` | `Array` | `[]` | Initial messages to populate the chat |

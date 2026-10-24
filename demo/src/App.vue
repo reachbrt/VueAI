@@ -443,9 +443,11 @@
               <div class="option-group">
                 <label for="chatModel">Model:</label>
                 <select id="chatModel" v-model="chatOptions.model" class="styled-select">
-                  <option value="gpt-3.5-turbo">GPT-3.5 Turbo</option>
-                  <option value="gpt-4">GPT-4</option>
-                  <option value="gpt-4-turbo">GPT-4 Turbo</option>
+                  <option value="gpt-6.1-sol">GPT-6.1 Sol</option>
+                  <option value="gpt-5.6-sol">GPT-5.6 Sol</option>
+                  <option value="claude-sonnet-5-5">Claude Sonnet 5.5</option>
+                  <option value="gemini-3.8-flash">Gemini 3.8 Flash</option>
+                  <option value="deepseek-flash">DeepSeek Flash</option>
                 </select>
               </div>
 
@@ -1025,7 +1027,7 @@ export default {
         title: 'AI Assistant',
         placeholder: 'Ask me anything...',
         theme: 'light',
-        model: 'gpt-3.5-turbo',
+        model: 'gpt-6.1-sol',
         showAvatars: true,
         streaming: true,
         fullHeight: false,
@@ -1552,7 +1554,7 @@ export default {
         // Create a fallback client
         this.aiClient = new AIClient({
           provider: 'fallback',
-          model: 'gpt-3.5-turbo'
+          model: 'gpt-6.1-sol'
         });
       }
     },
@@ -1562,7 +1564,7 @@ export default {
         title: 'AI Assistant',
         placeholder: 'Ask me anything...',
         theme: 'light',
-        model: 'gpt-3.5-turbo',
+        model: 'gpt-6.1-sol',
         showAvatars: true,
         streaming: true,
         fullHeight: false,

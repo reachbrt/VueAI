@@ -1,5 +1,15 @@
 // Core AI functionality for Vue.js components
 import vueCompat from './utils/vue-compat';
+import {
+  chatCompletionBody,
+  claudeBody,
+  defaultModel,
+  geminiBody,
+  listModels,
+  MODEL_CATALOG
+} from './models';
+
+export { defaultModel, listModels, MODEL_CATALOG };
 
 // Export Vue compatibility utilities
 export const vueVersion = vueCompat.vueVersion;
@@ -80,6 +90,20 @@ export class AIClient {
           return await this.callClaude(messages, options);
         case 'gemini':
           return await this.callGemini(messages, options);
+        case 'deepseek':
+          return await this.callCompatible(
+            this.baseUrl || 'https://api.deepseek.com/chat/completions',
+            this.model || defaultModel('deepseek'),
+            messages,
+            options
+          );
+        case 'huggingface':
+          return await this.callCompatible(
+            this.baseUrl || 'https://router.huggingface.co/v1/chat/completions',
+            this.model || defaultModel('huggingface'),
+            messages,
+            options
+          );
         case 'ollama':
           return await this.callOllama(messages, options);
         default:
@@ -127,6 +151,24 @@ export class AIClient {
         case 'gemini':
           await this.streamGemini(messages, callbacks, options);
           break;
+        case 'deepseek':
+          await this.streamCompatible(
+            this.baseUrl || 'https://api.deepseek.com/chat/completions',
+            this.model || defaultModel('deepseek'),
+            messages,
+            callbacks,
+            options
+          );
+          break;
+        case 'huggingface':
+          await this.streamCompatible(
+            this.baseUrl || 'https://router.huggingface.co/v1/chat/completions',
+            this.model || defaultModel('huggingface'),
+            messages,
+            callbacks,
+            options
+          );
+          break;
         case 'ollama':
           await this.streamOllama(messages, callbacks, options);
           break;
@@ -142,26 +184,12 @@ export class AIClient {
   // OpenAI implementation
   private async callOpenAI(messages: Message[], options?: ChatOptions): Promise<string> {
     const url = this.baseUrl || 'https://api.openai.com/v1/chat/completions';
-    const model = this.model || 'gpt-3.5-turbo';
+    const model = this.model || defaultModel('openai');
 
     const response = await fetch(url, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${this.apiKey}`,
-        ...(this.organizationId ? { 'OpenAI-Organization': this.organizationId } : {})
-      },
-      body: JSON.stringify({
-        model,
-        messages,
-        temperature: options?.temperature || 0.7,
-        max_tokens: options?.maxTokens,
-        top_p: options?.topP || 1,
-        frequency_penalty: options?.frequencyPenalty || 0,
-        presence_penalty: options?.presencePenalty || 0,
-        stop: options?.stopSequences,
-        stream: false
-      })
+      headers: this.openAiHeaders(),
+      body: JSON.stringify(chatCompletionBody(model, messages, options, false))
     });
 
     if (!response.ok) {
@@ -175,26 +203,12 @@ export class AIClient {
 
   private async streamOpenAI(messages: Message[], callbacks: StreamCallbacks, options?: ChatOptions): Promise<void> {
     const url = this.baseUrl || 'https://api.openai.com/v1/chat/completions';
-    const model = this.model || 'gpt-3.5-turbo';
+    const model = this.model || defaultModel('openai');
 
     const response = await fetch(url, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${this.apiKey}`,
-        ...(this.organizationId ? { 'OpenAI-Organization': this.organizationId } : {})
-      },
-      body: JSON.stringify({
-        model,
-        messages,
-        temperature: options?.temperature || 0.7,
-        max_tokens: options?.maxTokens,
-        top_p: options?.topP || 1,
-        frequency_penalty: options?.frequencyPenalty || 0,
-        presence_penalty: options?.presencePenalty || 0,
-        stop: options?.stopSequences,
-        stream: true
-      })
+      headers: this.openAiHeaders(),
+      body: JSON.stringify(chatCompletionBody(model, messages, options, true))
     });
 
     if (!response.ok) {
@@ -241,32 +255,222 @@ export class AIClient {
     }
   }
 
+  private openAiHeaders(): Record<string, string> {
+    return {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${this.apiKey}`,
+      ...(this.organizationId ? { 'OpenAI-Organization': this.organizationId } : {})
+    };
+  }
+
+  private async callCompatible(
+    url: string,
+    model: string,
+    messages: Message[],
+    options?: ChatOptions
+  ): Promise<string> {
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: this.openAiHeaders(),
+      body: JSON.stringify(chatCompletionBody(model, messages, options, false))
+    });
+
+    if (!response.ok) {
+      const error = await response.json().catch(() => ({}));
+      throw new Error(`${this.provider} API error: ${error.error?.message || response.statusText}`);
+    }
+
+    const data = await response.json();
+    return data.choices[0].message.content;
+  }
+
+  private async streamCompatible(
+    url: string,
+    model: string,
+    messages: Message[],
+    callbacks: StreamCallbacks,
+    options?: ChatOptions
+  ): Promise<void> {
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: this.openAiHeaders(),
+      body: JSON.stringify(chatCompletionBody(model, messages, options, true))
+    });
+
+    if (!response.ok) {
+      const error = await response.json().catch(() => ({}));
+      throw new Error(`${this.provider} API error: ${error.error?.message || response.statusText}`);
+    }
+
+    await this.readOpenAiStream(response, callbacks);
+  }
+
+  private async readOpenAiStream(response: Response, callbacks: StreamCallbacks): Promise<void> {
+    if (!response.body) {
+      throw new Error('Response body is null');
+    }
+
+    const reader = response.body.getReader();
+    const decoder = new TextDecoder('utf-8');
+    let completeText = '';
+
+    try {
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+
+        const chunk = decoder.decode(value, { stream: true });
+        const lines = chunk.split('\n').filter(line => line.trim() !== '');
+
+        for (const line of lines) {
+          if (!line.startsWith('data: ')) continue;
+          const data = line.slice(6);
+          if (data === '[DONE]') continue;
+
+          try {
+            const parsed = JSON.parse(data);
+            const content = parsed.choices[0]?.delta?.content || '';
+            if (content) {
+              callbacks.onToken?.(content);
+              completeText += content;
+            }
+          } catch (e) {
+            console.warn('Error parsing SSE message:', e);
+          }
+        }
+      }
+    } finally {
+      callbacks.onComplete?.(completeText);
+    }
+  }
+
   // Claude implementation
   private async callClaude(messages: Message[], options?: ChatOptions): Promise<string> {
-    // Implement Claude API call
-    return this.getFallbackResponse(messages);
+    const model = this.model || defaultModel('claude');
+    const response = await fetch(this.baseUrl || 'https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-api-key': this.apiKey || '',
+        'anthropic-version': '2023-06-01'
+      },
+      body: JSON.stringify(claudeBody(model, messages, options, false))
+    });
+
+    if (!response.ok) {
+      const error = await response.json().catch(() => ({}));
+      throw new Error(`Claude API error: ${error.error?.message || response.statusText}`);
+    }
+
+    const data = await response.json();
+    return data.content?.map((block: { text?: string }) => block.text || '').join('') || '';
   }
 
   private async streamClaude(messages: Message[], callbacks: StreamCallbacks, options?: ChatOptions): Promise<void> {
-    // Implement Claude streaming
-    await this.streamFallbackResponse(callbacks);
+    const model = this.model || defaultModel('claude');
+    const response = await fetch(this.baseUrl || 'https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-api-key': this.apiKey || '',
+        'anthropic-version': '2023-06-01'
+      },
+      body: JSON.stringify(claudeBody(model, messages, options, true))
+    });
+
+    if (!response.ok) {
+      const error = await response.json().catch(() => ({}));
+      throw new Error(`Claude API error: ${error.error?.message || response.statusText}`);
+    }
+
+    await this.readTextStream(response, callbacks, (parsed) => parsed.delta?.text || '');
   }
 
   // Gemini implementation
   private async callGemini(messages: Message[], options?: ChatOptions): Promise<string> {
-    // Implement Gemini API call
-    return this.getFallbackResponse(messages);
+    const model = this.model || defaultModel('gemini');
+    const response = await fetch(this.geminiUrl(model, false), {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(geminiBody(messages, options))
+    });
+
+    if (!response.ok) {
+      const error = await response.json().catch(() => ({}));
+      throw new Error(`Gemini API error: ${error.error?.message || response.statusText}`);
+    }
+
+    const data = await response.json();
+    return data.candidates?.[0]?.content?.parts?.map((part: { text?: string }) => part.text || '').join('') || '';
   }
 
   private async streamGemini(messages: Message[], callbacks: StreamCallbacks, options?: ChatOptions): Promise<void> {
-    // Implement Gemini streaming
-    await this.streamFallbackResponse(callbacks);
+    const model = this.model || defaultModel('gemini');
+    const response = await fetch(this.geminiUrl(model, true), {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(geminiBody(messages, options))
+    });
+
+    if (!response.ok) {
+      const error = await response.json().catch(() => ({}));
+      throw new Error(`Gemini API error: ${error.error?.message || response.statusText}`);
+    }
+
+    await this.readTextStream(response, callbacks, (parsed) => (
+      parsed.candidates?.[0]?.content?.parts?.map((part: { text?: string }) => part.text || '').join('') || ''
+    ));
+  }
+
+  private geminiUrl(model: string, stream: boolean): string {
+    const base = this.baseUrl || 'https://generativelanguage.googleapis.com/v1beta';
+    const method = stream ? 'streamGenerateContent?alt=sse' : 'generateContent';
+    const joiner = method.includes('?') ? '&' : '?';
+    return `${base}/models/${model}:${method}${joiner}key=${this.apiKey}`;
+  }
+
+  private async readTextStream(
+    response: Response,
+    callbacks: StreamCallbacks,
+    read: (parsed: any) => string
+  ): Promise<void> {
+    if (!response.body) {
+      throw new Error('Response body is null');
+    }
+
+    const reader = response.body.getReader();
+    const decoder = new TextDecoder('utf-8');
+    let completeText = '';
+
+    try {
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+        const chunk = decoder.decode(value, { stream: true });
+        for (const line of chunk.split('\n')) {
+          if (!line.startsWith('data: ')) continue;
+          const data = line.slice(6).trim();
+          if (!data || data === '[DONE]') continue;
+          try {
+            const text = read(JSON.parse(data));
+            if (text) {
+              callbacks.onToken?.(text);
+              completeText += text;
+            }
+          } catch (e) {
+            console.warn('Error parsing SSE message:', e);
+          }
+        }
+      }
+    } finally {
+      callbacks.onComplete?.(completeText);
+    }
   }
 
   // Ollama implementation
   private async callOllama(messages: Message[], options?: ChatOptions): Promise<string> {
     const url = `${this.baseUrl || 'http://localhost:11434'}/api/chat`;
-    const model = this.model || 'llama3';
+    const model = this.model || defaultModel('ollama');
 
     // Prepare headers
     const headers: Record<string, string> = {
@@ -333,7 +537,7 @@ export class AIClient {
 
   private async streamOllama(messages: Message[], callbacks: StreamCallbacks, options?: ChatOptions): Promise<void> {
     const url = `${this.baseUrl || 'http://localhost:11434'}/api/chat`;
-    const model = this.model || 'llama3';
+    const model = this.model || defaultModel('ollama');
 
     // Prepare headers
     const headers: Record<string, string> = {
@@ -458,6 +662,9 @@ export function registerProviders(providers: ProviderConfig): void {
 export default {
   AIClient,
   registerProviders,
+  defaultModel,
+  listModels,
+  MODEL_CATALOG,
   // Include compatibility utilities in default export
   vueVersion,
   isOlderVue3,

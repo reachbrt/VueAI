@@ -284,7 +284,7 @@ function initializeQA() {
   client.initializeQA({
     provider: qaProvider.value as 'openai' | 'anthropic',
     apiKey: qaApiKey.value,
-    model: qaProvider.value === 'openai' ? 'gpt-4-turbo-preview' : 'claude-3-5-sonnet-20241022',
+    model: qaProvider.value === 'openai' ? 'gpt-6.1-sol' : 'claude-sonnet-5-5',
   });
 
   qaInitialized.value = true;

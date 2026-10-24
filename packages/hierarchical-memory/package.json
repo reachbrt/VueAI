@@ -1,6 +1,6 @@
 {
   "name": "@aivue/hierarchical-memory",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Hierarchical memory trees (H-MEM style) for LLM tools and agents, optimized for tables and documents",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
@@ -72,4 +72,3 @@
     "vue": "^3.4.0"
   }
 }
-

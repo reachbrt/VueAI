@@ -1,6 +1,6 @@
 {
   "name": "@aivue/tabular-intelligence",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "The most comprehensive tabular data analysis package for Vue.js - Advanced AI, ML, Statistical Analysis, and Data Science capabilities",
   "main": "dist/index.js",
   "module": "dist/index.mjs",

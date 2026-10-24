@@ -196,7 +196,7 @@ export default {
     },
     model: {
       type: String,
-      default: 'gpt-4o'
+      default: 'gpt-6.1-sol'
     },
     autoCaption: {
       type: Boolean,
