@@ -9,13 +9,13 @@
 
   <div v-else class="studio">
     <header class="nav">
-      <a class="mark" href="#top">VueAI</a>
+      <a class="mark" href="#top"><Icon name="orbit" /> VueAI</a>
       <nav class="nav-links">
         <a href="#agent">Agent</a>
         <a href="#controls">Controls</a>
         <a href="#packages">Packages</a>
         <button type="button" @click="library = true">Library</button>
-        <a class="nav-cta" href="https://github.com/reachbrt/VueAI">GitHub</a>
+        <a class="nav-cta" href="https://github.com/reachbrt/VueAI"><Icon name="github" /> GitHub</a>
       </nav>
     </header>
 
@@ -39,17 +39,17 @@
           <HeroCanvas />
           <div class="orbit" aria-hidden="true">
             <article class="slab slab-back">
-              <p>Shared state</p>
+              <p><Icon name="database" /> Shared state</p>
               <strong>filter = overdue</strong>
               <span>The table and the thread read the same object.</span>
             </article>
             <article class="slab slab-mid">
-              <p>Tool</p>
+              <p><Icon name="tool" /> Tool</p>
               <strong>filter_invoices</strong>
               <span>{"status":"overdue"} · 2 rows</span>
             </article>
             <article class="slab slab-front">
-              <p>Approval</p>
+              <p><Icon name="approval" /> Approval</p>
               <strong>Refund invoice 1042</strong>
               <span>Waiting. The agent does not send it alone.</span>
             </article>
@@ -59,10 +59,27 @@
 
       <section class="section steps" aria-label="How a run moves">
         <article v-for="step in steps" :key="step.index" class="step">
+          <div class="badge"><Icon :name="step.icon" /></div>
           <p>{{ step.index }}</p>
           <h2>{{ step.title }}</h2>
           <span>{{ step.text }}</span>
         </article>
+      </section>
+
+      <section class="section scenes" aria-label="Product scenes">
+        <div class="section-intro">
+          <h2>Scenes from the suite.</h2>
+          <p>The same components, drawn as the surfaces a person actually uses.</p>
+        </div>
+        <div class="scene-grid">
+          <figure v-for="scene in scenes" :key="scene.title">
+            <img :src="sceneImages[scene.src]" :alt="scene.title" />
+            <figcaption>
+              <strong>{{ scene.title }}</strong>
+              <span>{{ scene.text }}</span>
+            </figcaption>
+          </figure>
+        </div>
       </section>
 
       <section id="agent" class="section">
@@ -76,6 +93,7 @@
         </div>
         <div class="control-index">
           <article v-for="control in controls" :key="control.name">
+            <div class="badge"><Icon :name="control.icon" /></div>
             <p>{{ control.package }}</p>
             <h3>{{ control.name }}</h3>
             <span>{{ control.text }}</span>
@@ -95,7 +113,10 @@
             :key="item.name"
             :href="`https://www.npmjs.com/package/${item.name}`"
           >
-            <p>{{ item.group }}</p>
+            <div class="card-top">
+              <div class="badge"><Icon :name="packageIcons[item.name] || 'orbit'" /></div>
+              <p>{{ item.group }}</p>
+            </div>
             <strong>{{ item.name }}</strong>
             <span>{{ item.text }}</span>
             <em>{{ item.controls }}</em>
@@ -120,8 +141,24 @@ import { defineAsyncComponent, ref, watch } from 'vue';
 import AgentStage from './AgentStage.vue';
 import ControlGallery from './ControlGallery.vue';
 import HeroCanvas from './HeroCanvas.vue';
-import { controls, packages, steps } from './packages';
+import Icon from './Icon.vue';
+import { controls, packageIcons, packages, scenes, steps } from './packages';
+import heroArt from '../assets/images/scene-suite.svg';
+import chatbotArt from '../assets/images/scene-chat.svg';
+import smartformArt from '../assets/images/scene-form.svg';
+import autosuggestArt from '../assets/images/scene-input.svg';
+import captionArt from '../assets/images/scene-vision.svg';
+import analyticsArt from '../assets/images/scene-signal.svg';
 import './site.css';
+
+const sceneImages: Record<string, string> = {
+  hero: heroArt,
+  chatbot: chatbotArt,
+  smartform: smartformArt,
+  autosuggest: autosuggestArt,
+  caption: captionArt,
+  analytics: analyticsArt
+};
 
 const LibraryApp = defineAsyncComponent(() => import('../App.vue'));
 const library = ref(false);

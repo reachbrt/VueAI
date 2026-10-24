@@ -37,16 +37,40 @@
   align-items: center;
   gap: 28px;
   padding: 18px 32px;
-  background: rgba(12, 13, 11, 0.78);
+  background: rgba(7, 20, 34, 0.82);
   backdrop-filter: blur(16px);
   border-bottom: 1px solid transparent;
 }
 
 .mark {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
   font-family: "Instrument Serif", Georgia, serif;
   font-size: 22px;
   text-decoration: none;
   letter-spacing: -0.03em;
+}
+
+.mark .icon { width: 22px; height: 22px; color: #9ec8ff; }
+
+.icon {
+  width: 18px;
+  height: 18px;
+  display: block;
+  flex: none;
+}
+
+.badge {
+  width: 36px;
+  height: 36px;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  color: #d7e7ff;
+  background: rgba(158, 200, 255, 0.1);
+  border: 1px solid rgba(158, 200, 255, 0.24);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
 }
 
 .nav-links {
@@ -73,6 +97,9 @@
 .nav-links button:hover { color: var(--ink); }
 
 .nav-links a.nav-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
   text-decoration: none;
   border: 1px solid var(--line);
   border-radius: 999px;
@@ -80,6 +107,8 @@
   font-size: 14px;
   color: var(--ink);
 }
+
+.nav-cta .icon { width: 15px; height: 15px; }
 
 .hero {
   display: grid;
@@ -223,12 +252,17 @@
 }
 
 .slab p {
+  display: flex;
+  align-items: center;
+  gap: 8px;
   margin: 0 0 6px;
   font-size: 11px;
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: #9ec8ff;
 }
+
+.slab .icon { width: 14px; height: 14px; }
 
 .slab strong {
   display: block;
@@ -356,12 +390,17 @@
 
 .panel-label,
 .control header p {
+  display: flex;
+  align-items: center;
+  gap: 8px;
   margin: 0;
   font-size: 11px;
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--muted);
 }
+
+.control header p .icon { width: 14px; height: 14px; color: #9ec8ff; }
 
 .panel-head {
   display: flex;
@@ -442,6 +481,8 @@
   transform: translateZ(0);
 }
 
+.step .badge { margin-bottom: 16px; }
+
 .step p {
   margin: 0;
   color: #9ec8ff;
@@ -481,6 +522,59 @@
 
 .control-index article:hover {
   transform: translateY(-6px) rotateX(4deg);
+}
+
+.control-index .badge { margin-bottom: 14px; }
+
+.card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.card-top p { margin: 0; }
+
+.scene-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.scene-grid figure {
+  margin: 0;
+  border-radius: 22px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: #0d1d33;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.22);
+  transition: transform 0.35s ease;
+}
+
+.scene-grid figure:hover { transform: translateY(-4px); }
+
+.scene-grid img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 8 / 5;
+  object-fit: cover;
+  background: #eaf1fb;
+}
+
+.scene-grid figcaption {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 14px 16px 16px;
+}
+
+.scene-grid strong { font-weight: 600; }
+
+.scene-grid span {
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.45;
 }
 
 .control-index p,
@@ -609,7 +703,8 @@
   .gallery,
   .package-grid,
   .steps,
-  .control-index {
+  .control-index,
+  .scene-grid {
     grid-template-columns: 1fr;
   }
   .control--wide { grid-column: auto; }

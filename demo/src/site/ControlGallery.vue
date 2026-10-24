@@ -2,7 +2,7 @@
   <div class="gallery">
     <article class="control">
       <header>
-        <p>01</p>
+        <p><Icon name="reason" /> 01</p>
         <h3>Reasoning</h3>
       </header>
       <AiReasoning :text="reasoning" :done="true" />
@@ -10,7 +10,7 @@
 
     <article class="control">
       <header>
-        <p>02</p>
+        <p><Icon name="tool" /> 02</p>
         <h3>Tool call</h3>
       </header>
       <AiToolCall
@@ -23,7 +23,7 @@
 
     <article class="control">
       <header>
-        <p>03</p>
+        <p><Icon name="approval" /> 03</p>
         <h3>Approval</h3>
       </header>
       <AiApproval
@@ -37,7 +37,7 @@
 
     <article class="control control--wide">
       <header>
-        <p>04</p>
+        <p><Icon name="lines" /> 04</p>
         <h3>Streaming Markdown</h3>
       </header>
       <AiStreamMarkdown :source="markdown" />
@@ -45,7 +45,7 @@
 
     <article class="control">
       <header>
-        <p>05</p>
+        <p><Icon name="composer" /> 05</p>
         <h3>Composer</h3>
       </header>
       <AiComposer placeholder="Message the agent" @send="sent = $event" />
@@ -54,7 +54,7 @@
 
     <article class="control">
       <header>
-        <p>06</p>
+        <p><Icon name="cpu" /> 06</p>
         <h3>Local runtime</h3>
       </header>
       <p class="local-copy">@aivue/browser-llm runs a model in WebGPU. The studio stays on a scripted agent so the page works with no key. Open the component library for the live local model.</p>
@@ -67,6 +67,7 @@
 import { onBeforeUnmount, onMounted, ref } from 'vue';
 import { AiApproval, AiComposer, AiReasoning, AiToolCall } from '@aivue/agent';
 import { AiStreamMarkdown } from '@aivue/stream-markdown';
+import Icon from './Icon.vue';
 
 defineEmits<{ library: [] }>();
 

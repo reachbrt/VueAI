@@ -170,37 +170,80 @@ export const packages: PackageCard[] = [
   }
 ];
 
+export const packageIcons: Record<string, string> = {
+  '@aivue/agent': 'orbit',
+  '@aivue/stream-markdown': 'lines',
+  '@aivue/cli': 'terminal',
+  '@aivue/core': 'hex',
+  '@aivue/chatbot': 'chat',
+  '@aivue/chatbot-storage': 'database',
+  '@aivue/browser-llm': 'cpu',
+  '@aivue/mcp-client': 'nodes',
+  '@aivue/writer': 'pen',
+  '@aivue/summarizer': 'list',
+  '@aivue/translate': 'translate',
+  '@aivue/moderation': 'shield',
+  '@aivue/smart-datatable': 'table',
+  '@aivue/tabular-intelligence': 'chart',
+  '@aivue/hierarchical-memory': 'tree',
+  '@aivue/doc-intelligence': 'doc',
+  '@aivue/image-caption': 'image',
+  '@aivue/guided-form': 'form',
+  '@aivue/smartform': 'check',
+  '@aivue/autosuggest': 'suggest',
+  '@aivue/predictive-input': 'cursor',
+  '@aivue/voice-actions': 'mic',
+  '@aivue/smart-notify': 'bell',
+  '@aivue/emotion-ui': 'face',
+  '@aivue/analytics': 'chart',
+  '@aivue/360-spin': 'spin',
+  '@aivue/ai-360-generator': 'cube'
+};
+
 export const steps = [
   {
     index: '01',
+    icon: 'lines',
     title: 'Stream the run',
     text: 'Tokens, reasoning, and markdown land in the thread while the model is still writing.'
   },
   {
     index: '02',
+    icon: 'tool',
     title: 'Call the page',
     text: 'Tools you register can filter a table, open a document, or change the screen the user is looking at.'
   },
   {
     index: '03',
+    icon: 'approval',
     title: 'Wait for a person',
     text: 'A refund, a send, or a delete pauses on an approval instead of running itself.'
   },
   {
     index: '04',
+    icon: 'panel',
     title: 'Render your component',
     text: 'The agent can place your Vue component in the thread and share state with it.'
   }
 ];
 
 export const controls = [
-  { name: 'AiThread', package: '@aivue/agent', text: 'The scroll of a run: messages, tools, and the composer.' },
-  { name: 'AiMessage', package: '@aivue/agent', text: 'One turn, from the person or from the agent.' },
-  { name: 'AiReasoning', package: '@aivue/agent', text: 'The model’s working notes, separate from the answer.' },
-  { name: 'AiToolCall', package: '@aivue/agent', text: 'Name, arguments, and result of a tool, as they arrive.' },
-  { name: 'AiApproval', package: '@aivue/agent', text: 'A pause with approve and reject, before a sensitive tool runs.' },
-  { name: 'AiComposer', package: '@aivue/agent', text: 'The field that starts the next turn.' },
-  { name: 'AiAgent', package: '@aivue/agent', text: 'The whole panel: thread, status, and approval events.' },
-  { name: 'useAgent', package: '@aivue/agent', text: 'Play an event stream, register tools, and share state with the page.' },
-  { name: 'AiStreamMarkdown', package: '@aivue/stream-markdown', text: 'Incomplete markdown that does not flicker or break a fence.' }
+  { name: 'AiThread', icon: 'thread', package: '@aivue/agent', text: 'The scroll of a run: messages, tools, and the composer.' },
+  { name: 'AiMessage', icon: 'message', package: '@aivue/agent', text: 'One turn, from the person or from the agent.' },
+  { name: 'AiReasoning', icon: 'reason', package: '@aivue/agent', text: 'The model’s working notes, separate from the answer.' },
+  { name: 'AiToolCall', icon: 'tool', package: '@aivue/agent', text: 'Name, arguments, and result of a tool, as they arrive.' },
+  { name: 'AiApproval', icon: 'approval', package: '@aivue/agent', text: 'A pause with approve and reject, before a sensitive tool runs.' },
+  { name: 'AiComposer', icon: 'composer', package: '@aivue/agent', text: 'The field that starts the next turn.' },
+  { name: 'AiAgent', icon: 'panel', package: '@aivue/agent', text: 'The whole panel: thread, status, and approval events.' },
+  { name: 'useAgent', icon: 'play', package: '@aivue/agent', text: 'Play an event stream, register tools, and share state with the page.' },
+  { name: 'AiStreamMarkdown', icon: 'lines', package: '@aivue/stream-markdown', text: 'Incomplete markdown that does not flicker or break a fence.' }
+];
+
+export const scenes = [
+  { src: 'hero', title: 'The suite', text: 'Chat, forms, and vision on one surface.' },
+  { src: 'chatbot', title: 'Conversation', text: 'A thread with voice, files, and RAG.' },
+  { src: 'smartform', title: 'Forms', text: 'Validation that reads the field, not only the regex.' },
+  { src: 'autosuggest', title: 'Input', text: 'Suggestions beside the cursor.' },
+  { src: 'caption', title: 'Vision', text: 'A caption for the image on the page.' },
+  { src: 'analytics', title: 'Signal', text: 'How people and agents move through a run.' }
 ];
