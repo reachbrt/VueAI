@@ -1,0 +1,43 @@
+name: Deploy demo to Netlify
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - "demo/**"
+      - "netlify.toml"
+      - ".github/workflows/deploy-demo.yml"
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: demo/package-lock.json
+
+      - name: Install and build demo
+        working-directory: demo
+        run: |
+          npm ci
+          npm run build
+
+      - name: Deploy to Netlify
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+        run: |
+          if [ -z "$NETLIFY_AUTH_TOKEN" ]; then
+            echo "Add repository secret NETLIFY_AUTH_TOKEN before this deploy can run."
+            echo "Site: https://aivue.netlify.app"
+            echo "Site ID: 9f08866c-e889-408a-959e-32d8e3f3ab49"
+            exit 1
+          fi
+          npx --yes netlify-cli deploy --prod --dir=demo/dist --site=9f08866c-e889-408a-959e-32d8e3f3ab49

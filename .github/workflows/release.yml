@@ -1,0 +1,65 @@
+name: Release packages to npm
+
+on:
+  workflow_dispatch:
+    inputs:
+      bump:
+        description: Bump applied to every package before publish
+        required: true
+        default: patch
+        type: choice
+        options:
+          - patch
+          - minor
+          - major
+          - none
+
+permissions:
+  contents: write
+  id-token: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          registry-url: https://registry.npmjs.org
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Bump every package version
+        if: inputs.bump != 'none'
+        run: npm version ${{ inputs.bump }} --workspaces --no-git-tag-version
+
+      - name: Sync lockfile
+        if: inputs.bump != 'none'
+        run: npm install --package-lock-only --ignore-scripts
+
+      - name: Commit version bumps
+        if: inputs.bump != 'none'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add packages/*/package.json package-lock.json
+          git commit -m "chore: bump all @aivue packages (${{ inputs.bump }})"
+          git push
+
+      - name: Publish all packages
+        run: bash scripts/publish/publish-npm.sh
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Tag release
+        if: inputs.bump != 'none'
+        run: |
+          version="$(node -p "require('./packages/core/package.json').version")"
+          git tag "core-v${version}"
+          git push origin "core-v${version}"
