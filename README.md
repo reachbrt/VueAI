@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://aivue.netlify.app">
-    <img src="https://raw.githubusercontent.com/reachbrt/VueAI/main/docs/studio-banner.svg" alt="VueAI. A component suite the agent can call, on the page it is in." width="100%">
+    <img src="https://raw.githubusercontent.com/reachbrt/VueAI/main/brand/studio-banner.svg" alt="VueAI. A component suite the agent can call, on the page it is in." width="100%">
   </a>
 </p>
 

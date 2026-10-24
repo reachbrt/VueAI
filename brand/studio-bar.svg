@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="88" viewBox="0 0 1200 88" role="img" aria-label="VueAI">
+  <rect width="1200" height="88" fill="#000000"/>
+  <rect x="0.5" y="0.5" width="1199" height="87" fill="none" stroke="#27272a"/>
+  <rect width="6" height="88" fill="#34d399"/>
+  <g fill="none" stroke="#34d399" stroke-width="1.5" transform="translate(46,44)">
+    <circle r="2.4" fill="#34d399" stroke="none"/>
+    <ellipse rx="13" ry="4.8" transform="rotate(-32)"/>
+    <ellipse rx="13" ry="4.8" transform="rotate(58)"/>
+  </g>
+  <text x="74" y="52" fill="#ffffff" font-family="Georgia, 'Times New Roman', serif" font-size="28">VueAI</text>
+  <text x="1148" y="52" fill="#a1a1aa" font-family="ui-sans-serif, system-ui, sans-serif" font-size="16" text-anchor="end">Agent runtime for Vue</text>
+</svg>

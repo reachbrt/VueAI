@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="420" viewBox="0 0 1200 420" role="img" aria-label="VueAI, the agent runtime for Vue">
+  <rect width="1200" height="420" fill="#000000"/>
+  <circle cx="1040" cy="36" r="260" fill="#34d399" opacity="0.12"/>
+  <g opacity="0.35" stroke="#34d399">
+    <path d="M760 70v280M820 70v280M880 70v280M940 70v280M1000 70v280M1060 70v280M1120 70v280"/>
+    <path d="M740 110h400M740 170h400M740 230h400M740 290h400"/>
+  </g>
+  <g fill="none" stroke="#34d399" stroke-width="1.4" transform="translate(78,78)">
+    <circle r="3" fill="#34d399" stroke="none"/>
+    <ellipse rx="14" ry="5.2" transform="rotate(-32)"/>
+    <ellipse rx="14" ry="5.2" transform="rotate(58)"/>
+  </g>
+  <text x="108" y="86" fill="#ffffff" font-family="Georgia, 'Times New Roman', serif" font-size="28">VueAI</text>
+  <text x="72" y="148" fill="#34d399" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" letter-spacing="3.2">AGENT RUNTIME FOR VUE</text>
+  <text x="72" y="214" fill="#ffffff" font-family="ui-sans-serif, system-ui, sans-serif" font-size="52" font-weight="500">A component suite</text>
+  <text x="72" y="274" fill="#ffffff" font-family="ui-sans-serif, system-ui, sans-serif" font-size="52" font-weight="500">the agent can call,</text>
+  <text x="72" y="334" fill="#34d399" font-family="ui-sans-serif, system-ui, sans-serif" font-size="52" font-weight="500">on the page it is in.</text>
+  <text x="72" y="380" fill="#a1a1aa" font-family="ui-sans-serif, system-ui, sans-serif" font-size="18">Streaming, tools, approvals, and your own Vue components.</text>
+</svg>

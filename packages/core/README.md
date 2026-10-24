@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="https://raw.githubusercontent.com/reachbrt/VueAI/main/docs/studio-banner.svg" alt="VueAI" width="100%" />
+  <img src="https://raw.githubusercontent.com/reachbrt/VueAI/main/brand/studio-banner.svg" alt="VueAI" width="100%" />
 
   <h1>@aivue/core</h1>
   <p>Core AI functionality for Vue.js components</p>
