@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="640" viewBox="0 0 1200 640" role="img" aria-label="VueAI architecture. One repository, one agent runtime, every feature.">
+  <rect width="1200" height="640" fill="#000000"/>
+  <circle cx="1080" cy="40" r="220" fill="#34d399" opacity="0.10"/>
+  <text x="48" y="48" fill="#34d399" font-family="ui-sans-serif, system-ui, sans-serif" font-size="13" letter-spacing="3">ONE REPOSITORY</text>
+  <text x="48" y="84" fill="#ffffff" font-family="ui-sans-serif, system-ui, sans-serif" font-size="28" font-weight="600">The page, the agent, and every feature</text>
+
+  <rect x="48" y="112" width="1104" height="72" rx="16" fill="#09090b" stroke="#27272a"/>
+  <text x="72" y="142" fill="#a1a1aa" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" letter-spacing="2">YOUR VUE PAGE</text>
+  <text x="72" y="166" fill="#ffffff" font-family="ui-sans-serif, system-ui, sans-serif" font-size="16">Chat, forms, tables, images, and the screen the person is already using</text>
+
+  <rect x="48" y="208" width="1104" height="128" rx="16" fill="#09090b" stroke="#34d399"/>
+  <text x="72" y="238" fill="#34d399" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" letter-spacing="2">@aivue/agent</text>
+  <text x="72" y="264" fill="#ffffff" font-family="ui-sans-serif, system-ui, sans-serif" font-size="18" font-weight="600">Plan, tools, approval, sources, suggestions, and your component</text>
+  <g font-family="ui-sans-serif, system-ui, sans-serif" font-size="13" fill="#d4d4d8">
+    <rect x="72" y="282" width="92" height="32" rx="16" fill="#18181b"/>
+    <text x="90" y="303">Stream</text>
+    <rect x="176" y="282" width="78" height="32" rx="16" fill="#18181b"/>
+    <text x="196" y="303">Plan</text>
+    <rect x="266" y="282" width="78" height="32" rx="16" fill="#18181b"/>
+    <text x="286" y="303">Tools</text>
+    <rect x="356" y="282" width="110" height="32" rx="16" fill="#18181b"/>
+    <text x="374" y="303">Approval</text>
+    <rect x="478" y="282" width="100" height="32" rx="16" fill="#18181b"/>
+    <text x="496" y="303">Sources</text>
+    <rect x="590" y="282" width="128" height="32" rx="16" fill="#18181b"/>
+    <text x="606" y="303">Suggestions</text>
+    <rect x="730" y="282" width="150" height="32" rx="16" fill="#18181b"/>
+    <text x="748" y="303">Your component</text>
+  </g>
+
+  <rect x="48" y="360" width="1104" height="72" rx="16" fill="#09090b" stroke="#27272a"/>
+  <text x="72" y="390" fill="#a1a1aa" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" letter-spacing="2">@aivue/core</text>
+  <text x="72" y="414" fill="#ffffff" font-family="ui-sans-serif, system-ui, sans-serif" font-size="16">GPT-6.1 Sol · Claude Sonnet 5.5 · Gemini 3.8 Flash · DeepSeek Flash · Hugging Face · Ollama</text>
+
+  <g font-family="ui-sans-serif, system-ui, sans-serif">
+    <rect x="48" y="456" width="168" height="132" rx="16" fill="#09090b" stroke="#27272a"/>
+    <text x="64" y="486" fill="#34d399" font-size="12" letter-spacing="1.5">CONVERSATION</text>
+    <text x="64" y="514" fill="#ffffff" font-size="14">Chat, voice, RAG</text>
+    <text x="64" y="536" fill="#a1a1aa" font-size="13">Browser model</text>
+    <text x="64" y="558" fill="#a1a1aa" font-size="13">MCP tools</text>
+
+    <rect x="232" y="456" width="168" height="132" rx="16" fill="#09090b" stroke="#27272a"/>
+    <text x="248" y="486" fill="#34d399" font-size="12" letter-spacing="1.5">WRITING</text>
+    <text x="248" y="514" fill="#ffffff" font-size="14">Rewrite, summary</text>
+    <text x="248" y="536" fill="#a1a1aa" font-size="13">Translate</text>
+    <text x="248" y="558" fill="#a1a1aa" font-size="13">Moderation</text>
+
+    <rect x="416" y="456" width="168" height="132" rx="16" fill="#09090b" stroke="#27272a"/>
+    <text x="432" y="486" fill="#34d399" font-size="12" letter-spacing="1.5">DATA</text>
+    <text x="432" y="514" fill="#ffffff" font-size="14">Tables, memory</text>
+    <text x="432" y="536" fill="#a1a1aa" font-size="13">Documents</text>
+    <text x="432" y="558" fill="#a1a1aa" font-size="13">Statistics</text>
+
+    <rect x="600" y="456" width="168" height="132" rx="16" fill="#09090b" stroke="#27272a"/>
+    <text x="616" y="486" fill="#34d399" font-size="12" letter-spacing="1.5">INPUT</text>
+    <text x="616" y="514" fill="#ffffff" font-size="14">Guided forms</text>
+    <text x="616" y="536" fill="#a1a1aa" font-size="13">Suggestions</text>
+    <text x="616" y="558" fill="#a1a1aa" font-size="13">Voice actions</text>
+
+    <rect x="784" y="456" width="168" height="132" rx="16" fill="#09090b" stroke="#27272a"/>
+    <text x="800" y="486" fill="#34d399" font-size="12" letter-spacing="1.5">VISION</text>
+    <text x="800" y="514" fill="#ffffff" font-size="14">Captions</text>
+    <text x="800" y="536" fill="#a1a1aa" font-size="13">360° product</text>
+    <text x="800" y="558" fill="#a1a1aa" font-size="13">Turntable</text>
+
+    <rect x="968" y="456" width="184" height="132" rx="16" fill="#09090b" stroke="#27272a"/>
+    <text x="984" y="486" fill="#34d399" font-size="12" letter-spacing="1.5">SURFACE</text>
+    <text x="984" y="514" fill="#ffffff" font-size="14">Analytics</text>
+    <text x="984" y="536" fill="#a1a1aa" font-size="13">Notify, emotion</text>
+    <text x="984" y="558" fill="#a1a1aa" font-size="13">One studio</text>
+  </g>
+</svg>
