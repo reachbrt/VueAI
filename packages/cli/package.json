@@ -1,6 +1,6 @@
 {
   "name": "@aivue/cli",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Scaffold VueAI agent panels and a Nuxt plugin",
   "type": "module",
   "bin": {

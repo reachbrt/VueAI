@@ -1,6 +1,6 @@
 {
   "name": "@aivue/guided-form",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "AI-assisted guided form builder - Transform form schemas into one-question-at-a-time conversational experiences",
   "main": "dist/index.js",
   "module": "dist/index.mjs",

@@ -1,6 +1,6 @@
 {
   "name": "@aivue/ai-360-generator",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "AI-powered 360° product view generator from single images using OpenAI DALL-E and Stability AI",
   "main": "dist/index.js",
   "module": "dist/index.mjs",

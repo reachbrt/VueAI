@@ -11,6 +11,7 @@
     <header class="nav">
       <a class="mark" href="#top"><Icon name="orbit" /> VueAI</a>
       <nav class="nav-links">
+        <a href="#architecture">Architecture</a>
         <a href="#agent">Agent</a>
         <a href="#controls">Controls</a>
         <a href="#packages">Packages</a>
@@ -82,6 +83,26 @@
         </div>
       </section>
 
+      <section id="architecture" class="section">
+        <div class="section-intro">
+          <h2>One repo. <em>Every feature.</em></h2>
+          <p>VueAI is a single GitHub repository. The agent sits on the page, the core client talks to the model, and each package is a feature you can use on its own.</p>
+        </div>
+        <img class="architecture" :src="architectureArt" alt="Architecture of the VueAI suite: the page, the agent, the model client, and six feature groups." />
+        <div class="lanes">
+          <article v-for="lane in lanes" :key="lane.name">
+            <p>{{ lane.name }}</p>
+            <h3>{{ lane.items.length }} packages</h3>
+            <ul>
+              <li v-for="item in lane.items" :key="item.name">
+                <strong>{{ item.name.replace('@aivue/', '') }}</strong>
+                <span>{{ item.text }}</span>
+              </li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
       <section id="agent" class="section">
         <AgentStage />
       </section>
@@ -137,7 +158,7 @@
 </template>
 
 <script setup lang="ts">
-import { defineAsyncComponent, ref, watch } from 'vue';
+import { computed, defineAsyncComponent, ref, watch } from 'vue';
 import AgentStage from './AgentStage.vue';
 import ControlGallery from './ControlGallery.vue';
 import HeroCanvas from './HeroCanvas.vue';
@@ -149,6 +170,7 @@ import smartformArt from '../assets/images/scene-form.svg';
 import autosuggestArt from '../assets/images/scene-input.svg';
 import captionArt from '../assets/images/scene-vision.svg';
 import analyticsArt from '../assets/images/scene-signal.svg';
+import architectureArt from '../assets/images/architecture.svg';
 import './site.css';
 
 const sceneImages: Record<string, string> = {
@@ -159,6 +181,12 @@ const sceneImages: Record<string, string> = {
   caption: captionArt,
   analytics: analyticsArt
 };
+
+const laneOrder = ['Runtime', 'Conversation', 'Writing', 'Data', 'Input', 'Surface'];
+const lanes = computed(() => laneOrder.map((name) => ({
+  name,
+  items: packages.filter((item) => item.group === name)
+})));
 
 const LibraryApp = defineAsyncComponent(() => import('../App.vue'));
 const library = ref(false);

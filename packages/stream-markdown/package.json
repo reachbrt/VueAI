@@ -1,6 +1,6 @@
 {
   "name": "@aivue/stream-markdown",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Streaming Markdown for Vue — render incomplete LLM tokens without flicker or broken markup",
   "main": "dist/index.js",
   "module": "dist/index.mjs",

@@ -49,6 +49,14 @@
 
 ## The suite
 
+One GitHub repository. Twenty-seven packages. The agent runs on the page, `@aivue/core` calls the model, and every other package is a feature you can place on its own.
+
+<p align="center">
+  <a href="https://aivue.netlify.app/#architecture">
+    <img src="brand/architecture.svg" alt="VueAI architecture. The page, the agent, the model client, and six feature groups." width="100%">
+  </a>
+</p>
+
 Streaming, tools, approvals, and your own Vue components, on the page the person is already using.
 
 <table>

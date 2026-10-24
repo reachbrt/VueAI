@@ -1,6 +1,6 @@
 {
   "name": "@aivue/writer",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "In-place AI writing actions for Vue — rewrite, shorten, expand, fix grammar, change tone, and continue, in the style of Notion AI and Grammarly",
   "main": "dist/index.js",
   "module": "dist/index.mjs",

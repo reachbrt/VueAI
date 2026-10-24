@@ -625,6 +625,66 @@
 
 .text-button { margin-top: 8px; }
 
+.architecture {
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  display: block;
+  background: #000;
+}
+
+.lanes {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  margin-top: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  overflow: hidden;
+}
+
+.lanes article {
+  background: #09090b;
+  padding: 20px;
+}
+
+.lanes p {
+  margin: 0;
+  color: var(--accent);
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.lanes h3 {
+  margin: 8px 0 14px;
+  font-size: 22px;
+}
+
+.lanes ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.lanes li {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.lanes strong { font-weight: 600; }
+
+.lanes span {
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.4;
+}
+
 .package-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -704,7 +764,8 @@
   .package-grid,
   .steps,
   .control-index,
-  .scene-grid {
+  .scene-grid,
+  .lanes {
     grid-template-columns: 1fr;
   }
   .control--wide { grid-column: auto; }

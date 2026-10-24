@@ -1,7 +1,7 @@
 {
   "name": "@aivue/translate",
-  "version": "1.0.0",
-  "description": "AI translation widget for Vue \u2014 detect language, translate, and copy results",
+  "version": "1.0.1",
+  "description": "AI translation widget for Vue — detect language, translate, and copy results",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",

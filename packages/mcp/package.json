@@ -1,6 +1,6 @@
 {
   "name": "@aivue/mcp-client",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Model Context Protocol (MCP) client for Vue.js - Connect to MCP servers and interact with tools, resources, and prompts following official MCP architecture",
   "author": "reachbrt",
   "license": "MIT",

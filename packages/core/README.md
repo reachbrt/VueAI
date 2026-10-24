@@ -1,6 +1,11 @@
 <div align="center">
   <img src="https://raw.githubusercontent.com/reachbrt/VueAI/main/brand/studio-banner.svg" alt="VueAI" width="100%" />
 
+<p align="center">
+  <a href="https://aivue.netlify.app/#architecture"><img src="https://raw.githubusercontent.com/reachbrt/VueAI/main/brand/architecture.svg" alt="VueAI architecture. One repository, the agent runtime, and every feature." width="100%"></a>
+</p>
+
+
   <h1>@aivue/core</h1>
   <p>Core AI functionality for Vue.js components</p>
 

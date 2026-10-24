@@ -1,7 +1,7 @@
 {
   "name": "@aivue/moderation",
-  "version": "1.0.0",
-  "description": "AI content moderation for Vue \u2014 score UGC for hate, spam, violence, and more before publish",
+  "version": "1.0.1",
+  "description": "AI content moderation for Vue — score UGC for hate, spam, violence, and more before publish",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",

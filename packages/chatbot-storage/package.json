@@ -1,6 +1,6 @@
 {
   "name": "@aivue/chatbot-storage",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Database integration and storage solutions for @aivue/chatbot",
   "main": "dist/index.js",
   "module": "dist/index.mjs",

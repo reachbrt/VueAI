@@ -1,6 +1,6 @@
 {
   "name": "@aivue/agent",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Agent runtime for Vue — streaming messages, tool calls, approvals, shared state, and generative UI",
   "main": "dist/index.js",
   "module": "dist/index.mjs",

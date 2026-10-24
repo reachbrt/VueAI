@@ -1,6 +1,6 @@
 {
   "name": "@aivue/browser-llm",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "High-performance in-browser LLM inference for Vue.js using WebLLM and WebGPU",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
@@ -76,4 +76,3 @@
     "vue-tsc": "^2.2.10"
   }
 }
-

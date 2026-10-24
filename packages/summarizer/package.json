@@ -1,7 +1,7 @@
 {
   "name": "@aivue/summarizer",
-  "version": "1.0.0",
-  "description": "AI text summarization for Vue \u2014 short/medium/long summaries with bullet or paragraph styles",
+  "version": "1.0.1",
+  "description": "AI text summarization for Vue — short/medium/long summaries with bullet or paragraph styles",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
