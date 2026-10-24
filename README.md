@@ -5,9 +5,6 @@
 </p>
 
 <div align="center">
-  <img src="assets/images/vueai-logo.svg" alt="VueAI Logo" width="300" height="120" />
-
-  <h1>VueAI</h1>
 
   <p>
     <strong>27 production-ready AI components for Vue · Agent runtime · Vue 2 and Vue 3</strong>
@@ -50,162 +47,59 @@
   </p>
 </div>
 
-## ✨ Features
+## The suite
 
-A modular AI-powered Vue.js component suite that enhances your applications with intelligent capabilities:
+Streaming, tools, approvals, and your own Vue components, on the page the person is already using.
 
 <table>
   <tr>
-    <td align="center" width="16.66%">
-      <img src="demo/src/assets/images/scene-suite.svg" width="80" height="80" alt="@aivue/agent"><br>
-      <a href="https://www.npmjs.com/package/@aivue/agent"><b>@aivue/agent</b></a><br>
-      <small>Streaming runs, tools, approvals, shared state</small>
+    <td width="33%">
+      <img src="demo/src/assets/images/scene-suite.svg" alt="The suite" width="100%"><br>
+      <b>The suite</b><br>
+      <sub>Chat, forms, and vision on one surface.</sub>
     </td>
-    <td align="center" width="16.66%">
-      <img src="demo/src/assets/images/scene-chat.svg" width="80" height="80" alt="@aivue/stream-markdown"><br>
-      <a href="https://www.npmjs.com/package/@aivue/stream-markdown"><b>@aivue/stream-markdown</b></a><br>
-      <small>Markdown that stays valid while tokens arrive</small>
+    <td width="33%">
+      <img src="demo/src/assets/images/scene-chat.svg" alt="Conversation" width="100%"><br>
+      <b>Conversation</b><br>
+      <sub>A thread with voice, files, and RAG.</sub>
     </td>
-    <td align="center" width="16.66%">
-      <img src="demo/src/assets/images/hero-illustration.svg" width="80" height="80" alt="@aivue/cli"><br>
-      <a href="https://www.npmjs.com/package/@aivue/cli"><b>@aivue/cli</b></a><br>
-      <small>Scaffold an agent panel or a Nuxt plugin</small>
-    </td>
-    <td align="center" width="16.66%">
-      <img src="demo/src/assets/images/hero-illustration.svg" width="80" height="80" alt="@aivue/core"><br>
-      <a href="https://www.npmjs.com/package/@aivue/core"><b>@aivue/core</b></a><br>
-      <small>One client for every provider</small>
-    </td>
-    <td align="center" width="16.66%">
-      <img src="demo/src/assets/images/chatbot-illustration.svg" width="80" height="80" alt="@aivue/chatbot"><br>
-      <a href="https://www.npmjs.com/package/@aivue/chatbot"><b>@aivue/chatbot</b></a><br>
-      <small>Multi-provider chat, voice, files, and RAG</small>
-    </td>
-    <td align="center" width="16.66%">
-      <img src="demo/src/assets/images/hero-illustration.svg" width="80" height="80" alt="@aivue/chatbot-storage"><br>
-      <a href="https://www.npmjs.com/package/@aivue/chatbot-storage"><b>@aivue/chatbot-storage</b></a><br>
-      <small>Persist threads across reloads</small>
+    <td width="33%">
+      <img src="demo/src/assets/images/scene-form.svg" alt="Forms" width="100%"><br>
+      <b>Forms</b><br>
+      <sub>Validation that reads the field, not only the regex.</sub>
     </td>
   </tr>
   <tr>
-    <td align="center" width="16.66%">
-      <img src="demo/src/assets/images/hero-illustration.svg" width="80" height="80" alt="@aivue/browser-llm"><br>
-      <a href="https://www.npmjs.com/package/@aivue/browser-llm"><b>@aivue/browser-llm</b></a><br>
-      <small>Run a model in the browser with WebGPU</small>
+    <td width="33%">
+      <img src="demo/src/assets/images/scene-input.svg" alt="Input" width="100%"><br>
+      <b>Input</b><br>
+      <sub>Suggestions beside the cursor.</sub>
     </td>
-    <td align="center" width="16.66%">
-      <img src="demo/src/assets/images/hero-illustration.svg" width="80" height="80" alt="@aivue/mcp-client"><br>
-      <a href="https://www.npmjs.com/package/@aivue/mcp-client"><b>@aivue/mcp-client</b></a><br>
-      <small>Model Context Protocol tools and resources</small>
+    <td width="33%">
+      <img src="demo/src/assets/images/scene-vision.svg" alt="Vision" width="100%"><br>
+      <b>Vision</b><br>
+      <sub>A caption, or a 360° view, from one image.</sub>
     </td>
-    <td align="center" width="16.66%">
-      <img src="demo/src/assets/images/scene-form.svg" width="80" height="80" alt="@aivue/writer"><br>
-      <a href="https://www.npmjs.com/package/@aivue/writer"><b>@aivue/writer</b></a><br>
-      <small>Rewrite, shorten, expand, and change tone</small>
+    <td width="33%">
+      <img src="demo/src/assets/images/scene-signal.svg" alt="Signal" width="100%"><br>
+      <b>Signal</b><br>
+      <sub>How people and agents move through a run.</sub>
     </td>
-    <td align="center" width="16.66%">
-      <img src="demo/src/assets/images/hero-illustration.svg" width="80" height="80" alt="@aivue/summarizer"><br>
-      <a href="https://www.npmjs.com/package/@aivue/summarizer"><b>@aivue/summarizer</b></a><br>
-      <small>Short, medium, and long summaries</small>
-    </td>
-    <td align="center" width="16.66%">
-      <img src="demo/src/assets/images/hero-illustration.svg" width="80" height="80" alt="@aivue/translate"><br>
-      <a href="https://www.npmjs.com/package/@aivue/translate"><b>@aivue/translate</b></a><br>
-      <small>Detect a language and translate</small>
-    </td>
-    <td align="center" width="16.66%">
-      <img src="demo/src/assets/images/hero-illustration.svg" width="80" height="80" alt="@aivue/moderation"><br>
-      <a href="https://www.npmjs.com/package/@aivue/moderation"><b>@aivue/moderation</b></a><br>
-      <small>Score a draft before it is published</small>
-    </td>
-  </tr>
-  <tr>
-    <td align="center" width="16.66%">
-      <img src="demo/src/assets/images/hero-illustration.svg" width="80" height="80" alt="@aivue/smart-datatable"><br>
-      <a href="https://www.npmjs.com/package/@aivue/smart-datatable"><b>@aivue/smart-datatable</b></a><br>
-      <small>Ask a table a question and filter rows</small>
-    </td>
-    <td align="center" width="16.66%">
-      <img src="demo/src/assets/images/scene-signal.svg" width="80" height="80" alt="@aivue/tabular-intelligence"><br>
-      <a href="https://www.npmjs.com/package/@aivue/tabular-intelligence"><b>@aivue/tabular-intelligence</b></a><br>
-      <small>Statistics, charts, and models over rows</small>
-    </td>
-    <td align="center" width="16.66%">
-      <img src="demo/src/assets/images/hero-illustration.svg" width="80" height="80" alt="@aivue/hierarchical-memory"><br>
-      <a href="https://www.npmjs.com/package/@aivue/hierarchical-memory"><b>@aivue/hierarchical-memory</b></a><br>
-      <small>Memory trees for documents and tables</small>
-    </td>
-    <td align="center" width="16.66%">
-      <img src="demo/src/assets/images/hero-illustration.svg" width="80" height="80" alt="@aivue/doc-intelligence"><br>
-      <a href="https://www.npmjs.com/package/@aivue/doc-intelligence"><b>@aivue/doc-intelligence</b></a><br>
-      <small>Invoices, receipts, and identity documents</small>
-    </td>
-    <td align="center" width="16.66%">
-      <img src="demo/src/assets/images/image-caption-illustration.svg" width="80" height="80" alt="@aivue/image-caption"><br>
-      <a href="https://www.npmjs.com/package/@aivue/image-caption"><b>@aivue/image-caption</b></a><br>
-      <small>Captions for uploaded or remote images</small>
-    </td>
-    <td align="center" width="16.66%">
-      <img src="demo/src/assets/images/scene-vision.svg" width="80" height="80" alt="@aivue/ai-360-generator"><br>
-      <a href="https://www.npmjs.com/package/@aivue/ai-360-generator"><b>@aivue/ai-360-generator</b></a><br>
-      <small>A 360° view from one product image</small>
-    </td>
-  </tr>
-  <tr>
-    <td align="center" width="16.66%">
-      <img src="demo/src/assets/images/scene-form.svg" width="80" height="80" alt="@aivue/guided-form"><br>
-      <a href="https://www.npmjs.com/package/@aivue/guided-form"><b>@aivue/guided-form</b></a><br>
-      <small>One question at a time, with the model beside it</small>
-    </td>
-    <td align="center" width="16.66%">
-      <img src="demo/src/assets/images/smartform-illustration.svg" width="80" height="80" alt="@aivue/smartform"><br>
-      <a href="https://www.npmjs.com/package/@aivue/smartform"><b>@aivue/smartform</b></a><br>
-      <small>Validation that reads the intent of the form</small>
-    </td>
-    <td align="center" width="16.66%">
-      <img src="demo/src/assets/images/autosuggest-illustration.svg" width="80" height="80" alt="@aivue/autosuggest"><br>
-      <a href="https://www.npmjs.com/package/@aivue/autosuggest"><b>@aivue/autosuggest</b></a><br>
-      <small>Suggestions ranked for the current field</small>
-    </td>
-    <td align="center" width="16.66%">
-      <img src="demo/src/assets/images/scene-input.svg" width="80" height="80" alt="@aivue/predictive-input"><br>
-      <a href="https://www.npmjs.com/package/@aivue/predictive-input"><b>@aivue/predictive-input</b></a><br>
-      <small>Finish the sentence already started</small>
-    </td>
-    <td align="center" width="16.66%">
-      <img src="demo/src/assets/images/hero-illustration.svg" width="80" height="80" alt="@aivue/voice-actions"><br>
-      <a href="https://www.npmjs.com/package/@aivue/voice-actions"><b>@aivue/voice-actions</b></a><br>
-      <small>Turn speech into commands the page can run</small>
-    </td>
-    <td align="center" width="16.66%">
-      <img src="demo/src/assets/images/hero-illustration.svg" width="80" height="80" alt="@aivue/smart-notify"><br>
-      <a href="https://www.npmjs.com/package/@aivue/smart-notify"><b>@aivue/smart-notify</b></a><br>
-      <small>Group notifications and time them</small>
-    </td>
-  </tr>
-  <tr>
-    <td align="center" width="16.66%">
-      <img src="demo/src/assets/images/hero-illustration.svg" width="80" height="80" alt="@aivue/emotion-ui"><br>
-      <a href="https://www.npmjs.com/package/@aivue/emotion-ui"><b>@aivue/emotion-ui</b></a><br>
-      <small>Let the interface follow the tone</small>
-    </td>
-    <td align="center" width="16.66%">
-      <img src="demo/src/assets/images/analytics-illustration.svg" width="80" height="80" alt="@aivue/analytics"><br>
-      <a href="https://www.npmjs.com/package/@aivue/analytics"><b>@aivue/analytics</b></a><br>
-      <small>How people and agents move through a run</small>
-    </td>
-    <td align="center" width="16.66%">
-      <img src="demo/src/assets/images/hero-illustration.svg" width="80" height="80" alt="@aivue/360-spin"><br>
-      <a href="https://www.npmjs.com/package/@aivue/360-spin"><b>@aivue/360-spin</b></a><br>
-      <small>A product turntable the agent can narrate</small>
-    </td>
-    <td></td>
-    <td></td>
-    <td></td>
   </tr>
 </table>
 
----
+### What the agent can do
+
+| | |
+| --- | --- |
+| Stream the run | Tokens, reasoning, and Markdown land in the thread while the model is still writing. |
+| Call the page | Tools you register can filter a table, open a document, or change the screen. |
+| Wait for a person | A refund, a send, or a delete pauses on an approval. |
+| Render your component | The agent places a Vue component in the thread and shares state with it. |
+| Remember | Hierarchical memory keeps long documents and wide tables without resending them. |
+| Stay on the device | `@aivue/browser-llm` runs a model in WebGPU. No key leaves the page. |
+| Write in place | Rewrite, shorten, translate, summarize, or score a draft before it is published. |
+| Connect tools | `@aivue/mcp-client` talks to Model Context Protocol servers you already run. |
 
 ## 🌟 Why Choose @aivue?
 
