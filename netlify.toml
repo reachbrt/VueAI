@@ -1,6 +1,6 @@
 [build]
   publish = "demo/dist"
-  command = "npm install && npm run build --workspace @aivue/summarizer && npm run build --workspace @aivue/translate && npm run build --workspace @aivue/moderation && npm run build --workspace @aivue/writer && cd demo && npm install && npm run build"
+  command = "npm install && npm run build --workspace @aivue/summarizer && npm run build --workspace @aivue/translate && npm run build --workspace @aivue/moderation && npm run build --workspace @aivue/writer && npm run build --workspace @aivue/agent && npm run build --workspace @aivue/stream-markdown && cd demo && npm install && npm run build"
 
 [build.environment]
   NODE_VERSION = "20"

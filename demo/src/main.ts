@@ -1,8 +1,10 @@
 import { createApp } from 'vue'
-import App from './App.vue'
+import App from './site/SiteApp.vue'
 
 // Import CSS
 import './assets/main.css'
+import '@aivue/agent/style.css'
+import '@aivue/stream-markdown/style.css'
 
 // Import npm package styles (only packages that have CSS)
 import '@aivue/emotion-ui/style.css'

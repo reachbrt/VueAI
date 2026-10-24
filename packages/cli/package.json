@@ -1,0 +1,42 @@
+{
+  "name": "@aivue/cli",
+  "version": "1.0.0",
+  "description": "Scaffold VueAI agent panels and a Nuxt plugin",
+  "type": "module",
+  "bin": {
+    "aivue": "./bin/aivue.js"
+  },
+  "files": [
+    "bin",
+    "templates",
+    "README.md",
+    "CHANGELOG.md"
+  ],
+  "scripts": {
+    "test": "node --test tests/cli.test.js"
+  },
+  "keywords": [
+    "vue",
+    "aivue",
+    "cli",
+    "agent",
+    "nuxt"
+  ],
+  "author": "reachbrt",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/reachbrt/VueAI.git",
+    "directory": "packages/cli"
+  },
+  "homepage": "https://aivue.netlify.app",
+  "bugs": {
+    "url": "https://github.com/reachbrt/VueAI/issues"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

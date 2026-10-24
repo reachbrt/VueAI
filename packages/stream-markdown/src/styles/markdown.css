@@ -1,0 +1,66 @@
+.aivue-md {
+  color: var(--aivue-ink, #1c1d19);
+  font-family: inherit;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.aivue-md h1,
+.aivue-md h2,
+.aivue-md h3 {
+  font-weight: 560;
+  letter-spacing: -0.03em;
+  line-height: 1.2;
+  margin: 0 0 10px;
+}
+
+.aivue-md h1 { font-size: 28px; }
+.aivue-md h2 { font-size: 22px; }
+.aivue-md h3 { font-size: 17px; }
+
+.aivue-md p,
+.aivue-md ul,
+.aivue-md ol,
+.aivue-md blockquote,
+.aivue-md pre {
+  margin: 0 0 12px;
+}
+
+.aivue-md ul,
+.aivue-md ol {
+  padding-left: 1.2em;
+}
+
+.aivue-md blockquote {
+  border-left: 2px solid var(--aivue-line, rgba(28, 29, 25, 0.12));
+  padding-left: 12px;
+  color: var(--aivue-muted, #6f6b63);
+}
+
+.aivue-md code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.92em;
+  background: var(--aivue-code, rgba(28, 29, 25, 0.05));
+  border-radius: 4px;
+  padding: 0 4px;
+}
+
+.aivue-md pre {
+  background: var(--aivue-code, rgba(28, 29, 25, 0.05));
+  border-radius: 12px;
+  padding: 12px 14px;
+  overflow: auto;
+}
+
+.aivue-md pre code {
+  background: transparent;
+  padding: 0;
+}
+
+.aivue-md a {
+  color: inherit;
+}
+
+.aivue-md__pending {
+  opacity: 0.72;
+}

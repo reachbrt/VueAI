@@ -43,6 +43,9 @@ PACKAGES=(
   translate
   moderation
   writer
+  agent
+  stream-markdown
+  cli
 )
 
 PROVENANCE=()
