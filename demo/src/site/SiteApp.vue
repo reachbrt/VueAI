@@ -164,7 +164,7 @@ const LibraryApp = defineAsyncComponent(() => import('../App.vue'));
 const library = ref(false);
 
 watch(library, (isLibrary) => {
-  document.body.style.background = isLibrary ? '' : '#071422';
-  document.body.style.color = isLibrary ? '' : '#f3f1ea';
+  document.body.style.background = isLibrary ? '' : '#000000';
+  document.body.style.color = isLibrary ? '' : '#ffffff';
 }, { immediate: true });
 </script>

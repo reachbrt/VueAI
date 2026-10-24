@@ -1,22 +1,22 @@
 .studio {
-  --paper: #071422;
-  --paper-2: #10243b;
-  --ink: #e7f0fb;
-  --muted: #93a8c2;
-  --line: rgba(190, 214, 245, 0.16);
-  --accent: #9ec8ff;
-  --accent-ink: #071422;
+  --paper: #000000;
+  --paper-2: #09090b;
+  --ink: #ffffff;
+  --muted: #a1a1aa;
+  --line: #27272a;
+  --accent: #34d399;
+  --accent-ink: #052e16;
   --aivue-bg: transparent;
-  --aivue-surface: rgba(255, 255, 255, 0.04);
-  --aivue-ink: #e7f0fb;
-  --aivue-muted: #93a8c2;
-  --aivue-line: rgba(190, 214, 245, 0.18);
-  --aivue-accent: #9ec8ff;
-  --aivue-accent-ink: #071422;
-  --aivue-code: rgba(158, 200, 255, 0.1);
+  --aivue-surface: #18181b;
+  --aivue-ink: #ffffff;
+  --aivue-muted: #a1a1aa;
+  --aivue-line: #27272a;
+  --aivue-accent: #34d399;
+  --aivue-accent-ink: #052e16;
+  --aivue-code: rgba(52, 211, 153, 0.12);
   min-height: 100vh;
   background:
-    radial-gradient(900px 480px at 80% -10%, rgba(90, 140, 220, 0.18), transparent 60%),
+    radial-gradient(900px 480px at 80% -10%, rgba(52, 211, 153, 0.14), transparent 60%),
     var(--paper);
   color: var(--ink);
   font-family: Outfit, "Avenir Next", "Segoe UI", sans-serif;
@@ -37,9 +37,9 @@
   align-items: center;
   gap: 28px;
   padding: 18px 32px;
-  background: rgba(7, 20, 34, 0.82);
+  background: rgba(0, 0, 0, 0.82);
   backdrop-filter: blur(16px);
-  border-bottom: 1px solid transparent;
+  border-bottom: 1px solid var(--line);
 }
 
 .mark {
@@ -52,7 +52,7 @@
   letter-spacing: -0.03em;
 }
 
-.mark .icon { width: 22px; height: 22px; color: #9ec8ff; }
+.mark .icon { width: 22px; height: 22px; color: #34d399; }
 
 .icon {
   width: 18px;
@@ -67,9 +67,9 @@
   border-radius: 12px;
   display: grid;
   place-items: center;
-  color: #d7e7ff;
-  background: rgba(158, 200, 255, 0.1);
-  border: 1px solid rgba(158, 200, 255, 0.24);
+  color: #d1fae5;
+  background: rgba(52, 211, 153, 0.12);
+  border: 1px solid rgba(52, 211, 153, 0.35);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
 }
 
@@ -149,11 +149,11 @@
   font-size: clamp(36px, 4.2vw, 60px);
   letter-spacing: -0.045em;
   line-height: 0.98;
-  color: #7f96b3;
+  color: #ffffff;
 }
 
 .hero h1 .hero-accent {
-  color: #d7e7ff;
+  color: #34d399;
 }
 
 .hero h1 em,
@@ -182,8 +182,8 @@
   display: inline-flex;
   align-items: center;
   text-decoration: none;
-  background: #e7f1ff;
-  color: #071422;
+  background: #ffffff;
+  color: #18181b;
   border-radius: 999px;
   padding: 12px 18px;
   font-size: 15px;
@@ -212,8 +212,8 @@
   border-radius: 28px;
   overflow: hidden;
   background:
-    radial-gradient(circle at 50% 42%, rgba(80, 130, 210, 0.22), transparent 46%),
-    linear-gradient(180deg, #0c1c33 0%, #071422 78%);
+    radial-gradient(circle at 50% 42%, rgba(52, 211, 153, 0.2), transparent 46%),
+    linear-gradient(180deg, #18181b 0%, #000000 78%);
   box-shadow:
     0 40px 80px rgba(0, 0, 0, 0.35),
     inset 0 1px 0 rgba(255, 255, 255, 0.08);
@@ -224,8 +224,8 @@
   position: absolute;
   inset: 0;
   background-image:
-    linear-gradient(rgba(180, 210, 255, 0.08) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(180, 210, 255, 0.08) 1px, transparent 1px);
+    linear-gradient(rgba(52, 211, 153, 0.09) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(52, 211, 153, 0.09) 1px, transparent 1px);
   background-size: 48px 48px;
   mask-image: radial-gradient(circle at 50% 45%, #000 20%, transparent 72%);
   pointer-events: none;
@@ -242,9 +242,9 @@
   position: absolute;
   width: min(280px, 72%);
   padding: 16px 18px;
-  border: 1px solid rgba(210, 228, 255, 0.22);
+  border: 1px solid rgba(52, 211, 153, 0.28);
   border-radius: 18px;
-  background: rgba(10, 24, 42, 0.72);
+  background: rgba(9, 9, 11, 0.82);
   backdrop-filter: blur(16px);
   box-shadow:
     0 24px 50px rgba(0, 0, 0, 0.35),
@@ -259,7 +259,7 @@
   font-size: 11px;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: #9ec8ff;
+  color: #34d399;
 }
 
 .slab .icon { width: 14px; height: 14px; }
@@ -400,7 +400,7 @@
   color: var(--muted);
 }
 
-.control header p .icon { width: 14px; height: 14px; color: #9ec8ff; }
+.control header p .icon { width: 14px; height: 14px; color: #34d399; }
 
 .panel-head {
   display: flex;
@@ -485,7 +485,7 @@
 
 .step p {
   margin: 0;
-  color: #9ec8ff;
+  color: #34d399;
   font-size: 12px;
   letter-spacing: 0.14em;
 }
@@ -515,7 +515,7 @@
   padding: 16px 16px 18px;
   border-radius: 18px;
   border: 1px solid var(--line);
-  background: rgba(16, 36, 59, 0.72);
+  background: #09090b;
   box-shadow: 0 16px 30px rgba(0, 0, 0, 0.18);
   transition: transform 0.35s ease;
 }
@@ -546,7 +546,7 @@
   border-radius: 22px;
   overflow: hidden;
   border: 1px solid var(--line);
-  background: #0d1d33;
+  background: #09090b;
   box-shadow: 0 18px 40px rgba(0, 0, 0, 0.22);
   transition: transform 0.35s ease;
 }
@@ -559,7 +559,7 @@
   height: auto;
   aspect-ratio: 8 / 5;
   object-fit: cover;
-  background: #eaf1fb;
+  background: #f4f4f5;
 }
 
 .scene-grid figcaption {
@@ -580,7 +580,7 @@
 .control-index p,
 .package-grid p {
   margin: 0 0 8px;
-  color: #9ec8ff;
+  color: #34d399;
   font-size: 11px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -602,7 +602,7 @@
   border: 1px solid var(--line);
   border-radius: 22px;
   padding: 18px;
-  background: #0d1d33;
+  background: #09090b;
   min-height: 220px;
   box-shadow: 0 18px 36px rgba(0, 0, 0, 0.2);
 }
@@ -641,13 +641,13 @@
   gap: 8px;
   padding: 20px;
   text-decoration: none;
-  background: #0b1a2e;
+  background: #09090b;
   min-height: 180px;
   transition: transform 0.35s ease, background 0.35s ease;
 }
 
 .package-grid a:hover {
-  background: #123056;
+  background: #18181b;
   transform: translateY(-4px);
 }
 
@@ -666,7 +666,7 @@
 
 .package-grid em {
   margin-top: auto;
-  color: #c5d8f2;
+  color: #d4d4d8;
   font-size: 12px;
 }
 
