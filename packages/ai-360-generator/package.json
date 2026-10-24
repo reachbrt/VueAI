@@ -45,7 +45,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/reachbrt/vueai.git",
+    "url": "git+https://github.com/reachbrt/VueAI.git",
     "directory": "packages/ai-360-generator"
   },
   "homepage": "https://github.com/reachbrt/vueai#readme",

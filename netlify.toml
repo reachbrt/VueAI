@@ -1,9 +1,9 @@
 [build]
   publish = "demo/dist"
-  command = "cd demo && rm -rf node_modules && npm install && npm run build"
+  command = "npm install && npm run build --workspace @aivue/summarizer && npm run build --workspace @aivue/translate && npm run build --workspace @aivue/moderation && npm run build --workspace @aivue/writer && cd demo && npm install && npm run build"
 
 [build.environment]
-  NODE_VERSION = "18"
+  NODE_VERSION = "20"
   NPM_FLAGS = "--production=false"
 
 [[redirects]]

@@ -43,7 +43,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/reachbrt/vueai.git",
+    "url": "git+https://github.com/reachbrt/VueAI.git",
     "directory": "packages/chatbot-storage"
   },
   "homepage": "https://github.com/reachbrt/vueai#readme",

@@ -10,7 +10,7 @@
     "preview": "vite preview",
     "start": "vite --host localhost --port 8080",
     "update-packages": "bash update-packages.sh",
-    "update:all": "npm update @aivue/360-spin @aivue/analytics @aivue/autosuggest @aivue/browser-llm @aivue/chatbot @aivue/core @aivue/doc-intelligence @aivue/emotion-ui @aivue/image-caption @aivue/predictive-input @aivue/smart-datatable @aivue/smartform @aivue/tabular-intelligence"
+    "update:all": "npm update @aivue/360-spin @aivue/analytics @aivue/autosuggest @aivue/browser-llm @aivue/chatbot @aivue/core @aivue/doc-intelligence @aivue/emotion-ui @aivue/guided-form @aivue/hierarchical-memory @aivue/image-caption @aivue/mcp-client @aivue/predictive-input @aivue/smart-datatable @aivue/smart-notify @aivue/smartform @aivue/tabular-intelligence @aivue/voice-actions"
   },
   "dependencies": {
     "@aivue/360-spin": "^2.0.1",
@@ -27,8 +27,14 @@
     "@aivue/mcp-client": "^1.0.0",
     "@aivue/predictive-input": "^1.0.5",
     "@aivue/smart-datatable": "^2.0.3",
+    "@aivue/smart-notify": "^1.0.3",
+    "@aivue/moderation": "file:../packages/moderation",
     "@aivue/smartform": "^1.3.6",
+    "@aivue/summarizer": "file:../packages/summarizer",
+    "@aivue/translate": "file:../packages/translate",
+    "@aivue/writer": "file:../packages/writer",
     "@aivue/tabular-intelligence": "^2.0.1",
+    "@aivue/voice-actions": "^1.0.3",
     "@mlc-ai/web-llm": "^0.2.80",
     "compromise": "^14.14.4",
     "gsap": "^3.13.0",

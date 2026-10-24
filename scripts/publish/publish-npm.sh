@@ -1,56 +1,72 @@
-#!/bin/bash
+#!/usr/bin/env bash
+# Publish every @aivue package to the public npm registry.
+# Requires `npm login` as a member of the @aivue organization,
+# or NODE_AUTH_TOKEN in CI (GitHub Actions secret NPM_TOKEN).
 
-# Script to publish all packages to npm
+set -euo pipefail
 
-# Exit on error
-set -e
+ROOT="$(cd "$(dirname "$0")/../.." && pwd)"
+cd "$ROOT"
 
-# Colors for output
-GREEN='\033[0;32m'
-YELLOW='\033[1;33m'
-RED='\033[0;31m'
-NC='\033[0m' # No Color
+if ! npm whoami >/dev/null 2>&1; then
+  echo "npm is not logged in."
+  echo "Run: npm login"
+  echo "The account must belong to https://www.npmjs.com/~aivue"
+  exit 1
+fi
 
-echo -e "${YELLOW}Publishing all packages to npm...${NC}"
+echo "Publishing as $(npm whoami) to https://registry.npmjs.org"
 
-# Array of packages in order of dependencies
-PACKAGES=("core" "chatbot" "autosuggest" "smartform")
+# core and chatbot first; everything else can follow.
+PACKAGES=(
+  core
+  chatbot
+  chatbot-storage
+  autosuggest
+  smartform
+  analytics
+  image-caption
+  emotion-ui
+  doc-intelligence
+  predictive-input
+  smart-notify
+  voice-actions
+  smart-datatable
+  360-spin
+  browser-llm
+  ai-360-generator
+  guided-form
+  hierarchical-memory
+  mcp
+  tabular-intelligence
+  summarizer
+  translate
+  moderation
+  writer
+)
 
-# Publish all packages
-for package in "${PACKAGES[@]}"; do
-  echo -e "${GREEN}Publishing @aivue/${package}...${NC}"
-  cd "packages/${package}"
+PROVENANCE=()
+if [[ "${GITHUB_ACTIONS:-}" == "true" ]]; then
+  PROVENANCE=(--provenance)
+fi
 
-  # Create dist directory if it doesn't exist
-  mkdir -p dist
-
-  # Copy package.json and README.md to dist
-  cp package.json dist/
-  cp README.md dist/
-
-  # If CHANGELOG.md exists, copy it too
-  if [ -f CHANGELOG.md ]; then
-    cp CHANGELOG.md dist/
+for dir in "${PACKAGES[@]}"; do
+  pkg_json="$ROOT/packages/$dir/package.json"
+  if [[ ! -f "$pkg_json" ]]; then
+    echo "Missing $pkg_json"
+    exit 1
   fi
-
-  # Modify package.json to remove build scripts
-  cd dist
-  node -e "const pkg = require('./package.json'); delete pkg.scripts; require('fs').writeFileSync('package.json', JSON.stringify(pkg, null, 2));"
-  cd ..
-
-  # Create a simple index.js file in dist
-  echo "// @aivue/${package} v$(node -p "require('./package.json').version")" > dist/index.js
-  echo "module.exports = {};" >> dist/index.js
-
-  # Create a simple index.d.ts file in dist
-  echo "// @aivue/${package} v$(node -p "require('./package.json').version")" > dist/index.d.ts
-
-  # Publish from dist directory
-  cd dist
-  npm publish --access public
-
-  # Go back to root
-  cd ../../..
+  name="$(node -p "require('$pkg_json').name")"
+  version="$(node -p "require('$pkg_json').version")"
+  echo ""
+  echo "Publishing $name@$version"
+  (
+    cd "$ROOT/packages/$dir"
+    npm publish --access public "${PROVENANCE[@]}"
+  )
 done
 
-echo -e "${GREEN}All packages have been published to npm!${NC}"
+echo ""
+echo "Published ${#PACKAGES[@]} packages."
+echo "Demo: https://aivue.netlify.app"
+echo "GitHub: https://github.com/reachbrt/VueAI"

@@ -56,6 +56,15 @@
             </div>
           </div>
 
+          <div class="package-card ai-toolkit" @click="setActiveTab('ai-toolkit')">
+            <div class="package-icon">✍️</div>
+            <div class="package-details">
+              <h3>AI Toolkit</h3>
+              <p>Write, summarize, translate, moderate</p>
+              <span class="package-version">v1.0.0</span>
+            </div>
+          </div>
+
           <div class="package-card predictive-input" @click="setActiveTab('predictive-input')">
             <div class="package-icon">🧠</div>
             <div class="package-details">
@@ -729,6 +738,12 @@
         </div>
       </section>
 
+      <section v-if="activeTab === 'ai-toolkit'" class="component-section">
+        <div class="demo-container">
+          <AiToolkitDemo :aiClient="aiClient" />
+        </div>
+      </section>
+
       <section v-if="activeTab === 'predictive-input'" class="component-section">
         <div class="demo-container">
           <PredictiveInputDemo :aiClient="aiClient" />
@@ -951,6 +966,7 @@ import VoiceActionsDemo from './components/VoiceActionsDemo.vue';
 import EmotionUIDemo from './components/EmotionUIDemo.vue';
 import DocIntelligenceDemo from './components/DocIntelligenceDemo.vue';
 import PredictiveInputDemo from './components/PredictiveInputDemo.vue';
+import AiToolkitDemo from './components/AiToolkitDemo.vue';
 import SmartNotifyDemo from './components/SmartNotifyDemo.vue';
 import AnalyticsDemo from './components/AnalyticsDemo.vue';
 import ImageCaptionDemo from './components/ImageCaptionDemo.vue';
@@ -980,6 +996,7 @@ export default {
     EmotionUIDemo,
     DocIntelligenceDemo,
     PredictiveInputDemo,
+    AiToolkitDemo,
     SmartNotifyDemo,
     AnalyticsDemo,
     BrowserLLMDemo,
@@ -1074,6 +1091,11 @@ export default {
           id: 'doc-intelligence',
           name: 'Doc Intelligence',
           icon: '📄'
+        },
+        {
+          id: 'ai-toolkit',
+          name: 'AI Toolkit',
+          icon: '✍️'
         },
         {
           id: 'predictive-input',
@@ -1250,6 +1272,20 @@ export default {
             { icon: '📝', text: 'Auto-Generated Forms' },
             { icon: '🌍', text: 'Multi-Language Support' },
             { icon: '🔒', text: 'Privacy-First' }
+          ]
+        },
+        'ai-toolkit': {
+          name: 'AI Toolkit',
+          npmName: '@aivue/writer @aivue/summarizer @aivue/translate @aivue/moderation',
+          version: '1.0.0',
+          description: 'Writing, summarization, translation, and content moderation. The same jobs Notion AI, DeepL, Grammarly, and OpenAI moderation cover, as Vue components.',
+          github: 'https://github.com/reachbrt/VueAI/tree/main/packages',
+          npm: 'https://www.npmjs.com/org/aivue',
+          features: [
+            { icon: '✍️', text: 'Rewrite and tone' },
+            { icon: '📝', text: 'TL;DR and action items' },
+            { icon: '🌐', text: 'Formal or informal translation' },
+            { icon: '🛡️', text: 'Safety check with offline fallback' }
           ]
         },
         'predictive-input': {
@@ -1852,6 +1888,7 @@ export default {
         'voice-actions': 'Control your application with voice commands using speech recognition, natural language processing, and AI-powered execution.',
         'emotion-ui': 'Create emotionally intelligent interfaces that adapt to user sentiment and provide empathetic responses.',
         'doc-intelligence': 'Upload PDFs/images and extract structured data from invoices, receipts, forms, and IDs with OCR and entity recognition.',
+        'ai-toolkit': 'Write, summarize, translate, and moderate text with the same actions people expect from Notion AI, DeepL, and content-safety APIs.',
         'predictive-input': 'AI-powered text input that learns your writing style and suggests complete sentences with privacy-focused local processing.',
         'smart-notify': 'Intelligent notification system with AI-powered prioritization, timing optimization, and attention-aware delivery for reduced interruptions.',
         'analytics': 'Track user interactions, monitor AI usage, and gain valuable insights with AI-powered analytics dashboards.',

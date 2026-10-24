@@ -1,6 +1,29 @@
 # Netlify Deployment Guide for @aivue Packages
 
-This guide documents the successful deployment process for the @aivue demo to Netlify.
+GitHub, npm, and Netlify are wired together for https://github.com/reachbrt/VueAI, https://www.npmjs.com/~aivue, and https://aivue.netlify.app.
+
+## Connect the accounts
+
+Add these repository secrets at https://github.com/reachbrt/VueAI/settings/secrets/actions
+
+| Secret | Used by |
+| --- | --- |
+| `NPM_TOKEN` | **Release packages to npm**. Create an Automation token at https://www.npmjs.com/settings/~/tokens for a member of the `@aivue` org. |
+| `NETLIFY_AUTH_TOKEN` | **Deploy demo to Netlify**. Create a personal access token at https://app.netlify.com/user/applications. |
+
+Then:
+
+1. In Netlify, open the `aivue` site and set the GitHub repo to `reachbrt/VueAI`. Build command: `cd demo && npm ci && npm run build`. Publish directory: `demo/dist`. Node 20.
+2. On GitHub, run **Release packages to npm** (Actions tab). The default bump is `patch`, which publishes all 20 packages.
+3. A push that changes `demo/` runs **Deploy demo to Netlify**.
+
+Local equivalents, after `npm login`:
+
+```bash
+npm run release:bump
+npm run publish:packages
+npm run deploy:demo
+```
 
 ## 🚀 Quick Deployment
 

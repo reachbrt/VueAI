@@ -1,72 +1,65 @@
-name: Release
+name: Release packages to npm
 
 on:
-  push:
-    tags:
-      - 'v*'
+  workflow_dispatch:
+    inputs:
+      bump:
+        description: Bump applied to every package before publish
+        required: true
+        default: patch
+        type: choice
+        options:
+          - patch
+          - minor
+          - major
+          - none
+
+permissions:
+  contents: write
+  id-token: write
 
 jobs:
-  release:
+  publish:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+      - name: Checkout
+        uses: actions/checkout@v4
 
       - name: Setup Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
-          node-version: '18'
-          registry-url: 'https://registry.npmjs.org/'
+          node-version: 20
+          registry-url: https://registry.npmjs.org
+          cache: npm
 
       - name: Install dependencies
         run: npm ci
 
-      - name: Create GitHub Release
-        id: create_release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          tag_name: ${{ github.ref }}
-          release_name: Release ${{ github.ref }}
-          draft: false
-          prerelease: false
-          body: |
-            ## What's Changed
-            
-            ### Core Package (v1.1.0)
-            - Added Vue 2 compatibility
-            - Added comprehensive compatibility layer
-            - Updated peer dependencies
-            
-            ### Chatbot Package (v1.1.0)
-            - Added Vue 2 compatibility
-            - Added Intercom-like toggle component
-            - Improved component registration
-            
-            ### Autosuggest Package (v1.1.0)
-            - Added Vue 2 compatibility
-            - Added plugin for global registration
-            
-            ### Smartform Package (v1.1.0)
-            - Added Vue 2 compatibility
-            - Added plugin for global registration
-            
-            For more details, see the CHANGELOG.md files in each package.
+      - name: Bump every package version
+        if: inputs.bump != 'none'
+        run: npm version ${{ inputs.bump }} --workspaces --no-git-tag-version
 
-      - name: Publish to npm
-        run: ./publish-npm.sh
+      - name: Sync lockfile
+        if: inputs.bump != 'none'
+        run: npm install --package-lock-only --ignore-scripts
+
+      - name: Commit version bumps
+        if: inputs.bump != 'none'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add packages/*/package.json package-lock.json
+          git commit -m "chore: bump all @aivue packages (${{ inputs.bump }})"
+          git push
+
+      - name: Publish all packages
+        run: bash scripts/publish/publish-npm.sh
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      - name: Setup Node.js for GitHub Packages
-        uses: actions/setup-node@v3
-        with:
-          node-version: '18'
-          registry-url: 'https://npm.pkg.github.com/'
-          scope: '@reachbrt'
-
-      - name: Publish to GitHub Packages
-        run: ./publish-github.sh
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Tag release
+        if: inputs.bump != 'none'
+        run: |
+          version="$(node -p "require('./packages/core/package.json').version")"
+          git tag "core-v${version}"
+          git push origin "core-v${version}"

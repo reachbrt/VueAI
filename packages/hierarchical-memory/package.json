@@ -46,14 +46,21 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/reachbrt/vueai.git",
+    "url": "git+https://github.com/reachbrt/VueAI.git",
     "directory": "packages/hierarchical-memory"
+  },
+  "homepage": "https://aivue.netlify.app",
+  "bugs": {
+    "url": "https://github.com/reachbrt/VueAI/issues"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "peerDependencies": {
     "vue": "^2.6.0 || ^3.0.0"
   },
   "dependencies": {
-    "@aivue/core": "file:../core"
+    "@aivue/core": "^1.3.13"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.0.0",

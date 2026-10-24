@@ -160,7 +160,7 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue';
 import { NotificationCenter, useSmartNotify } from '@aivue/smart-notify';
-import '../../../packages/smart-notify/dist/smart-notify.css';
+import '@aivue/smart-notify/style.css';
 
 const {
   notifications,

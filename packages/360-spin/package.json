@@ -44,7 +44,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/reachbrt/vueai.git",
+    "url": "git+https://github.com/reachbrt/VueAI.git",
     "directory": "packages/360-spin"
   },
   "homepage": "https://github.com/reachbrt/vueai#readme",
