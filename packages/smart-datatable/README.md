@@ -1,9 +1,13 @@
+<p align="center">
+  <a href="https://aivue.netlify.app"><img src="https://raw.githubusercontent.com/reachbrt/VueAI/main/docs/studio-bar.svg" alt="VueAI" width="100%"></a>
+</p>
+
 # @aivue/smart-datatable
 
-[![npm version](https://img.shields.io/npm/v/@aivue/smart-datatable.svg?style=flat-square)](https://www.npmjs.com/package/@aivue/smart-datatable)
-[![npm downloads](https://img.shields.io/badge/downloads-188%2Fmonth-CB3837?style=flat-square&logo=npm)](https://www.npmjs.com/package/@aivue/smart-datatable)
-[![NPM Downloads](https://img.shields.io/npm/d18m/%40aivue%2Fsmart-datatable)](https://www.npmjs.com/package/@aivue/smart-datatable)
-[![MIT License](https://img.shields.io/npm/l/@aivue/smart-datatable.svg?style=flat-square)](https://github.com/reachbrt/vueai/blob/main/LICENSE)
+[![npm version](https://img.shields.io/npm/v/@aivue/smart-datatable.svg?style=flat-square&color=34d399&labelColor=09090b)](https://www.npmjs.com/package/@aivue/smart-datatable)
+[![npm downloads](https://img.shields.io/badge/downloads-188%2Fmonth-34d399?style=flat-square&logo=npm&color=34d399&labelColor=09090b)](https://www.npmjs.com/package/@aivue/smart-datatable)
+[![NPM Downloads](https://img.shields.io/npm/d18m/%40aivue%2Fsmart-datatable?color=34d399&labelColor=09090b)](https://www.npmjs.com/package/@aivue/smart-datatable)
+[![MIT License](https://img.shields.io/npm/l/@aivue/smart-datatable.svg?style=flat-square&color=34d399&labelColor=09090b)](https://github.com/reachbrt/vueai/blob/main/LICENSE)
 
 [![Netlify Status](https://img.shields.io/netlify/5cb37fa7-9ee1-4af6-9ff4-d34ff0322ded?style=flat-square&logo=netlify)](https://aivue.netlify.app/)
 

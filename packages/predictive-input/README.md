@@ -1,12 +1,16 @@
+<p align="center">
+  <a href="https://aivue.netlify.app"><img src="https://raw.githubusercontent.com/reachbrt/VueAI/main/docs/studio-bar.svg" alt="VueAI" width="100%"></a>
+</p>
+
 # 🧠 @aivue/predictive-input
 
 ### AI-Powered Predictive Text Input for Vue 3
 
 Transform your text inputs with intelligent, AI-powered predictions. Get smart text completions and suggestions powered by your AI provider.
 
-[![npm version](https://img.shields.io/npm/v/@aivue/predictive-input.svg)](https://www.npmjs.com/package/@aivue/predictive-input)
-[![npm downloads](https://img.shields.io/badge/downloads-283%2Fmonth-CB3837?style=flat-square&logo=npm)](https://www.npmjs.com/package/@aivue/predictive-input)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![npm version](https://img.shields.io/npm/v/@aivue/predictive-input.svg?color=34d399&labelColor=09090b)](https://www.npmjs.com/package/@aivue/predictive-input)
+[![npm downloads](https://img.shields.io/badge/downloads-283%2Fmonth-34d399?style=flat-square&logo=npm&color=34d399&labelColor=09090b)](https://www.npmjs.com/package/@aivue/predictive-input)
+[![License: MIT](https://img.shields.io/badge/license-MIT-34d399?style=flat-square&labelColor=09090b)](https://opensource.org/licenses/MIT)
 
 ---
 

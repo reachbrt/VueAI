@@ -1,3 +1,7 @@
+<p align="center">
+  <a href="https://aivue.netlify.app"><img src="https://raw.githubusercontent.com/reachbrt/VueAI/main/docs/studio-bar.svg" alt="VueAI" width="100%"></a>
+</p>
+
 # @aivue/stream-markdown
 
 Render Markdown while the model is still typing. Unfinished fences stay in a code block. Unfinished emphasis stays as text. HTML in the model output is escaped.

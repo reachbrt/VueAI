@@ -1,14 +1,18 @@
+<p align="center">
+  <a href="https://aivue.netlify.app"><img src="https://raw.githubusercontent.com/reachbrt/VueAI/main/docs/studio-bar.svg" alt="VueAI" width="100%"></a>
+</p>
+
 <div align="center">
-  <img src="https://raw.githubusercontent.com/reachbrt/vueai/main/demo/src/assets/images/smartform-illustration.svg" alt="AI SmartForm" width="150" height="150" />
+  <img src="https://raw.githubusercontent.com/reachbrt/VueAI/main/demo/src/assets/images/scene-form.svg" alt="VueAI smart form" width="100%" />
 
   <h1>@aivue/smartform</h1>
   <p>AI-powered form validation for Vue.js applications</p>
 
   <p>
-    <a href="https://www.npmjs.com/package/@aivue/smartform"><img src="https://img.shields.io/npm/v/@aivue/smartform.svg?style=flat-square" alt="npm version"></a>
-    <a href="https://www.npmjs.com/package/@aivue/smartform"><img src="https://img.shields.io/badge/downloads-164%2Fmonth-CB3837?style=flat-square&logo=npm" alt="npm downloads"></a>
-    <a href="https://www.npmjs.com/package/@aivue/smartform"><img src="https://img.shields.io/npm/d18m/%40aivue%2Fsmartform" alt="NPM Downloads"></a>
-    <a href="https://github.com/reachbrt/vueai/blob/main/LICENSE"><img src="https://img.shields.io/npm/l/@aivue/smartform.svg?style=flat-square" alt="MIT License"></a>
+    <a href="https://www.npmjs.com/package/@aivue/smartform"><img src="https://img.shields.io/npm/v/@aivue/smartform.svg?style=flat-square&color=34d399&labelColor=09090b" alt="npm version"></a>
+    <a href="https://www.npmjs.com/package/@aivue/smartform"><img src="https://img.shields.io/badge/downloads-164%2Fmonth-34d399?style=flat-square&logo=npm&color=34d399&labelColor=09090b" alt="npm downloads"></a>
+    <a href="https://www.npmjs.com/package/@aivue/smartform"><img src="https://img.shields.io/npm/d18m/%40aivue%2Fsmartform?color=34d399&labelColor=09090b" alt="NPM Downloads"></a>
+    <a href="https://github.com/reachbrt/vueai/blob/main/LICENSE"><img src="https://img.shields.io/npm/l/@aivue/smartform.svg?style=flat-square&color=34d399&labelColor=09090b" alt="MIT License"></a>
     <a href="https://aivue.netlify.app/"><img src="https://img.shields.io/netlify/5cb37fa7-9ee1-4af6-9ff4-d34ff0322ded?style=flat-square&logo=netlify" alt="Netlify Status"></a>
   </p>
 

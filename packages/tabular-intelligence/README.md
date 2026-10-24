@@ -1,11 +1,15 @@
+<p align="center">
+  <a href="https://aivue.netlify.app"><img src="https://raw.githubusercontent.com/reachbrt/VueAI/main/docs/studio-bar.svg" alt="VueAI" width="100%"></a>
+</p>
+
 # @aivue/tabular-intelligence
 
 > **The Most Comprehensive Tabular Data Analysis Package for Vue.js**
 > Advanced AI, ML, Statistical Analysis, and Data Science capabilities in one powerful package
 
-[![npm version](https://img.shields.io/npm/v/@aivue/tabular-intelligence.svg)](https://www.npmjs.com/package/@aivue/tabular-intelligence)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Downloads](https://img.shields.io/npm/dm/@aivue/tabular-intelligence.svg)](https://www.npmjs.com/package/@aivue/tabular-intelligence)
+[![npm version](https://img.shields.io/npm/v/@aivue/tabular-intelligence.svg?color=34d399&labelColor=09090b)](https://www.npmjs.com/package/@aivue/tabular-intelligence)
+[![License: MIT](https://img.shields.io/badge/license-MIT-34d399?style=flat-square&labelColor=09090b)](https://opensource.org/licenses/MIT)
+[![Downloads](https://img.shields.io/npm/dm/@aivue/tabular-intelligence.svg?color=34d399&labelColor=09090b)](https://www.npmjs.com/package/@aivue/tabular-intelligence)
 
 ## 🚀 What's New in v2.0
 

@@ -1,14 +1,18 @@
+<p align="center">
+  <a href="https://aivue.netlify.app"><img src="https://raw.githubusercontent.com/reachbrt/VueAI/main/docs/studio-bar.svg" alt="VueAI" width="100%"></a>
+</p>
+
 # @aivue/ai-360-generator
 
-![AI 360 Generator](https://raw.githubusercontent.com/reachbrt/vueai/main/demo/src/assets/images/ai-360-illustration.svg)
+![AI 360 Generator](https://raw.githubusercontent.com/reachbrt/VueAI/main/demo/src/assets/images/scene-vision.svg)
 
 🤖 **AI-Powered 360° Product View Generator for Vue.js**
 
 Transform a single product image into a complete 360° rotation view using AI. Powered by OpenAI DALL-E 3 and Stability AI.
 
-[![npm version](https://img.shields.io/npm/v/@aivue/ai-360-generator.svg?style=flat-square)](https://www.npmjs.com/package/@aivue/ai-360-generator)
-[![npm downloads](https://img.shields.io/npm/dm/@aivue/ai-360-generator.svg?style=flat-square&logo=npm)](https://www.npmjs.com/package/@aivue/ai-360-generator)
-[![MIT License](https://img.shields.io/npm/l/@aivue/ai-360-generator.svg?style=flat-square)](https://github.com/reachbrt/vueai/blob/main/LICENSE)
+[![npm version](https://img.shields.io/npm/v/@aivue/ai-360-generator.svg?style=flat-square&color=34d399&labelColor=09090b)](https://www.npmjs.com/package/@aivue/ai-360-generator)
+[![npm downloads](https://img.shields.io/npm/dm/@aivue/ai-360-generator.svg?style=flat-square&logo=npm&color=34d399&labelColor=09090b)](https://www.npmjs.com/package/@aivue/ai-360-generator)
+[![MIT License](https://img.shields.io/npm/l/@aivue/ai-360-generator.svg?style=flat-square&color=34d399&labelColor=09090b)](https://github.com/reachbrt/vueai/blob/main/LICENSE)
 [![Netlify Status](https://img.shields.io/netlify/5cb37fa7-9ee1-4af6-9ff4-d34ff0322ded?style=flat-square&logo=netlify)](https://aivue.netlify.app/)
 
 ---

@@ -1,14 +1,18 @@
+<p align="center">
+  <a href="https://aivue.netlify.app"><img src="https://raw.githubusercontent.com/reachbrt/VueAI/main/docs/studio-bar.svg" alt="VueAI" width="100%"></a>
+</p>
+
 <div align="center">
-  <img src="https://raw.githubusercontent.com/reachbrt/vueai/main/demo/src/assets/images/autosuggest-illustration.svg" alt="AI Autosuggest" width="150" height="150" />
+  <img src="https://raw.githubusercontent.com/reachbrt/VueAI/main/demo/src/assets/images/scene-input.svg" alt="VueAI input" width="100%" />
 
   <h1>@aivue/autosuggest</h1>
   <p>AI-powered suggestion components for Vue.js applications</p>
 
   <p>
-    <a href="https://www.npmjs.com/package/@aivue/autosuggest"><img src="https://img.shields.io/npm/v/@aivue/autosuggest.svg?style=flat-square" alt="npm version"></a>
-    <a href="https://www.npmjs.com/package/@aivue/autosuggest"><img src="https://img.shields.io/badge/downloads-169%2Fmonth-CB3837?style=flat-square&logo=npm" alt="npm downloads"></a>
-    <a href="https://www.npmjs.com/package/@aivue/autosuggest"><img src="https://img.shields.io/npm/d18m/%40aivue%2Fautosuggest" alt="NPM Downloads"></a>
-    <a href="https://github.com/reachbrt/vueai/blob/main/LICENSE"><img src="https://img.shields.io/npm/l/@aivue/autosuggest.svg?style=flat-square" alt="MIT License"></a>
+    <a href="https://www.npmjs.com/package/@aivue/autosuggest"><img src="https://img.shields.io/npm/v/@aivue/autosuggest.svg?style=flat-square&color=34d399&labelColor=09090b" alt="npm version"></a>
+    <a href="https://www.npmjs.com/package/@aivue/autosuggest"><img src="https://img.shields.io/badge/downloads-169%2Fmonth-34d399?style=flat-square&logo=npm&color=34d399&labelColor=09090b" alt="npm downloads"></a>
+    <a href="https://www.npmjs.com/package/@aivue/autosuggest"><img src="https://img.shields.io/npm/d18m/%40aivue%2Fautosuggest?color=34d399&labelColor=09090b" alt="NPM Downloads"></a>
+    <a href="https://github.com/reachbrt/vueai/blob/main/LICENSE"><img src="https://img.shields.io/npm/l/@aivue/autosuggest.svg?style=flat-square&color=34d399&labelColor=09090b" alt="MIT License"></a>
     <a href="https://aivue.netlify.app/"><img src="https://img.shields.io/netlify/5cb37fa7-9ee1-4af6-9ff4-d34ff0322ded?style=flat-square&logo=netlify" alt="Netlify Status"></a>
   </p>
 

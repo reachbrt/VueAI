@@ -1,9 +1,13 @@
+<p align="center">
+  <a href="https://aivue.netlify.app"><img src="https://raw.githubusercontent.com/reachbrt/VueAI/main/docs/studio-bar.svg" alt="VueAI" width="100%"></a>
+</p>
+
 # @aivue/voice-actions
 
-[![npm version](https://img.shields.io/npm/v/@aivue/voice-actions.svg)](https://www.npmjs.com/package/@aivue/voice-actions)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![npm version](https://img.shields.io/npm/v/@aivue/voice-actions.svg?color=34d399&labelColor=09090b)](https://www.npmjs.com/package/@aivue/voice-actions)
+[![License: MIT](https://img.shields.io/badge/license-MIT-34d399?style=flat-square&labelColor=09090b)](https://opensource.org/licenses/MIT)
 [![Netlify Status](https://api.netlify.com/api/v1/badges/your-badge-id/deploy-status)](https://aivue.netlify.app/)
-[![npm downloads](https://img.shields.io/badge/downloads-185%2Fmonth-CB3837?style=flat-square&logo=npm)](https://www.npmjs.com/package/@aivue/voice-actions)
+[![npm downloads](https://img.shields.io/badge/downloads-185%2Fmonth-34d399?style=flat-square&logo=npm&color=34d399&labelColor=09090b)](https://www.npmjs.com/package/@aivue/voice-actions)
 
 > 🎤 AI-powered voice command controller with speech recognition, natural language processing, and custom actions for Vue.js
 

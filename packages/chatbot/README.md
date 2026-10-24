@@ -1,15 +1,19 @@
+<p align="center">
+  <a href="https://aivue.netlify.app"><img src="https://raw.githubusercontent.com/reachbrt/VueAI/main/docs/studio-bar.svg" alt="VueAI" width="100%"></a>
+</p>
+
 # @aivue/chatbot
 
-![AI Chatbot](https://raw.githubusercontent.com/reachbrt/vueai/main/demo/src/assets/images/chatbot-illustration.svg)
+![AI Chatbot](https://raw.githubusercontent.com/reachbrt/VueAI/main/demo/src/assets/images/scene-chat.svg)
 
 🚀 **Next-Generation AI Chat Components for Vue.js**
 
 Enterprise-grade conversational AI with advanced features including database storage, voice integration, multi-model support, analytics, and collaborative capabilities. Built for production applications with backward compatibility.
 
-[![npm version](https://img.shields.io/npm/v/@aivue/chatbot.svg?style=flat-square)](https://www.npmjs.com/package/@aivue/chatbot)
-[![npm downloads](https://img.shields.io/badge/downloads-501%2Fmonth-CB3837?style=flat-square&logo=npm)](https://www.npmjs.com/package/@aivue/chatbot)
-[![NPM Downloads](https://img.shields.io/npm/d18m/%40aivue%2Fchatbot)](https://www.npmjs.com/package/@aivue/chatbot)
-[![MIT License](https://img.shields.io/npm/l/@aivue/chatbot.svg?style=flat-square)](https://github.com/reachbrt/vueai/blob/main/LICENSE)
+[![npm version](https://img.shields.io/npm/v/@aivue/chatbot.svg?style=flat-square&color=34d399&labelColor=09090b)](https://www.npmjs.com/package/@aivue/chatbot)
+[![npm downloads](https://img.shields.io/badge/downloads-501%2Fmonth-34d399?style=flat-square&logo=npm&color=34d399&labelColor=09090b)](https://www.npmjs.com/package/@aivue/chatbot)
+[![NPM Downloads](https://img.shields.io/npm/d18m/%40aivue%2Fchatbot?color=34d399&labelColor=09090b)](https://www.npmjs.com/package/@aivue/chatbot)
+[![MIT License](https://img.shields.io/npm/l/@aivue/chatbot.svg?style=flat-square&color=34d399&labelColor=09090b)](https://github.com/reachbrt/vueai/blob/main/LICENSE)
 
 [![Netlify Status](https://img.shields.io/netlify/5cb37fa7-9ee1-4af6-9ff4-d34ff0322ded?style=flat-square&logo=netlify)](https://aivue.netlify.app/)
 
@@ -1925,7 +1929,7 @@ If you encounter errors related to missing Vue functions like `createElementBloc
 
 ## 📺 Live Demo
 
-![AI Chatbot Demo](https://raw.githubusercontent.com/reachbrt/vueai/main/demo/src/assets/images/chatbot-illustration.svg)
+![AI Chatbot Demo](https://raw.githubusercontent.com/reachbrt/VueAI/main/demo/src/assets/images/scene-chat.svg)
 
 ### Interactive Demo
 

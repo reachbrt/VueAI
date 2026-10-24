@@ -1,10 +1,14 @@
+<p align="center">
+  <a href="https://aivue.netlify.app"><img src="https://raw.githubusercontent.com/reachbrt/VueAI/main/docs/studio-bar.svg" alt="VueAI" width="100%"></a>
+</p>
+
 # @aivue/360-spin
 
 > Interactive 360-degree product image spin component for Vue.js with AI-powered generation
 
-[![npm version](https://img.shields.io/npm/v/@aivue/360-spin.svg)](https://www.npmjs.com/package/@aivue/360-spin)
-[![npm downloads](https://img.shields.io/badge/downloads-0%2Fmonth-CB3837?style=flat-square&logo=npm)](https://www.npmjs.com/package/@aivue/360-spin)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![npm version](https://img.shields.io/npm/v/@aivue/360-spin.svg?color=34d399&labelColor=09090b)](https://www.npmjs.com/package/@aivue/360-spin)
+[![npm downloads](https://img.shields.io/badge/downloads-0%2Fmonth-34d399?style=flat-square&logo=npm&color=34d399&labelColor=09090b)](https://www.npmjs.com/package/@aivue/360-spin)
+[![License: MIT](https://img.shields.io/badge/license-MIT-34d399?style=flat-square&labelColor=09090b)](https://opensource.org/licenses/MIT)
 
 ## ✨ Features
 

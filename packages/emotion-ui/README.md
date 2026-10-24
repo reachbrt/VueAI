@@ -1,8 +1,12 @@
+<p align="center">
+  <a href="https://aivue.netlify.app"><img src="https://raw.githubusercontent.com/reachbrt/VueAI/main/docs/studio-bar.svg" alt="VueAI" width="100%"></a>
+</p>
+
 # @aivue/emotion-ui
 
-[![npm version](https://img.shields.io/npm/v/@aivue/emotion-ui.svg)](https://www.npmjs.com/package/@aivue/emotion-ui)
-[![npm downloads](https://img.shields.io/badge/downloads-274%2Fmonth-CB3837?style=flat-square&logo=npm)](https://www.npmjs.com/package/@aivue/emotion-ui)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![npm version](https://img.shields.io/npm/v/@aivue/emotion-ui.svg?color=34d399&labelColor=09090b)](https://www.npmjs.com/package/@aivue/emotion-ui)
+[![npm downloads](https://img.shields.io/badge/downloads-274%2Fmonth-34d399?style=flat-square&logo=npm&color=34d399&labelColor=09090b)](https://www.npmjs.com/package/@aivue/emotion-ui)
+[![License: MIT](https://img.shields.io/badge/license-MIT-34d399?style=flat-square&labelColor=09090b)](https://opensource.org/licenses/MIT)
 [![Netlify Status](https://img.shields.io/netlify/5cb37fa7-9ee1-4af6-9ff4-d34ff0322ded?style=flat-square&logo=netlify)](https://aivue.netlify.app/)
 
 > Emotion-aware UI components for Vue 3 that adapt based on user sentiment detected from text, voice, and interaction patterns

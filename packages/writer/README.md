@@ -1,3 +1,7 @@
+<p align="center">
+  <a href="https://aivue.netlify.app"><img src="https://raw.githubusercontent.com/reachbrt/VueAI/main/docs/studio-bar.svg" alt="VueAI" width="100%"></a>
+</p>
+
 # @aivue/writer
 
 In-place writing actions for Vue apps. The same edits people expect from Notion AI, Grammarly, and Google Docs: rewrite, shorten, expand, fix grammar, change tone, and continue.

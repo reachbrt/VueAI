@@ -1,7 +1,11 @@
+<p align="center">
+  <a href="https://aivue.netlify.app"><img src="https://raw.githubusercontent.com/reachbrt/VueAI/main/docs/studio-bar.svg" alt="VueAI" width="100%"></a>
+</p>
+
 # @aivue/analytics
 
-[![npm version](https://img.shields.io/npm/v/@aivue/analytics.svg?style=flat-square)](https://www.npmjs.com/package/@aivue/analytics)
-[![npm downloads](https://img.shields.io/badge/downloads-97%2Fmonth-CB3837?style=flat-square&logo=npm)](https://www.npmjs.com/package/@aivue/analytics)
+[![npm version](https://img.shields.io/npm/v/@aivue/analytics.svg?style=flat-square&color=34d399&labelColor=09090b)](https://www.npmjs.com/package/@aivue/analytics)
+[![npm downloads](https://img.shields.io/badge/downloads-97%2Fmonth-34d399?style=flat-square&logo=npm&color=34d399&labelColor=09090b)](https://www.npmjs.com/package/@aivue/analytics)
 [![Netlify Status](https://api.netlify.com/api/v1/badges/your-badge-id/deploy-status)](https://app.netlify.com/sites/aivue-demo/deploys)
 
 AI-powered analytics and insights for Vue.js applications. Track user interactions, monitor AI usage, analyze conversations, and gain valuable insights with beautiful dashboard components.

@@ -1,3 +1,7 @@
+<p align="center">
+  <a href="https://aivue.netlify.app"><img src="https://raw.githubusercontent.com/reachbrt/VueAI/main/docs/studio-bar.svg" alt="VueAI" width="100%"></a>
+</p>
+
 # @aivue/agent
 
 The agent runtime for Vue. Stream text, show reasoning, run tools against your page, pause for approval, and render your own components inside the thread.

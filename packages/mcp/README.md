@@ -1,9 +1,13 @@
+<p align="center">
+  <a href="https://aivue.netlify.app"><img src="https://raw.githubusercontent.com/reachbrt/VueAI/main/docs/studio-bar.svg" alt="VueAI" width="100%"></a>
+</p>
+
 # @aivue/mcp-client
 
 > Official Model Context Protocol (MCP) client for Vue.js - Following the standard MCP architecture: **Host App → MCP Client → MCP Server**
 
-[![npm version](https://img.shields.io/npm/v/@aivue/mcp-client.svg)](https://www.npmjs.com/package/@aivue/mcp-client)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![npm version](https://img.shields.io/npm/v/@aivue/mcp-client.svg?color=34d399&labelColor=09090b)](https://www.npmjs.com/package/@aivue/mcp-client)
+[![License: MIT](https://img.shields.io/badge/license-MIT-34d399?style=flat-square&labelColor=09090b)](https://opensource.org/licenses/MIT)
 
 ## 🏗️ Architecture
 

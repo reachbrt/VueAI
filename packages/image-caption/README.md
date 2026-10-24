@@ -1,9 +1,13 @@
+<p align="center">
+  <a href="https://aivue.netlify.app"><img src="https://raw.githubusercontent.com/reachbrt/VueAI/main/docs/studio-bar.svg" alt="VueAI" width="100%"></a>
+</p>
+
 # @aivue/image-caption
 
 [![npm version](https://badge.fury.io/js/@aivue%2Fimage-caption.svg)](https://badge.fury.io/js/@aivue%2Fimage-caption)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Vue 3](https://img.shields.io/badge/Vue-3.x-4FC08D.svg)](https://vuejs.org/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-Ready-blue.svg)](https://www.typescriptlang.org/)
+[![License: MIT](https://img.shields.io/badge/license-MIT-34d399?style=flat-square&labelColor=09090b)](https://opensource.org/licenses/MIT)
+[![Vue 3](https://img.shields.io/badge/Vue-3.x-34d399?style=flat-square&labelColor=09090b)](https://vuejs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-Ready-34d399?style=flat-square&labelColor=09090b)](https://www.typescriptlang.org/)
 
 🖼️ **AI-powered image captioning for Vue.js applications using OpenAI Vision API**
 

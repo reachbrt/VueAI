@@ -1,14 +1,14 @@
 <div align="center">
-  <img src="https://raw.githubusercontent.com/reachbrt/vueai/main/demo/src/assets/images/hero-illustration.svg" alt="AI Core" width="150" height="150" />
+  <img src="https://raw.githubusercontent.com/reachbrt/VueAI/main/docs/studio-banner.svg" alt="VueAI" width="100%" />
 
   <h1>@aivue/core</h1>
   <p>Core AI functionality for Vue.js components</p>
 
   <p>
-    <a href="https://www.npmjs.com/package/@aivue/core"><img src="https://img.shields.io/npm/v/@aivue/core.svg?style=flat-square" alt="npm version"></a>
-    <a href="https://www.npmjs.com/package/@aivue/core"><img src="https://img.shields.io/badge/downloads-360%2Fmonth-CB3837?style=flat-square&logo=npm" alt="npm downloads"></a>
-    <a href="https://www.npmjs.com/package/@aivue/core"><img src="https://img.shields.io/npm/d18m/%40aivue%2Fcore" alt="NPM Downloads"></a>
-    <a href="https://github.com/reachbrt/vueai/blob/main/LICENSE"><img src="https://img.shields.io/npm/l/@aivue/core.svg?style=flat-square" alt="MIT License"></a>
+    <a href="https://www.npmjs.com/package/@aivue/core"><img src="https://img.shields.io/npm/v/@aivue/core.svg?style=flat-square&color=34d399&labelColor=09090b" alt="npm version"></a>
+    <a href="https://www.npmjs.com/package/@aivue/core"><img src="https://img.shields.io/badge/downloads-360%2Fmonth-34d399?style=flat-square&logo=npm&color=34d399&labelColor=09090b" alt="npm downloads"></a>
+    <a href="https://www.npmjs.com/package/@aivue/core"><img src="https://img.shields.io/npm/d18m/%40aivue%2Fcore?color=34d399&labelColor=09090b" alt="NPM Downloads"></a>
+    <a href="https://github.com/reachbrt/vueai/blob/main/LICENSE"><img src="https://img.shields.io/npm/l/@aivue/core.svg?style=flat-square&color=34d399&labelColor=09090b" alt="MIT License"></a>
     <a href="https://aivue.netlify.app/"><img src="https://img.shields.io/netlify/5cb37fa7-9ee1-4af6-9ff4-d34ff0322ded?style=flat-square&logo=netlify" alt="Netlify Status"></a>
   </p>
 

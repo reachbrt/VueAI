@@ -1,3 +1,7 @@
+<p align="center">
+  <a href="https://aivue.netlify.app"><img src="https://raw.githubusercontent.com/reachbrt/VueAI/main/docs/studio-bar.svg" alt="VueAI" width="100%"></a>
+</p>
+
 # @aivue/moderation
 
 AI content moderation for Vue 2 and Vue 3. Score UGC before publish; falls back to a lightweight heuristic if no client is provided.

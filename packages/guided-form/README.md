@@ -1,10 +1,14 @@
+<p align="center">
+  <a href="https://aivue.netlify.app"><img src="https://raw.githubusercontent.com/reachbrt/VueAI/main/docs/studio-bar.svg" alt="VueAI" width="100%"></a>
+</p>
+
 # @aivue/guided-form
 
 > 🎯 Transform form schemas into AI-assisted, one-question-at-a-time conversational experiences
 
-[![npm version](https://img.shields.io/npm/v/@aivue/guided-form.svg)](https://www.npmjs.com/package/@aivue/guided-form)
-[![npm downloads](https://img.shields.io/npm/dm/@aivue/guided-form.svg)](https://www.npmjs.com/package/@aivue/guided-form)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![npm version](https://img.shields.io/npm/v/@aivue/guided-form.svg?color=34d399&labelColor=09090b)](https://www.npmjs.com/package/@aivue/guided-form)
+[![npm downloads](https://img.shields.io/npm/dm/@aivue/guided-form.svg?color=34d399&labelColor=09090b)](https://www.npmjs.com/package/@aivue/guided-form)
+[![License: MIT](https://img.shields.io/badge/license-MIT-34d399?style=flat-square&labelColor=09090b)](https://opensource.org/licenses/MIT)
 
 ## ✨ Features
 

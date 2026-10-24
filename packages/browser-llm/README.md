@@ -1,12 +1,16 @@
+<p align="center">
+  <a href="https://aivue.netlify.app"><img src="https://raw.githubusercontent.com/reachbrt/VueAI/main/docs/studio-bar.svg" alt="VueAI" width="100%"></a>
+</p>
+
 # @aivue/browser-llm
 
 <div align="center">
 
 ### 🚀 High-Performance In-Browser LLM Inference for Vue.js
 
-[![npm version](https://img.shields.io/npm/v/@aivue/browser-llm.svg)](https://www.npmjs.com/package/@aivue/browser-llm)
-[![npm downloads](https://img.shields.io/npm/dm/@aivue/browser-llm.svg)](https://www.npmjs.com/package/@aivue/browser-llm)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![npm version](https://img.shields.io/npm/v/@aivue/browser-llm.svg?color=34d399&labelColor=09090b)](https://www.npmjs.com/package/@aivue/browser-llm)
+[![npm downloads](https://img.shields.io/npm/dm/@aivue/browser-llm.svg?color=34d399&labelColor=09090b)](https://www.npmjs.com/package/@aivue/browser-llm)
+[![License: MIT](https://img.shields.io/badge/license-MIT-34d399?style=flat-square&labelColor=09090b)](https://opensource.org/licenses/MIT)
 
 Run powerful AI models **completely locally** in your browser with **zero API costs** and **100% privacy**!
 
