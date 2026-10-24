@@ -21,22 +21,48 @@
 
     <main id="top">
       <section class="hero">
-        <div>
+        <div class="hero-copy">
           <p class="eyebrow">Agent runtime for Vue</p>
-          <h1>The interface<br><em>for agents.</em></h1>
-          <p class="lede">Streaming, tools, approvals, and your own components inside the thread. The agent shares state with the page it is standing on.</p>
+          <h1>
+            <span>A component suite</span>
+            <span>the agent can call,</span>
+            <span class="hero-accent">on the page it is in.</span>
+          </h1>
+          <p class="lede">Streaming, tools, approvals, and your own Vue components inside the thread. Every package below is a control the agent can use, and a component you can place on its own.</p>
           <div class="hero-actions">
             <a class="btn" href="#agent">Open the studio</a>
-            <span class="install">npm i @aivue/agent</span>
+            <a class="btn btn-ghost" href="#packages">All {{ packages.length }} packages</a>
           </div>
         </div>
         <div class="hero-stage">
+          <div class="hero-grid" aria-hidden="true" />
           <HeroCanvas />
-          <div class="hero-float">
-            <strong>filter_invoices</strong>
-            <span>Shared state · filter = overdue · waiting for the next tool</span>
+          <div class="orbit" aria-hidden="true">
+            <article class="slab slab-back">
+              <p>Shared state</p>
+              <strong>filter = overdue</strong>
+              <span>The table and the thread read the same object.</span>
+            </article>
+            <article class="slab slab-mid">
+              <p>Tool</p>
+              <strong>filter_invoices</strong>
+              <span>{"status":"overdue"} · 2 rows</span>
+            </article>
+            <article class="slab slab-front">
+              <p>Approval</p>
+              <strong>Refund invoice 1042</strong>
+              <span>Waiting. The agent does not send it alone.</span>
+            </article>
           </div>
         </div>
+      </section>
+
+      <section class="section steps" aria-label="How a run moves">
+        <article v-for="step in steps" :key="step.index" class="step">
+          <p>{{ step.index }}</p>
+          <h2>{{ step.title }}</h2>
+          <span>{{ step.text }}</span>
+        </article>
       </section>
 
       <section id="agent" class="section">
@@ -45,16 +71,23 @@
 
       <section id="controls" class="section">
         <div class="section-intro">
-          <h2>Controls, <em>not a skin.</em></h2>
-          <p>Each piece is a component you can place on its own. The studio below is the same code the package exports.</p>
+          <h2>Controls, <em>each on its own.</em></h2>
+          <p>These are the pieces inside the agent panel. Place one in a page, or let the runtime compose them. The cards below are the exported components, not a mock.</p>
+        </div>
+        <div class="control-index">
+          <article v-for="control in controls" :key="control.name">
+            <p>{{ control.package }}</p>
+            <h3>{{ control.name }}</h3>
+            <span>{{ control.text }}</span>
+          </article>
         </div>
         <ControlGallery @library="library = true" />
       </section>
 
       <section id="packages" class="section">
         <div class="section-intro">
-          <h2>The suite.</h2>
-          <p>Install one package, or start from the agent and call the rest as tools.</p>
+          <h2>Every package.</h2>
+          <p>{{ packages.length }} packages, from the runtime to the field the user is typing in. Open a card for the npm page and its README.</p>
         </div>
         <div class="package-grid">
           <a
@@ -62,8 +95,10 @@
             :key="item.name"
             :href="`https://www.npmjs.com/package/${item.name}`"
           >
+            <p>{{ item.group }}</p>
             <strong>{{ item.name }}</strong>
             <span>{{ item.text }}</span>
+            <em>{{ item.controls }}</em>
           </a>
         </div>
       </section>
@@ -85,14 +120,14 @@ import { defineAsyncComponent, ref, watch } from 'vue';
 import AgentStage from './AgentStage.vue';
 import ControlGallery from './ControlGallery.vue';
 import HeroCanvas from './HeroCanvas.vue';
-import { packages } from './packages';
+import { controls, packages, steps } from './packages';
 import './site.css';
 
 const LibraryApp = defineAsyncComponent(() => import('../App.vue'));
 const library = ref(false);
 
 watch(library, (isLibrary) => {
-  document.body.style.background = isLibrary ? '' : '#0c0d0b';
+  document.body.style.background = isLibrary ? '' : '#071422';
   document.body.style.color = isLibrary ? '' : '#f3f1ea';
 }, { immediate: true });
 </script>

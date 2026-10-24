@@ -37,13 +37,13 @@ onMounted(() => {
 
   const group = new Group();
   const outerGeo = new IcosahedronGeometry(1.72, 1);
-  const outerMat = new MeshBasicMaterial({ color: 0xd6f25c, wireframe: true, transparent: true, opacity: 0.38 });
+  const outerMat = new MeshBasicMaterial({ color: 0x9ec8ff, wireframe: true, transparent: true, opacity: 0.42 });
   const outer = new Mesh(outerGeo, outerMat);
   const innerGeo = new IcosahedronGeometry(1.02, 0);
-  const innerMat = new MeshBasicMaterial({ color: 0xf4f1e8, wireframe: true, transparent: true, opacity: 0.22 });
+  const innerMat = new MeshBasicMaterial({ color: 0xe7f1ff, wireframe: true, transparent: true, opacity: 0.28 });
   const inner = new Mesh(innerGeo, innerMat);
   const ringGeo = new TorusGeometry(2.35, 0.008, 12, 96);
-  const ringMat = new MeshBasicMaterial({ color: 0xd6f25c, transparent: true, opacity: 0.55 });
+  const ringMat = new MeshBasicMaterial({ color: 0x7eb6ff, transparent: true, opacity: 0.7 });
   const ring = new Mesh(ringGeo, ringMat);
   ring.rotation.x = Math.PI / 2.35;
 
@@ -61,7 +61,7 @@ onMounted(() => {
   }
   const pointsGeo = new BufferGeometry();
   pointsGeo.setAttribute('position', new Float32BufferAttribute(positions, 3));
-  const pointsMat = new PointsMaterial({ color: 0xf4f1e8, size: 0.028, transparent: true, opacity: 0.75 });
+  const pointsMat = new PointsMaterial({ color: 0xd6e6ff, size: 0.03, transparent: true, opacity: 0.8 });
   const points = new Points(pointsGeo, pointsMat);
 
   group.add(outer, inner, ring, points);
