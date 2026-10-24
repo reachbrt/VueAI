@@ -6,6 +6,14 @@
 
 The agent runtime for Vue. Stream text, show reasoning, run tools against your page, pause for approval, and render your own components inside the thread.
 
+## Features
+
+- A plan the run updates as each step finishes
+- Sources cited under the answer
+- Follow-up suggestions the person can send in one click
+- A context meter for how full the thread is
+- Tools, approvals, shared page state, and generative UI
+
 [Live studio](https://aivue.netlify.app) · [GitHub](https://github.com/reachbrt/VueAI)
 
 ## Install

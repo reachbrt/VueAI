@@ -146,10 +146,33 @@ export function applyAgUiEvent(state: AgentRunState, event: AgUiEvent): AgentRun
       ]);
     }
     case 'SOURCES': {
-      return mapAssistantParts(state, (parts) => [
-        ...parts,
-        { type: 'sources', items: event.items }
-      ]);
+      return mapAssistantParts(state, (parts) => {
+        const rest = parts.filter((part) => part.type !== 'sources');
+        return [...rest, { type: 'sources', items: event.items }];
+      });
+    }
+    case 'PLAN': {
+      return mapAssistantParts(state, (parts) => {
+        const rest = parts.filter((part) => part.type !== 'plan');
+        return [...rest, { type: 'plan', title: event.title, steps: event.steps }];
+      });
+    }
+    case 'PLAN_STEP': {
+      return mapAssistantParts(state, (parts) => parts.map((part) => {
+        if (part.type !== 'plan') return part;
+        return {
+          ...part,
+          steps: part.steps.map((step) => (
+            step.id === event.id ? { ...step, status: event.status } : step
+          ))
+        };
+      }));
+    }
+    case 'SUGGESTIONS': {
+      return mapAssistantParts(state, (parts) => {
+        const rest = parts.filter((part) => part.type !== 'suggestions');
+        return [...rest, { type: 'suggestions', items: event.items }];
+      });
     }
     case 'STATE_SNAPSHOT':
       return { ...state, sharedState: { ...event.snapshot } };

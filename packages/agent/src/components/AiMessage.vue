@@ -24,16 +24,13 @@
         v-else-if="part.type === 'ui' && components?.[part.name]"
         v-bind="part.props"
       />
-      <div v-else-if="part.type === 'sources'" class="aivue-sources">
-        <component
-          :is="item.href ? 'a' : 'span'"
-          v-for="item in part.items"
-          :key="item.title"
-          :href="item.href"
-          target="_blank"
-          rel="noreferrer"
-        >{{ item.title }}</component>
-      </div>
+      <AiSources v-else-if="part.type === 'sources'" :items="part.items" />
+      <AiPlan v-else-if="part.type === 'plan'" :title="part.title" :steps="part.steps" />
+      <AiSuggestions
+        v-else-if="part.type === 'suggestions'"
+        :items="part.items"
+        @select="$emit('suggest', $event)"
+      />
     </template>
   </article>
 </template>
@@ -41,7 +38,10 @@
 <script setup lang="ts">
 import type { AgentComponentMap, AgentMessage } from '../types';
 import AiApproval from './AiApproval.vue';
+import AiPlan from './AiPlan.vue';
 import AiReasoning from './AiReasoning.vue';
+import AiSources from './AiSources.vue';
+import AiSuggestions from './AiSuggestions.vue';
 import AiToolCall from './AiToolCall.vue';
 import '../styles/agent.css';
 
@@ -53,5 +53,6 @@ defineProps<{
 defineEmits<{
   approve: [id: string];
   reject: [id: string];
+  suggest: [text: string];
 }>();
 </script>

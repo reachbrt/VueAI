@@ -27,15 +27,29 @@ Northwind — invoice **1042** for $1,840 was due on 12 Oct.
 export function overdueScenario(): AgUiEvent[] {
   return [
     { type: 'RUN_STARTED' },
+    {
+      type: 'PLAN',
+      title: 'Find overdue invoices',
+      steps: [
+        { id: 'read', title: 'Read the ledger on this page', status: 'active' },
+        { id: 'filter', title: 'Filter the overdue rows', status: 'pending' },
+        { id: 'answer', title: 'Answer with the two invoices', status: 'pending' }
+      ]
+    },
     ...tokens('The page has four invoices. I only need the ones whose due date has passed and whose balance is still open.', 'REASONING_MESSAGE_CONTENT'),
     { type: 'REASONING_END' },
     { type: 'TOOL_CALL_START', id: 'filter-1', name: 'filter_invoices' },
     { type: 'TOOL_CALL_ARGS', id: 'filter-1', delta: '{"status":"overdue"}' },
     { type: 'TOOL_CALL_END', id: 'filter-1' },
+    { type: 'PLAN_STEP', id: 'read', status: 'done' },
+    { type: 'PLAN_STEP', id: 'filter', status: 'done' },
+    { type: 'PLAN_STEP', id: 'answer', status: 'active' },
     { type: 'STATE_DELTA', delta: { filter: 'overdue' } },
     ...tokens('Two invoices are overdue: 1042 for Northwind and 1056 for Aster.', 'TEXT_MESSAGE_CONTENT'),
     { type: 'UI', name: 'InvoiceChip', props: { id: '1042', client: 'Northwind', amount: '$1,840' } },
+    { type: 'PLAN_STEP', id: 'answer', status: 'done' },
     { type: 'SOURCES', items: [{ title: 'Invoice ledger', href: '#agent' }, { title: 'Page state' }] },
+    { type: 'SUGGESTIONS', items: ['Draft a reminder', 'Refund invoice 1042'] },
     { type: 'RUN_FINISHED' }
   ];
 }

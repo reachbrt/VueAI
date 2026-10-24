@@ -46,6 +46,30 @@ describe('applyAgUiEvent', () => {
     expect(state.status).toBe('awaiting-approval');
   });
 
+  it('moves a plan forward and keeps the latest suggestions', () => {
+    let state = applyAgUiEvent(createAgentState(), { type: 'RUN_STARTED' });
+    state = applyAgUiEvent(state, {
+      type: 'PLAN',
+      title: 'Find overdue invoices',
+      steps: [
+        { id: 'read', title: 'Read the ledger', status: 'active' },
+        { id: 'answer', title: 'Answer', status: 'pending' }
+      ]
+    });
+    state = applyAgUiEvent(state, { type: 'PLAN_STEP', id: 'read', status: 'done' });
+    state = applyAgUiEvent(state, { type: 'SUGGESTIONS', items: ['Draft a reminder'] });
+    state = applyAgUiEvent(state, { type: 'SUGGESTIONS', items: ['Refund invoice 1042'] });
+    const plan = state.messages[0].parts.find((part) => part.type === 'plan');
+    const suggestions = state.messages[0].parts.find((part) => part.type === 'suggestions');
+    expect(plan).toMatchObject({
+      steps: [
+        { id: 'read', status: 'done' },
+        { id: 'answer', status: 'pending' }
+      ]
+    });
+    expect(suggestions).toEqual({ type: 'suggestions', items: ['Refund invoice 1042'] });
+  });
+
   it('merges shared state', () => {
     let state = applyAgUiEvent(createAgentState(), { type: 'STATE_SNAPSHOT', snapshot: { filter: 'all' } });
     state = applyAgUiEvent(state, { type: 'STATE_DELTA', delta: { filter: 'overdue' } });

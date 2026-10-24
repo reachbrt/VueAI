@@ -49,7 +49,34 @@ export interface SourcesPart {
   items: SourceItem[];
 }
 
-export type AgentPart = TextPart | ReasoningPart | ToolPart | ApprovalPart | UiPart | SourcesPart;
+export type PlanStepStatus = 'pending' | 'active' | 'done';
+
+export interface PlanStep {
+  id: string;
+  title: string;
+  status: PlanStepStatus;
+}
+
+export interface PlanPart {
+  type: 'plan';
+  title?: string;
+  steps: PlanStep[];
+}
+
+export interface SuggestionsPart {
+  type: 'suggestions';
+  items: string[];
+}
+
+export type AgentPart =
+  | TextPart
+  | ReasoningPart
+  | ToolPart
+  | ApprovalPart
+  | UiPart
+  | SourcesPart
+  | PlanPart
+  | SuggestionsPart;
 
 export interface AgentMessage {
   id: string;
@@ -79,6 +106,9 @@ export type AgUiEvent =
   | { type: 'APPROVAL_REQUEST'; id: string; title: string; detail: string }
   | { type: 'UI'; name: string; props?: Record<string, unknown> }
   | { type: 'SOURCES'; items: SourceItem[] }
+  | { type: 'PLAN'; title?: string; steps: PlanStep[] }
+  | { type: 'PLAN_STEP'; id: string; status: PlanStepStatus }
+  | { type: 'SUGGESTIONS'; items: string[] }
   | { type: 'STATE_SNAPSHOT'; snapshot: Record<string, unknown> }
   | { type: 'STATE_DELTA'; delta: Record<string, unknown> };
 

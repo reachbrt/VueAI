@@ -7,6 +7,7 @@
       :components="components"
       @approve="$emit('approve', $event)"
       @reject="$emit('reject', $event)"
+      @suggest="$emit('suggest', $event)"
     />
     <p v-if="!messages.length" class="aivue-message__text">Ask the agent to work on this page.</p>
   </div>
@@ -25,5 +26,6 @@ defineProps<{
 defineEmits<{
   approve: [id: string];
   reject: [id: string];
+  suggest: [text: string];
 }>();
 </script>

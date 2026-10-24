@@ -132,7 +132,33 @@
   border: 1px solid var(--aivue-line, rgba(28, 29, 25, 0.1)) !important;
 }
 
+.aivue-sources,
+.aivue-plan,
+.aivue-suggestions,
+.aivue-context {
+  border: 1px solid var(--aivue-line, rgba(28, 29, 25, 0.1));
+  background: var(--aivue-surface, #ffffff);
+  border-radius: 14px;
+  padding: 12px 14px;
+}
+
+.aivue-sources__label,
+.aivue-plan__label,
+.aivue-context span:first-child {
+  margin: 0;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--aivue-muted, #6f6b63);
+}
+
 .aivue-sources {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.aivue-sources__list {
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
@@ -146,6 +172,93 @@
   border-radius: 999px;
   padding: 4px 8px;
   text-decoration: none;
+}
+
+.aivue-plan ol {
+  list-style: none;
+  margin: 10px 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.aivue-plan li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+}
+
+.aivue-plan__mark {
+  width: 8px;
+  height: 8px;
+  border-radius: 99px;
+  border: 1.5px solid var(--aivue-muted, #6f6b63);
+  flex: none;
+}
+
+.aivue-plan li.is-active .aivue-plan__mark {
+  background: var(--aivue-accent, #34d399);
+  border-color: var(--aivue-accent, #34d399);
+}
+
+.aivue-plan li.is-done {
+  color: var(--aivue-muted, #6f6b63);
+}
+
+.aivue-plan li.is-done .aivue-plan__mark {
+  background: var(--aivue-ink, #1c1d19);
+  border-color: var(--aivue-ink, #1c1d19);
+}
+
+.aivue-suggestions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  background: transparent;
+  border: 0;
+  padding: 0;
+}
+
+.aivue-suggestions button {
+  appearance: none;
+  border: 1px solid var(--aivue-line, rgba(28, 29, 25, 0.1));
+  background: transparent;
+  color: var(--aivue-ink, #1c1d19);
+  border-radius: 999px;
+  padding: 6px 12px;
+  font: inherit;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.aivue-suggestions button:hover {
+  border-color: var(--aivue-accent, #34d399);
+  color: var(--aivue-accent, #34d399);
+}
+
+.aivue-context {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 10px;
+  font-size: 12px;
+  color: var(--aivue-muted, #6f6b63);
+}
+
+.aivue-context__track {
+  height: 6px;
+  border-radius: 99px;
+  background: var(--aivue-line, rgba(28, 29, 25, 0.1));
+  overflow: hidden;
+}
+
+.aivue-context__fill {
+  height: 100%;
+  border-radius: inherit;
+  background: var(--aivue-accent, #34d399);
 }
 
 .aivue-composer {

@@ -96,6 +96,10 @@ Streaming, tools, approvals, and your own Vue components, on the page the person
 | Call the page | Tools you register can filter a table, open a document, or change the screen. |
 | Wait for a person | A refund, a send, or a delete pauses on an approval. |
 | Render your component | The agent places a Vue component in the thread and shares state with it. |
+| Show the plan | `AiPlan` lists the steps and marks the one the run is on. |
+| Cite sources | `AiSources` names the pages and records the answer came from. |
+| Offer the next prompt | `AiSuggestions` sends a follow-up in one click. |
+| Watch the window | `AiContext` shows how much of the context window the thread has used. |
 | Remember | Hierarchical memory keeps long documents and wide tables without resending them. |
 | Stay on the device | `@aivue/browser-llm` runs a model in WebGPU. No key leaves the page. |
 | Write in place | Rewrite, shorten, translate, summarize, or score a draft before it is published. |

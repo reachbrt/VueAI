@@ -10,7 +10,7 @@ export const packages: PackageCard[] = [
     name: '@aivue/agent',
     group: 'Runtime',
     text: 'Streaming runs, tools, approvals, shared page state, and generative UI.',
-    controls: 'AiAgent, AiThread, AiMessage, AiReasoning, AiToolCall, AiApproval, AiComposer, useAgent'
+    controls: 'AiAgent, AiThread, AiMessage, AiReasoning, AiToolCall, AiApproval, AiPlan, AiSources, AiSuggestions, AiContext, AiComposer, useAgent'
   },
   {
     name: '@aivue/stream-markdown',
@@ -233,6 +233,10 @@ export const controls = [
   { name: 'AiReasoning', icon: 'reason', package: '@aivue/agent', text: 'The model’s working notes, separate from the answer.' },
   { name: 'AiToolCall', icon: 'tool', package: '@aivue/agent', text: 'Name, arguments, and result of a tool, as they arrive.' },
   { name: 'AiApproval', icon: 'approval', package: '@aivue/agent', text: 'A pause with approve and reject, before a sensitive tool runs.' },
+  { name: 'AiPlan', icon: 'list', package: '@aivue/agent', text: 'The steps the agent plans, and which one it is on.' },
+  { name: 'AiSources', icon: 'doc', package: '@aivue/agent', text: 'The pages and records a reply is drawn from.' },
+  { name: 'AiSuggestions', icon: 'suggest', package: '@aivue/agent', text: 'Follow-up prompts the person can send in one click.' },
+  { name: 'AiContext', icon: 'chart', package: '@aivue/agent', text: 'How much of the context window this thread has used.' },
   { name: 'AiComposer', icon: 'composer', package: '@aivue/agent', text: 'The field that starts the next turn.' },
   { name: 'AiAgent', icon: 'panel', package: '@aivue/agent', text: 'The whole panel: thread, status, and approval events.' },
   { name: 'useAgent', icon: 'play', package: '@aivue/agent', text: 'Play an event stream, register tools, and share state with the page.' },

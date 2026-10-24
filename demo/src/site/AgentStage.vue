@@ -18,8 +18,10 @@
           :messages="messages"
           :status="status"
           :components="components"
+          :context="{ used: contextUsed, limit: 8000 }"
           placeholder="Ask about this page"
           @send="ask"
+          @suggest="ask"
           @approve="onApprove"
           @reject="onReject"
         />
@@ -128,6 +130,14 @@ watch(() => sharedState.value.filter, (value) => {
 watch(() => sharedState.value.artifact, (value) => {
   if (typeof value === 'string') artifact.value = value;
 });
+
+const contextUsed = computed(() => messages.value.reduce((total, message) => (
+  total + message.parts.reduce((partTotal, part) => {
+    if (part.type === 'text' || part.type === 'reasoning') return partTotal + part.text.length;
+    if (part.type === 'tool') return partTotal + part.argsText.length;
+    return partTotal + 24;
+  }, 0)
+), 0));
 
 const visibleRows = computed(() => (
   filter.value === 'all'
