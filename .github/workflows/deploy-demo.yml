@@ -7,6 +7,7 @@ on:
       - main
     paths:
       - "demo/**"
+      - "packages/**"
       - "netlify.toml"
       - ".github/workflows/deploy-demo.yml"
 
@@ -22,7 +23,19 @@ jobs:
         with:
           node-version: 20
           cache: npm
-          cache-dependency-path: demo/package-lock.json
+          cache-dependency-path: |
+            package-lock.json
+            demo/package-lock.json
+
+      - name: Build local packages the demo imports
+        run: |
+          npm ci
+          npm run build --workspace @aivue/agent
+          npm run build --workspace @aivue/stream-markdown
+          npm run build --workspace @aivue/summarizer
+          npm run build --workspace @aivue/translate
+          npm run build --workspace @aivue/moderation
+          npm run build --workspace @aivue/writer
 
       - name: Install and build demo
         working-directory: demo
@@ -40,4 +53,4 @@ jobs:
             echo "Site ID: 9f08866c-e889-408a-959e-32d8e3f3ab49"
             exit 1
           fi
-          npx --yes netlify-cli deploy --prod --dir=demo/dist --site=9f08866c-e889-408a-959e-32d8e3f3ab49
+          npx --yes netlify-cli deploy --prod --no-build --dir=demo/dist --site=9f08866c-e889-408a-959e-32d8e3f3ab49

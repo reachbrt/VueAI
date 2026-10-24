@@ -69,15 +69,30 @@ npx @aivue/cli add nuxt
 | [@aivue/cli](https://www.npmjs.com/package/@aivue/cli) | `aivue add agent` and `aivue add nuxt` |
 | [@aivue/core](https://www.npmjs.com/package/@aivue/core) | Provider client |
 | [@aivue/chatbot](https://www.npmjs.com/package/@aivue/chatbot) | Chat window, voice, RAG |
+| [@aivue/chatbot-storage](https://www.npmjs.com/package/@aivue/chatbot-storage) | Saved threads for the chatbot |
 | [@aivue/browser-llm](https://www.npmjs.com/package/@aivue/browser-llm) | In-browser model via WebGPU |
 | [@aivue/mcp-client](https://www.npmjs.com/package/@aivue/mcp-client) | Model Context Protocol client |
-| [@aivue/smart-datatable](https://www.npmjs.com/package/@aivue/smart-datatable) | Natural-language tables |
 | [@aivue/writer](https://www.npmjs.com/package/@aivue/writer) | In-place rewrite and tone |
+| [@aivue/summarizer](https://www.npmjs.com/package/@aivue/summarizer) | Short, medium, and long summaries |
+| [@aivue/translate](https://www.npmjs.com/package/@aivue/translate) | Detect a language and translate |
+| [@aivue/moderation](https://www.npmjs.com/package/@aivue/moderation) | Score text before it is published |
+| [@aivue/smart-datatable](https://www.npmjs.com/package/@aivue/smart-datatable) | Natural-language tables |
+| [@aivue/tabular-intelligence](https://www.npmjs.com/package/@aivue/tabular-intelligence) | Statistics and models on tables |
 | [@aivue/doc-intelligence](https://www.npmjs.com/package/@aivue/doc-intelligence) | Invoice, receipt, and ID extraction |
+| [@aivue/image-caption](https://www.npmjs.com/package/@aivue/image-caption) | Captions for uploaded images |
 | [@aivue/voice-actions](https://www.npmjs.com/package/@aivue/voice-actions) | Voice commands |
 | [@aivue/hierarchical-memory](https://www.npmjs.com/package/@aivue/hierarchical-memory) | Memory trees for documents and tables |
+| [@aivue/guided-form](https://www.npmjs.com/package/@aivue/guided-form) | One question at a time |
+| [@aivue/smartform](https://www.npmjs.com/package/@aivue/smartform) | AI form validation |
+| [@aivue/autosuggest](https://www.npmjs.com/package/@aivue/autosuggest) | Suggestions as you type |
+| [@aivue/predictive-input](https://www.npmjs.com/package/@aivue/predictive-input) | Sentence completion |
+| [@aivue/smart-notify](https://www.npmjs.com/package/@aivue/smart-notify) | Timed, grouped notifications |
+| [@aivue/emotion-ui](https://www.npmjs.com/package/@aivue/emotion-ui) | UI that follows sentiment |
+| [@aivue/analytics](https://www.npmjs.com/package/@aivue/analytics) | Product and conversation analytics |
+| [@aivue/360-spin](https://www.npmjs.com/package/@aivue/360-spin) | 360° product spin |
+| [@aivue/ai-360-generator](https://www.npmjs.com/package/@aivue/ai-360-generator) | Generate a 360° view from one image |
 
-The studio lists the rest: summarizer, translate, moderation, guided forms, predictive input, smart form, autosuggest, notifications, emotion, analytics, tabular intelligence, image caption, and 360 spin.
+Each package README on npm and GitHub documents install and a short example. The studio at [aivue.netlify.app](https://aivue.netlify.app) runs the same components.
 
 ## Develop
 
