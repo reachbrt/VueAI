@@ -1,0 +1,163 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="1040" viewBox="0 0 1440 1040" role="img" aria-label="VueAI architecture. One repository, the Vue page, the agent runtime, the model client, and six feature groups.">
+  <rect width="1440" height="1040" fill="#000000"/>
+  <circle cx="1280" cy="0" r="280" fill="#34d399" opacity="0.09"/>
+  <g opacity="0.22" stroke="#34d399" fill="none">
+    <path d="M1040 36h360M1040 84h360M1040 132h360M1040 180h360"/>
+    <path d="M1100 0v220M1160 0v220M1220 0v220M1280 0v220M1340 0v220M1400 0v220"/>
+  </g>
+  <g fill="none" stroke="#34d399" stroke-width="1.6" transform="translate(64,58)">
+    <circle r="3.2" fill="#34d399" stroke="none"/>
+    <ellipse rx="16" ry="6" transform="rotate(-32)"/>
+    <ellipse rx="16" ry="6" transform="rotate(58)"/>
+  </g>
+
+<text x="96" y="52" fill="#ffffff" font-family="Georgia, 'Times New Roman', serif" font-size="28" font-weight="500" letter-spacing="0" text-anchor="start">VueAI</text>
+<text x="96" y="78" fill="#34d399" font-family="ui-sans-serif, system-ui, sans-serif" font-size="13" font-weight="500" letter-spacing="3.2" text-anchor="start">ARCHITECTURE</text>
+<text x="1376" y="64" fill="#a1a1aa" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" font-weight="400" letter-spacing="0" text-anchor="end">One GitHub repository  /  27 packages</text>
+<line x1="78" y1="132" x2="78" y2="690" stroke="#34d399" stroke-width="1" opacity="0.45"/>
+<circle cx="78" cy="168" r="13" fill="#000" stroke="#34d399"/>
+<text x="78" y="172" fill="#34d399" font-family="ui-sans-serif, system-ui, sans-serif" font-size="11" font-weight="600" letter-spacing="0" text-anchor="middle">1</text>
+<rect x="108" y="124" width="1284" height="132" rx="16" fill="#09090b" stroke="#27272a" stroke-width="1"/>
+<text x="132" y="156" fill="#a1a1aa" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" font-weight="500" letter-spacing="1.6" text-anchor="start">01   YOUR VUE PAGE</text>
+<text x="132" y="184" fill="#ffffff" font-family="ui-sans-serif, system-ui, sans-serif" font-size="18" font-weight="500" letter-spacing="0" text-anchor="start">Chat, forms, tables, images, and the product already on screen</text>
+<rect x="132" y="200" width="230" height="40" rx="20" fill="#18181b" stroke="#27272a" stroke-width="1"/>
+<circle cx="152" cy="220" r="4" fill="#34d399"/>
+<text x="166" y="225" fill="#e4e4e7" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" font-weight="400" letter-spacing="0" text-anchor="start">Chat</text>
+<rect x="378" y="200" width="230" height="40" rx="20" fill="#18181b" stroke="#27272a" stroke-width="1"/>
+<circle cx="398" cy="220" r="4" fill="#34d399"/>
+<text x="412" y="225" fill="#e4e4e7" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" font-weight="400" letter-spacing="0" text-anchor="start">Forms</text>
+<rect x="624" y="200" width="230" height="40" rx="20" fill="#18181b" stroke="#27272a" stroke-width="1"/>
+<circle cx="644" cy="220" r="4" fill="#34d399"/>
+<text x="658" y="225" fill="#e4e4e7" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" font-weight="400" letter-spacing="0" text-anchor="start">Tables</text>
+<rect x="870" y="200" width="230" height="40" rx="20" fill="#18181b" stroke="#27272a" stroke-width="1"/>
+<circle cx="890" cy="220" r="4" fill="#34d399"/>
+<text x="904" y="225" fill="#e4e4e7" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" font-weight="400" letter-spacing="0" text-anchor="start">Images</text>
+<rect x="1116" y="200" width="230" height="40" rx="20" fill="#18181b" stroke="#27272a" stroke-width="1"/>
+<circle cx="1136" cy="220" r="4" fill="#34d399"/>
+<text x="1150" y="225" fill="#e4e4e7" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" font-weight="400" letter-spacing="0" text-anchor="start">360 view</text>
+<text x="720" y="286" fill="#34d399" font-family="ui-sans-serif, system-ui, sans-serif" font-size="13" font-weight="400" letter-spacing="0" text-anchor="middle">the agent runs inside that page</text>
+<circle cx="78" cy="360" r="13" fill="#000" stroke="#34d399"/>
+<text x="78" y="364" fill="#34d399" font-family="ui-sans-serif, system-ui, sans-serif" font-size="11" font-weight="600" letter-spacing="0" text-anchor="middle">2</text>
+<rect x="108" y="304" width="1284" height="168" rx="16" fill="#071510" stroke="#34d399" stroke-width="1.4"/>
+<text x="132" y="336" fill="#34d399" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" font-weight="500" letter-spacing="1.6" text-anchor="start">02   @aivue/agent</text>
+<text x="132" y="366" fill="#ffffff" font-family="ui-sans-serif, system-ui, sans-serif" font-size="20" font-weight="500" letter-spacing="0" text-anchor="start">Plan, tools, approval, sources, and your own component</text>
+<rect x="132" y="388" width="92" height="36" rx="18" fill="#10241c" stroke="#1f6b4a" stroke-width="1"/>
+<text x="178.0" y="411" fill="#d1fae5" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" font-weight="500" letter-spacing="0" text-anchor="middle">Stream</text>
+<rect x="236" y="388" width="74" height="36" rx="18" fill="#10241c" stroke="#1f6b4a" stroke-width="1"/>
+<text x="273.0" y="411" fill="#d1fae5" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" font-weight="500" letter-spacing="0" text-anchor="middle">Plan</text>
+<rect x="322" y="388" width="78" height="36" rx="18" fill="#10241c" stroke="#1f6b4a" stroke-width="1"/>
+<text x="361.0" y="411" fill="#d1fae5" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" font-weight="500" letter-spacing="0" text-anchor="middle">Tools</text>
+<rect x="412" y="388" width="110" height="36" rx="18" fill="#10241c" stroke="#1f6b4a" stroke-width="1"/>
+<text x="467.0" y="411" fill="#d1fae5" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" font-weight="500" letter-spacing="0" text-anchor="middle">Approval</text>
+<rect x="534" y="388" width="100" height="36" rx="18" fill="#10241c" stroke="#1f6b4a" stroke-width="1"/>
+<text x="584.0" y="411" fill="#d1fae5" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" font-weight="500" letter-spacing="0" text-anchor="middle">Sources</text>
+<rect x="646" y="388" width="128" height="36" rx="18" fill="#10241c" stroke="#1f6b4a" stroke-width="1"/>
+<text x="710.0" y="411" fill="#d1fae5" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" font-weight="500" letter-spacing="0" text-anchor="middle">Suggestions</text>
+<rect x="786" y="388" width="156" height="36" rx="18" fill="#10241c" stroke="#1f6b4a" stroke-width="1"/>
+<text x="864.0" y="411" fill="#d1fae5" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" font-weight="500" letter-spacing="0" text-anchor="middle">Your component</text>
+<text x="132" y="452" fill="#a1a1aa" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" font-weight="400" letter-spacing="0" text-anchor="start">stream-markdown keeps tokens valid while they arrive. The CLI scaffolds the panel.</text>
+<text x="720" y="502" fill="#34d399" font-family="ui-sans-serif, system-ui, sans-serif" font-size="13" font-weight="400" letter-spacing="0" text-anchor="middle">every call goes through one client</text>
+<circle cx="78" cy="572" r="13" fill="#000" stroke="#34d399"/>
+<text x="78" y="576" fill="#34d399" font-family="ui-sans-serif, system-ui, sans-serif" font-size="11" font-weight="600" letter-spacing="0" text-anchor="middle">3</text>
+<rect x="108" y="520" width="1284" height="132" rx="16" fill="#09090b" stroke="#27272a" stroke-width="1"/>
+<text x="132" y="552" fill="#a1a1aa" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" font-weight="500" letter-spacing="1.6" text-anchor="start">03   @aivue/core</text>
+<text x="132" y="580" fill="#ffffff" font-family="ui-sans-serif, system-ui, sans-serif" font-size="18" font-weight="500" letter-spacing="0" text-anchor="start">One client. Current models. Same API for every package.</text>
+<rect x="132" y="600" width="150" height="34" rx="17" fill="#18181b" stroke="#27272a" stroke-width="1"/>
+<circle cx="148" cy="617" r="3.5" fill="#34d399"/>
+<text x="160" y="622" fill="#ffffff" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" font-weight="400" letter-spacing="0" text-anchor="start">GPT-6.1 Sol</text>
+<rect x="294" y="600" width="188" height="34" rx="17" fill="#18181b" stroke="#27272a" stroke-width="1"/>
+<circle cx="310" cy="617" r="3.5" fill="#34d399"/>
+<text x="322" y="622" fill="#ffffff" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" font-weight="400" letter-spacing="0" text-anchor="start">Claude Sonnet 5.5</text>
+<rect x="494" y="600" width="180" height="34" rx="17" fill="#18181b" stroke="#27272a" stroke-width="1"/>
+<circle cx="510" cy="617" r="3.5" fill="#34d399"/>
+<text x="522" y="622" fill="#ffffff" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" font-weight="400" letter-spacing="0" text-anchor="start">Gemini 3.8 Flash</text>
+<rect x="686" y="600" width="160" height="34" rx="17" fill="#18181b" stroke="#27272a" stroke-width="1"/>
+<circle cx="702" cy="617" r="3.5" fill="#34d399"/>
+<text x="714" y="622" fill="#ffffff" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" font-weight="400" letter-spacing="0" text-anchor="start">DeepSeek Flash</text>
+<rect x="858" y="600" width="150" height="34" rx="17" fill="#18181b" stroke="#27272a" stroke-width="1"/>
+<circle cx="874" cy="617" r="3.5" fill="#34d399"/>
+<text x="886" y="622" fill="#ffffff" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" font-weight="400" letter-spacing="0" text-anchor="start">Hugging Face</text>
+<rect x="1020" y="600" width="110" height="34" rx="17" fill="#18181b" stroke="#27272a" stroke-width="1"/>
+<circle cx="1036" cy="617" r="3.5" fill="#34d399"/>
+<text x="1048" y="622" fill="#ffffff" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" font-weight="400" letter-spacing="0" text-anchor="start">Ollama</text>
+<text x="132" y="688" fill="#a1a1aa" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" font-weight="500" letter-spacing="1.6" text-anchor="start">04   FEATURE PACKAGES</text>
+<text x="132" y="714" fill="#d4d4d8" font-family="ui-sans-serif, system-ui, sans-serif" font-size="16" font-weight="400" letter-spacing="0" text-anchor="start">Each one publishes on its own, and each one can stand alone on the page.</text>
+<rect x="108.0" y="740" width="200.66666666666666" height="220" rx="18" fill="#09090b" stroke="#27272a" stroke-width="1"/>
+<rect x="108.0" y="740" width="200.66666666666666" height="3" rx="1.5" fill="#34d399"/>
+<text x="126.0" y="776" fill="#34d399" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" font-weight="600" letter-spacing="1.4" text-anchor="start">CONVERSATION</text>
+<circle cx="130.0" cy="804" r="2.5" fill="#34d399"/>
+<text x="142.0" y="808" fill="#e4e4e7" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" font-weight="400" letter-spacing="0" text-anchor="start">chatbot</text>
+<circle cx="130.0" cy="832" r="2.5" fill="#34d399"/>
+<text x="142.0" y="836" fill="#e4e4e7" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" font-weight="400" letter-spacing="0" text-anchor="start">chatbot-storage</text>
+<circle cx="130.0" cy="860" r="2.5" fill="#34d399"/>
+<text x="142.0" y="864" fill="#e4e4e7" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" font-weight="400" letter-spacing="0" text-anchor="start">browser-llm</text>
+<circle cx="130.0" cy="888" r="2.5" fill="#34d399"/>
+<text x="142.0" y="892" fill="#e4e4e7" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" font-weight="400" letter-spacing="0" text-anchor="start">mcp-client</text>
+<rect x="324.66666666666663" y="740" width="200.66666666666666" height="220" rx="18" fill="#09090b" stroke="#27272a" stroke-width="1"/>
+<rect x="324.66666666666663" y="740" width="200.66666666666666" height="3" rx="1.5" fill="#34d399"/>
+<text x="342.66666666666663" y="776" fill="#34d399" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" font-weight="600" letter-spacing="1.4" text-anchor="start">WRITING</text>
+<circle cx="346.66666666666663" cy="804" r="2.5" fill="#34d399"/>
+<text x="358.66666666666663" y="808" fill="#e4e4e7" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" font-weight="400" letter-spacing="0" text-anchor="start">writer</text>
+<circle cx="346.66666666666663" cy="832" r="2.5" fill="#34d399"/>
+<text x="358.66666666666663" y="836" fill="#e4e4e7" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" font-weight="400" letter-spacing="0" text-anchor="start">summarizer</text>
+<circle cx="346.66666666666663" cy="860" r="2.5" fill="#34d399"/>
+<text x="358.66666666666663" y="864" fill="#e4e4e7" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" font-weight="400" letter-spacing="0" text-anchor="start">translate</text>
+<circle cx="346.66666666666663" cy="888" r="2.5" fill="#34d399"/>
+<text x="358.66666666666663" y="892" fill="#e4e4e7" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" font-weight="400" letter-spacing="0" text-anchor="start">moderation</text>
+<rect x="541.3333333333333" y="740" width="200.66666666666666" height="220" rx="18" fill="#09090b" stroke="#27272a" stroke-width="1"/>
+<rect x="541.3333333333333" y="740" width="200.66666666666666" height="3" rx="1.5" fill="#34d399"/>
+<text x="559.3333333333333" y="776" fill="#34d399" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" font-weight="600" letter-spacing="1.4" text-anchor="start">DATA</text>
+<circle cx="563.3333333333333" cy="804" r="2.5" fill="#34d399"/>
+<text x="575.3333333333333" y="808" fill="#e4e4e7" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" font-weight="400" letter-spacing="0" text-anchor="start">smart-datatable</text>
+<circle cx="563.3333333333333" cy="832" r="2.5" fill="#34d399"/>
+<text x="575.3333333333333" y="836" fill="#e4e4e7" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" font-weight="400" letter-spacing="0" text-anchor="start">tabular-intelligence</text>
+<circle cx="563.3333333333333" cy="860" r="2.5" fill="#34d399"/>
+<text x="575.3333333333333" y="864" fill="#e4e4e7" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" font-weight="400" letter-spacing="0" text-anchor="start">hierarchical-memory</text>
+<circle cx="563.3333333333333" cy="888" r="2.5" fill="#34d399"/>
+<text x="575.3333333333333" y="892" fill="#e4e4e7" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" font-weight="400" letter-spacing="0" text-anchor="start">doc-intelligence</text>
+<circle cx="563.3333333333333" cy="916" r="2.5" fill="#34d399"/>
+<text x="575.3333333333333" y="920" fill="#e4e4e7" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" font-weight="400" letter-spacing="0" text-anchor="start">image-caption</text>
+<rect x="758.0" y="740" width="200.66666666666666" height="220" rx="18" fill="#09090b" stroke="#27272a" stroke-width="1"/>
+<rect x="758.0" y="740" width="200.66666666666666" height="3" rx="1.5" fill="#34d399"/>
+<text x="776.0" y="776" fill="#34d399" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" font-weight="600" letter-spacing="1.4" text-anchor="start">INPUT</text>
+<circle cx="780.0" cy="804" r="2.5" fill="#34d399"/>
+<text x="792.0" y="808" fill="#e4e4e7" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" font-weight="400" letter-spacing="0" text-anchor="start">guided-form</text>
+<circle cx="780.0" cy="832" r="2.5" fill="#34d399"/>
+<text x="792.0" y="836" fill="#e4e4e7" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" font-weight="400" letter-spacing="0" text-anchor="start">smartform</text>
+<circle cx="780.0" cy="860" r="2.5" fill="#34d399"/>
+<text x="792.0" y="864" fill="#e4e4e7" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" font-weight="400" letter-spacing="0" text-anchor="start">autosuggest</text>
+<circle cx="780.0" cy="888" r="2.5" fill="#34d399"/>
+<text x="792.0" y="892" fill="#e4e4e7" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" font-weight="400" letter-spacing="0" text-anchor="start">predictive-input</text>
+<circle cx="780.0" cy="916" r="2.5" fill="#34d399"/>
+<text x="792.0" y="920" fill="#e4e4e7" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" font-weight="400" letter-spacing="0" text-anchor="start">voice-actions</text>
+<rect x="974.6666666666666" y="740" width="200.66666666666666" height="220" rx="18" fill="#09090b" stroke="#27272a" stroke-width="1"/>
+<rect x="974.6666666666666" y="740" width="200.66666666666666" height="3" rx="1.5" fill="#34d399"/>
+<text x="992.6666666666666" y="776" fill="#34d399" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" font-weight="600" letter-spacing="1.4" text-anchor="start">SURFACE</text>
+<circle cx="996.6666666666666" cy="804" r="2.5" fill="#34d399"/>
+<text x="1008.6666666666666" y="808" fill="#e4e4e7" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" font-weight="400" letter-spacing="0" text-anchor="start">smart-notify</text>
+<circle cx="996.6666666666666" cy="832" r="2.5" fill="#34d399"/>
+<text x="1008.6666666666666" y="836" fill="#e4e4e7" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" font-weight="400" letter-spacing="0" text-anchor="start">emotion-ui</text>
+<circle cx="996.6666666666666" cy="860" r="2.5" fill="#34d399"/>
+<text x="1008.6666666666666" y="864" fill="#e4e4e7" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" font-weight="400" letter-spacing="0" text-anchor="start">analytics</text>
+<circle cx="996.6666666666666" cy="888" r="2.5" fill="#34d399"/>
+<text x="1008.6666666666666" y="892" fill="#e4e4e7" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" font-weight="400" letter-spacing="0" text-anchor="start">360-spin</text>
+<circle cx="996.6666666666666" cy="916" r="2.5" fill="#34d399"/>
+<text x="1008.6666666666666" y="920" fill="#e4e4e7" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" font-weight="400" letter-spacing="0" text-anchor="start">ai-360-generator</text>
+<rect x="1191.3333333333333" y="740" width="200.66666666666666" height="220" rx="18" fill="#09090b" stroke="#27272a" stroke-width="1"/>
+<rect x="1191.3333333333333" y="740" width="200.66666666666666" height="3" rx="1.5" fill="#34d399"/>
+<text x="1209.3333333333333" y="776" fill="#34d399" font-family="ui-sans-serif, system-ui, sans-serif" font-size="12" font-weight="600" letter-spacing="1.4" text-anchor="start">RUNTIME</text>
+<circle cx="1213.3333333333333" cy="804" r="2.5" fill="#34d399"/>
+<text x="1225.3333333333333" y="808" fill="#e4e4e7" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" font-weight="400" letter-spacing="0" text-anchor="start">agent</text>
+<circle cx="1213.3333333333333" cy="832" r="2.5" fill="#34d399"/>
+<text x="1225.3333333333333" y="836" fill="#e4e4e7" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" font-weight="400" letter-spacing="0" text-anchor="start">core</text>
+<circle cx="1213.3333333333333" cy="860" r="2.5" fill="#34d399"/>
+<text x="1225.3333333333333" y="864" fill="#e4e4e7" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" font-weight="400" letter-spacing="0" text-anchor="start">stream-markdown</text>
+<circle cx="1213.3333333333333" cy="888" r="2.5" fill="#34d399"/>
+<text x="1225.3333333333333" y="892" fill="#e4e4e7" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" font-weight="400" letter-spacing="0" text-anchor="start">cli</text>
+<rect x="108" y="984" width="1284" height="36" rx="18" fill="#09090b" stroke="#27272a" stroke-width="1"/>
+<circle cx="560" cy="1002" r="2.5" fill="#34d399"/>
+  <circle cx="860" cy="1002" r="2.5" fill="#34d399"/>
+  <text x="540" y="1007" fill="#a1a1aa" font-family="ui-sans-serif, system-ui, sans-serif" font-size="13" font-weight="400" letter-spacing="0" text-anchor="end">github.com/reachbrt/VueAI</text>
+  <text x="720" y="1007" fill="#a1a1aa" font-family="ui-sans-serif, system-ui, sans-serif" font-size="13" font-weight="400" letter-spacing="0" text-anchor="middle">npmjs.com/~aivue</text>
+  <text x="880" y="1007" fill="#a1a1aa" font-family="ui-sans-serif, system-ui, sans-serif" font-size="13" font-weight="400" letter-spacing="0" text-anchor="start">aivue.netlify.app</text>
+</svg>
