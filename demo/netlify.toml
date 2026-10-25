@@ -7,6 +7,11 @@
   NPM_FLAGS = "--production=false"
 
 [[redirects]]
+  from = "/assets/architecture-WoRcel7K.svg"
+  to = "/architecture.svg"
+  status = 200
+
+[[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200

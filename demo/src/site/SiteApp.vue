@@ -88,7 +88,7 @@
           <h2>One repo. <em>Every feature.</em></h2>
           <p>VueAI is a single GitHub repository. The agent sits on the page, the core client talks to the model, and each package is a feature you can use on its own.</p>
         </div>
-        <img class="architecture" :src="architectureArt" alt="Architecture of the VueAI suite: the page, the agent, the model client, and six feature groups." />
+        <img class="architecture" src="/architecture.svg" alt="Architecture of the VueAI suite: the page, the agent, the model client, and six feature groups." />
         <div class="lanes">
           <article v-for="lane in lanes" :key="lane.name">
             <p>{{ lane.name }}</p>
@@ -170,7 +170,6 @@ import smartformArt from '../assets/images/scene-form.svg';
 import autosuggestArt from '../assets/images/scene-input.svg';
 import captionArt from '../assets/images/scene-vision.svg';
 import analyticsArt from '../assets/images/scene-signal.svg';
-import architectureArt from '../assets/images/architecture.svg';
 import './site.css';
 
 const sceneImages: Record<string, string> = {
